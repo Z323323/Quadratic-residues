@@ -74,5 +74,11 @@
    for odd distinct primes $p_{i}$, by the CRT $- 1$ is a quadratic residue iff $k \leq 1$ and each $p_{i} \equiv 1 \mod 4$.
  </p>
 
+ ## Miller-Rabin primality test
+
+ <p>
+   
+ </p>
+
  
  
