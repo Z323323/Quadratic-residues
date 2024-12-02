@@ -1,4 +1,4 @@
-# Quadratic-residues
+# Quadratic residues
 
 ## Euler's Criterion and Legendre symbol
 
@@ -8,11 +8,17 @@
 
   $p \equiv 1 \mod 4$
 
-  Imagine to take a random $a \in Z_{p}^{*}$ and compute
+  #### Fast ex.
 
-  $a^{(p - 1)/2} \equiv - 1 \mod p$
+  $4^2 \equiv -1 \mod 17$
 
-  We would normally conclude that $a$ is a quadratic non-residue, because if it was a residue, by the Euler's Criterion it would equal $1$. Now, following [https://math.stackexchange.com/questions/122048/1-is-a-quadratic-residue-modulo-p-if-and-only-if-p-equiv-1-pmod4] we can see that if we have a residue which is $- 1$, then it must be that
+  hence in this case we would have $- 1$ as a residue, indeed
+
+  $(- 1)^{(p - 1)/2} = (- 1)^8 \equiv 1 \mod 17$
+
+  It's quite intuitive at this point to say that if $(p - 1)/2$ is even then we can have $- 1$ as a residue, otherwise we can't. For ex. imagine $(- 1)^3 \equiv - 1 \mod 7$. Indeed $3$ is odd. 
+
+  Now, following [https://math.stackexchange.com/questions/122048/1-is-a-quadratic-residue-modulo-p-if-and-only-if-p-equiv-1-pmod4] we can see that if we have a residue which is $- 1$, then it must be that
 
   $a^2 \equiv - 1 \mod p$
 
@@ -32,46 +38,53 @@
    
    $\phi(p^2) = p(p - 1)$
 
-   thus by the CRT:
+   If
 
-   $x^2 \equiv - 1  (\mod p^2)$<br>
-   $iff$<br>
-   $x^2 \equiv - 1 (\mod p)$<br>
-   $x^2 \equiv - 1 (\mod p - 1)$
+   $a^2 \equiv - 1 \mod p^2$
 
-   which proves the result for $Z_{\phi(p^2)}^{\ast}$ because the first exists iff $x \in Z_{\phi(p^2)}^{\ast}$, and the second is the former section's case. Inducting on $k$ we can easily state that $Z_{\phi(p^k)}^{\ast}$ will always have at least one subgroup which is the same as the above case $(Z_{\phi(p^2)}^{\ast})$ by Lagrange, proving that a quadratic residue which is $- 1$ exists iff $p \equiv 1 \mod 4$. 
+   then
+
+   $a^4 \equiv 1 \mod p^2$
+
+   therefore by Lagrange $4 | p(p - 1)$, and since $p$ is not divisible by $4$ it must be that $4 | p - 1$, thus
+
+   $p \equiv 1 \mod 4$
+
+   This result can easily be extended to any $p^k$ since
+
+   $\phi(p^3) = p(p(p - 1))$<br>
+   $\phi(p^4) = p(p(p(p - 1)))$
+
+   and so on.
  </p>
 
  ### Extension to $Z_{\phi(n)}^{\ast}$
 
  <p>
-   If
-
-   $x^2 \equiv 1 \mod 2^k$
-
-   it will necessary be that
-
-   $x^2 \equiv 1 \mod 2^{k - 1}$
-
-   because by Lagrange every subgroup's order divide $2^k$, thus iterating until we get
-
-   $x^2 \equiv 1 \mod 2$
-
-   we will eventually have $x^{(p - 1)/2}$ which is considerable as $- 1$ because $1 \mod 2 = - 1 \mod 2$.
-   Also we will never face
 
    $x^2 \equiv - 1 \mod 2^k$
 
-   because if it existed, by the same resoning of the previous section, we should necessary have some
+   is impossible because
 
-   $x^4 \equiv - 1 \mod 2^k$
+   $2 \equiv 2 \mod 4$
 
-   which is impossible because it would coincide with the order of another subgroup which is $1$.
+   and for $2^k, k > 1$
+   
+   $2^k \equiv 0 \mod 4$
+  
    Now we can finally generalize and say that if
 
    $n = 2^{k}p_{i}^{k_{i}}$
 
-   for odd distinct primes $p_{i}$, by the CRT $- 1$ is a quadratic residue iff $k \leq 1$ and each $p_{i} \equiv 1 \mod 4$.
+   for odd distinct primes $p_{i}$, by the CRT, $- 1$ is a quadratic residue iff $k \leq 1$ and each $p_{i} \equiv 1 \mod 4$. The condition $k \leq 1$ is because
+
+   $\phi(2p_{i}^k) = \phi(2)\phi(p_{i}^k) = 1(p(p \dots (p - 1) \dots )) = \phi(p_{i}^k)$
+
+   therefore $2$ is irrelevant and can coexist, while if it was at least $2^2$ we would have
+
+   $x^2 \equiv - 1 \mod 2^2$
+
+   using the CRT; and since it doesn't have solutions we can state that $n$ can't have $- 1$ as quadratic residue (works for any $k$).
  </p>
 
  ## Miller-Rabin primality test
