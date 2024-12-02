@@ -92,7 +92,29 @@
  ## Miller-Rabin primality test
 
  <p>
-   
+   This is probably one of the best tests, if not the best to find out if a number is a prime quickly. We take $n$ and a random $a$ in $[2 \dots p - 2]$, if
+
+   $a^{n - 1} \not\equiv 1 \mod n$
+
+   we are done, $n$ is not a prime. Otherwise if it equals $1$, we take $n$ and compute
+
+   $s_{1} = (n - 1) / 2, s_{2} = s_{1} / 2, \dots$
+
+   $r$ times, until we get a number which is not divisible by $2$ (if it's not divisible by $2$ initially then $n$ is not prime and we are done), then we perform
+
+   $a^{s_{i}} \mod n, i = [1, \dots, r]$
+
+   if it equals $1$ we continue until we get $- 1$ at $s_{r}$, otherwise if any
+
+   $a^{s_{i}} \not\equiv 1 \mod n$
+
+   or
+
+   $a^{s_{i}} \not\equiv - 1 \mod n$
+
+   then $n$ is composite.<br>
+
+   This test exploit the difference between primes subgroups structure and non-primes one, i.e. every time we perform an exponentiation by $s_{i} / 2, i = [0, \dots, r - 1]$ we are basically finding the square root of the previous result; since primes follow this particular structure (Euler's Criterion) where we always get $1$ until we reach $s_{r}$ [and we get $- 1$] it's almost impossible to find a large-non-prime number which fools this test (at least I guess so). Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$. For the moment I'm not delving this method further.
  </p>
 
  
