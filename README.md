@@ -121,5 +121,25 @@
    also $- 1$ does not appear around in every multiplicative subgroup, thus it's almost impossible to fool the test. Things should be analyzed better but I don't have the time to do it so for the moment I'm not delving this method further.
  </p>
 
+## Gauss' Lemma
+
+<p>
+  I'm going straight to the proof here, refer to [https://crypto.stanford.edu/pbc/notes/numbertheory/gausslemma.html]. The linked resource is more than enough, I'm just rewriting the proof for completeness and for study purposes, also I'll provide a couple steps which could seem more intuitive compared to the linked proof.
+
+  Let $p$ an odd prime and $q$ an integer coprime (i.e. every integer in the $[1, \dots, p - 1]$ set is fine). We compute
+
+  $\\{q, q2, \dots, q(p - 1)/2\\}$
+
+  Now we analyze this set, and call $b_1, \dots, b_t$ the elements of the set which are less than $p/2$, and $c_1, \dots, c_u$ the elements which are greater than $p/2$, then it must be that
+  
+  $0 < b_1, \dots, b_t, p - c_1, \dots, p - c_u < p/2$
+
+  Also, each of these are distinct because if $b_i = p - c_j$ then
+
+  $b_i + c_j = p$
+
+  but this is impossible because $c_j - p < p/2$ and $b_i < p/2$, hence they must be different.
+  
+</p>
  
  
