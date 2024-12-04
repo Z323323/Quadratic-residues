@@ -128,18 +128,56 @@
 
   Let $p$ an odd prime and $q$ an integer coprime (i.e. every integer in the $[1, \dots, p - 1]$ set is fine). We compute
 
-  $\\{q, q2, \dots, q(p - 1)/2\\}$
+  $\\{q, q2, \dots, q(p - 1)/2\\} (\mod p)$
 
-  Now we analyze this set, and call $b_1, \dots, b_t$ the elements of the set which are less than $p/2$, and $c_1, \dots, c_u$ the elements which are greater than $p/2$, then it must be that
+  Now we analyze this set, and call $b_1, \dots, b_t$ the elements of the set which are less than $p/2$, and $c_1, \dots, c_u$ the elements which are greater than $p/2$. Every $b_i \neq b_j, c_i \neq c_j (i \neq j)$ (easily provable using the **cancellation law**). Then it must be that
   
   $0 < b_1, \dots, b_t, p - c_1, \dots, p - c_u < p/2$
 
-  Also, each of these are distinct because if $b_i = p - c_j$ then
+  and each of these are distinct because if $b_i = p - c_j$ then
 
-  $b_i + c_j = p$
+  $b_i + c_j = p$<br>
+  $->$<br>
+  $b_i + c_j - p = 0$
 
-  but this is impossible because $c_j - p < p/2$ and $b_i < p/2$, hence they must be different.
+  but this is impossible because $c_j - p < p/2$ and $b_i < p/2$, hence they must be different. This means that
+
+  $q(q2)\dots (q(p - 1)/2) \equiv (- 1)^{u}b_1 \dots b_t(p - c_1) \dots (p - c_u) (\mod p)$
+
+  because since every 
+
+  $0 < b_1, \dots, b_t, p - c_1, \dots, p - c_u < p/2$
+
+  is different, then they map every number in the set $[1, \dots, (p - 1)/2]$. To set the equality we just need to see how the original $q$ set is the same as this if we consider $(- 1)^u$.<br>
+  Now restarting from
+
+  $q(q2)\dots (q(p - 1)/2) \equiv (- 1)^{u}b_1 \dots b_t(p - c_1) \dots (p - c_u) (\mod p)$<br>
+  $->$<br>
+  $q^{(p - 1)/2}((p - 1)/2)! \equiv (- 1)^{u}((p - 1)/2)! (\mod p)$
+
+  Now to safely remove that co-factor we can use the **cancellation law**, i.e. since $((p - 1)/2)! \nmid p$ it must be that
+
+  $q^{(p - 1)/2} \equiv (- 1)^{u} (\mod p)$ _
+  
+  or using the Legendre Symbol:
+
+  $\displaystyle (\frac{q}{p}) = (- 1)^{u}$
   
 </p>
- 
- 
+
+ ### Corollary
+
+ <p>
+   The problem with the Gauss' Lemma is clearly to know $u$. Using $q = 2$ we have
+   
+   $\displaystyle (\frac{2}{p}) = (- 1)^{\frac{p^2 - 1}{8}} = (- 1)^{\frac{p + 1}{4}}$
+
+   [ da provare ]
+   
+ </p>
+
+ ### Theorem of quadratic reciprocity
+
+ <p>
+   
+ </p>
