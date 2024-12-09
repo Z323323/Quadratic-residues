@@ -114,7 +114,7 @@
 
    then $n$ is composite.<br>
 
-   This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ is way different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also $ Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$. Just note this:
+   This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ is way different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$. Just note this:
 
    $a^{(n - 1) / 2} \not\equiv a^{\phi(n) / 2}$ for non-primes
 
@@ -165,14 +165,76 @@
   
 </p>
 
- ### Corollary
+## Gauss' Formula
+
+<p>
+  When he was like $0$ years old Gauss proved that the sum of elements of the set $[1, 2, \dots, n]$ is
+
+  $\displaystyle \frac{n(n + 1)}{2}$
+
+  I don't want to prove this but it's easy (he proved it at $10$ years or something like that, then you can understand it quite easily, as long as he was a genius, a $10$ years old boy can't compete with an average $20$ years old guy). To understand it, do it as a funny math game and find a smart way to compute the sum of numbers from $1$ to $100$. You'll end up finding that formula, and you also could propose this simple problem to your friends (and lose them).
+</p>
+
+ ## The '2' case of Gauss' Lemma
 
  <p>
-   The problem with the Gauss' Lemma is clearly to know $u$. Using $q = 2$ we have
+   The problem with the Gauss' Lemma is clearly to know $u$. For $q = 2$ we have
    
-   $\displaystyle (\frac{2}{p}) = (- 1)^{\frac{p^2 - 1}{8}} = (- 1)^{\frac{p + 1}{4}}$
+   $\displaystyle (\frac{2}{p}) = (- 1)^{(p^2 - 1)/8} = (- 1)^{(p + 1)/4}$
+   
+   Let's get why. Restarting from
 
-   [ da provare ]
+   $q^{(p - 1)/2}((p - 1)/2)! \equiv ? (\mod p)$
+
+   we can break down $((p - 1)/2)!$ as
+
+   $1 = (- 1)(- 1)$<br>
+   $2 = (2)(- 1)^2$<br>
+   $3 = (- 3)(- 1)^3$<br>
+   $\dots$<br>
+   $(p - 1)/2 = (p - 1)/2(- 1)^{(p - 1)/2}$
+
+   It's easy to see that the lelft part produces $((p - 1)/2)!$, while for the right part we can further split it and take the left part:
+
+   $- 1$<br>
+   $2$<br>
+   $- 3$<br>
+   $\dots$<br>
+   $(p - 1)/2$
+
+   Now before considering the $(- 1)^?$ we can introduce our $2$ which substitutes $q$ and note that considering the numbers backwards we get
+
+   $2(p - 1)/2 \mod p = - 1 \mod p$<br>
+   $2((p - 1)/2 - 1) \mod p = 2(p - 3)/2 \mod p = - 3 \mod p$<br>
+   $2((p - 1)/2 - 2) \mod p = 2(p - 5)/2 \mod p = - 5 \mod p$<br>
+   $\dots$<br>
+   $2((p - 1)/2 - ((p - 1)/2 - 3)) \mod p = 2(6/2) = 6 \mod p$<br>
+   $2((p - 1)/2 - ((p - 1)/2 - 2)) \mod p = 2(4/2) = 4 \mod p$<br>
+   $2((p - 1)/2 - ((p - 1)/2 - 1)) \mod p = 2(2/2) = 2 \mod p$<br>
+
+   Thus
+
+   $((p - 1)/2)! \equiv (2)(4)(6) \dots (p - 5)(p - 3)(p - 1)(- 1)^{(p^2 - 1)/8} \equiv (- 1)(2)(- 3)(4) \dots ((p - 1)/2)(- 1)^{(p - 1)/2} (\mod p)$<br>
+   $->$<br>
+   $2^{(p - 1)/2}((p - 1)/2)! \equiv ((p - 1)/2)!(- 1)^{(p^2 - 1)/8} \mod p$<br>
+   $->$<br>
+   $2^{(p - 1)/2} \equiv (- 1)^{(p^2 - 1)/8} \mod p$
+
+   where the second step is quite hard, and $(p^2 - 1)/8$ is derived using the Gauss' Formula:
+
+   $\displaystyle \frac{(p - 1)/2((p - 1)/2 + 1)}{2} = \frac{(p - 1)/2(p + 1)/2}{2} = \frac{p^2 - 1}{8}$
+
+   ### Quadratic reciprocity prelude
+
+   Let $p$ be an odd prime and $q$ an integer which is coprime with $p$. Let
+
+   $m = q/p + q2/p + \dots + q(p - 1)/2/p$
+
+   then 
+
+   $m \equiv u \mod 2$
+
+   Here we can immediately spot that this structure is almost the same as the one we saw in the Gauss' Lemma, the difference is that the numbers are added together and are divided by $p$.
    
  </p>
 
