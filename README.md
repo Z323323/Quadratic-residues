@@ -214,16 +214,57 @@
 
    Thus
 
-   $((p - 1)/2)! \equiv (2)(4)(6) \dots (p - 5)(p - 3)(p - 1)(- 1)^{(p^2 - 1)/8} \equiv (- 1)(2)(- 3)(4) \dots ((p - 1)/2)(- 1)^{(p - 1)/2} (\mod p)$<br>
+   $((p - 1)/2)! \equiv (2)(4)(6) \dots (p - 5)(p - 3)(p - 1)(- 1)^{(p^2 - 1)/8} \equiv (- 1)(2)(- 3)(4) \dots ((p - 1)/2)(- 1)^{(p^2 - 1)/8} (\mod p)$<br>
    $->$<br>
    $2^{(p - 1)/2}((p - 1)/2)! \equiv ((p - 1)/2)!(- 1)^{(p^2 - 1)/8} \mod p$<br>
    $->$<br>
    $2^{(p - 1)/2} \equiv (- 1)^{(p^2 - 1)/8} \mod p$
 
-   where the second step is quite hard, and $(p^2 - 1)/8$ is derived using the Gauss' Formula:
+   where the second step is quite tricky, and it basically means that
+   
+   $(2)(4)(6) \dots (p - 5)(p - 3)(p - 1) \equiv (2)(4)(6) \dots (p - 5)(p - 3)(p - 1) (\mod p)$
+   
+   and $(p^2 - 1)/8$ is derived using the Gauss' Formula:
 
    $\displaystyle \frac{(p - 1)/2((p - 1)/2 + 1)}{2} = \frac{(p - 1)/2(p + 1)/2}{2} = \frac{p^2 - 1}{8}$
 
+   Now we can further analyze $(p^2 - 1)/8$ and see that $(p^2 - 1)/8$ is even iff 
+
+   $\displaystyle \frac{p^2 - 1}{8} = 2m$<br>
+   $->$<br>
+   $\displaystyle \frac{(p - 1)(p + 1)}{8} = 2m$<br>
+   $->$<br>
+   $\displaystyle \frac{(p - 1)(p + 1)}{16} = m$
+
+   Here we can see that if $p - 1$ or $p + 1$ is odd then no integer solutions exist, hence they must be even, and we can therefore rewrite this equality as 
+
+   $\displaystyle \frac{2p(p + 1)}{16} = m$<br>
+   $->$<br>
+   $\displaystyle \frac{p(p + 1)}{8} = m$
+
+   or
+
+   $\displaystyle \frac{2p(p - 1)}{16} = m$<br>
+   $->$<br>
+   $\displaystyle \frac{p(p - 1)}{8} = m$
+
+   which means that either $p - 1, p$ or $p + 1$ must be divisible by $8$ (all the integers which match this property are solutions of this equality), therefore
+
+   $p(p + 1) \equiv 0 \mod 8$
+
+   or
+
+   $p(p - 1) \equiv 0 \mod 8$
+
+   and since $p$ is prime (not divisible by $8$), it must be that
+
+   $p \equiv 1 \mod 8$
+
+   or
+
+   $p \equiv 7 \mod 8$
+
+   
    ### Quadratic reciprocity prelude
 
    Let $p$ be an odd prime and $q$ an integer which is coprime with $p$. Let
