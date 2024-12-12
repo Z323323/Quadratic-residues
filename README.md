@@ -233,36 +233,48 @@
    $\displaystyle \frac{p^2 - 1}{8} = 2m$<br>
    $->$<br>
    $\displaystyle \frac{(p - 1)(p + 1)}{8} = 2m$<br>
+
+   Either one of $p - 1$ or $p + 1$ (not both) will be divisible by $8$ in order to produce an integer result. Thus
+
+   $p \pm 1 \equiv 0 \mod 8$
    $->$<br>
-   $\displaystyle \frac{(p - 1)(p + 1)}{16} = m$
+   $p \equiv 1 \mod 8$ or $p \equiv - 1 \mod 8$
 
-   Here we can see that if $p - 1$ or $p + 1$ is odd then no integer solutions exist, hence they must be even, and we can therefore rewrite this equality as 
+   Now let's analyze all the possible results, if we have 
 
-   $\displaystyle \frac{2p(p + 1)}{16} = m$<br>
-   $->$<br>
-   $\displaystyle \frac{p(p + 1)}{8} = m$
+   $p \equiv 1 \mod 8 (p - 1 \equiv 0 \mod 8)$
 
-   or
+   then
 
-   $\displaystyle \frac{2p(p - 1)}{16} = m$<br>
-   $->$<br>
-   $\displaystyle \frac{p(p - 1)}{8} = m$
+   $p + 1 \equiv 2 \mod 8$
 
-   which means that either $p - 1, p$ or $p + 1$ must be divisible by $8$ (all the integers which match this property are solutions of this equality), therefore
+   otherwise if
 
-   $p(p + 1) \equiv 0 \mod 8$
+   $p \equiv - 1 \mod 8 (p + 1 \equiv 0 \mod 8)$
 
-   or
+   then
 
-   $p(p - 1) \equiv 0 \mod 8$
+   $p - 1 \equiv 6 \mod 8$
 
-   and since $p$ is prime (not divisible by $8$), it must be that
+   indeed as I said both $p - 1$, and $p + 1$ are always even. Now, let's consider the odd cases, i.e.
 
-   $p \equiv 1 \mod 8$
+   $\displaystyle \frac{(p - 1)(p + 1)}{8} = 2m + 1$<br>
 
-   or
+   Since both $p - 1$, and $p + 1$ are always even it must be that
 
-   $p \equiv 7 \mod 8$
+   $p \pm 1 \not\equiv 0 \mod 8$
+
+   but since they are even we will necessary end up having an even remainder, which synthetized for $p$ will be odd, i.e.
+
+   $p \equiv odd \mod 8$
+
+   Now since
+
+   $p \equiv 1 \mod 8$ and $p \equiv 7 \mod 8$
+
+   are the previous results, we end up having necessarily
+
+   $p \equiv 3 \mod 8$ or $p \equiv 5 \mod 8$
 
    
    ### Quadratic reciprocity prelude
