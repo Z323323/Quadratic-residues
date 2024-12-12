@@ -273,9 +273,19 @@
    $->$<br>
    $p - 1 \equiv 4 \mod 8$
 
-   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $6 \cdot 4 = 24, 24 / 8 = 3$ which is odd.<br>
-   Now if we repeat the reasoning reversing the results for $p - 1$ and $p + 1$ we will see that we will end up having the same results above, indeed $p$ will always be $1, 3, 5, 7$ and we already covered each case.<br>
-   We can conclude saying that it was quite obvious that we wouldn't have ended up having odd results in the form $2k + 1$ but only $0s$ because $p - 1$ and $p + 1$ are always even. Using the **multiplication property** becomes quite intuitive to see when we'll end up having odd results or not by the way.
+   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $6 \cdot 4 = 24, 24 / 8 = 3$ which is odd. Hence we see that if
+
+   $p \equiv 1, - 1 \mod 8$
+
+   $2^{(p - 1)/2} \equiv 1 \mod p$
+
+   otherwise if
+
+   $p \equiv 3, 5 \mod 8$
+
+   then
+
+   $2^{(p - 1)/2} \equiv - 1 \mod p$
    
    ### Quadratic reciprocity prelude
 
