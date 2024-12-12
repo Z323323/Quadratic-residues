@@ -234,9 +234,9 @@
    $->$<br>
    $\displaystyle \frac{(p - 1)(p + 1)}{8} = 2m$<br>
 
-   Either one of $p - 1$ or $p + 1$ (not both) will be divisible by $8$ in order to produce an integer result. Thus
+   If either $p - 1 | 8$ or $p + 1 | 8$ (can't be both) our result will be matched since both are even. Thus
 
-   $p \pm 1 \equiv 0 \mod 8$
+   $p \pm 1 \equiv 0 \mod 8$<br>
    $->$<br>
    $p \equiv 1 \mod 8$ or $p \equiv - 1 \mod 8$
 
@@ -256,26 +256,26 @@
 
    $p - 1 \equiv 6 \mod 8$
 
-   indeed as I said both $p - 1$, and $p + 1$ are always even. Now, let's consider the odd cases, i.e.
+   indeed as I said both $p - 1$, and $p + 1$ are always even. Now, the problem with the initial hypothesis is that we can't be sure it covers every case.
+   Let's analyze every other possible case.
 
-   $\displaystyle \frac{(p - 1)(p + 1)}{8} = 2m + 1$<br>
+   $p \equiv 3 \mod 8$<br>
+   $->$<br>
+   $p + 1 \equiv 4 \mod 8$<br>
+   $->$<br>
+   $p - 1 \equiv 2 \mod 8$
 
-   Since both $p - 1$, and $p + 1$ are always even it must be that
+   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $4 \cdot 2 = 8, 8 / 8 = 1$ which is odd.
 
-   $p \pm 1 \not\equiv 0 \mod 8$
+   $p \equiv 5 \mod 8$<br>
+   $->$<br>
+   $p + 1 \equiv 6 \mod 8$<br>
+   $->$<br>
+   $p - 1 \equiv 4 \mod 8$
 
-   but since they are even we will necessary end up having an even remainder, which synthetized for $p$ will be odd, i.e.
-
-   $p \equiv odd \mod 8$
-
-   Now since
-
-   $p \equiv 1 \mod 8$ and $p \equiv 7 \mod 8$
-
-   are the previous results, we end up having necessarily
-
-   $p \equiv 3 \mod 8$ or $p \equiv 5 \mod 8$
-
+   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $6 \cdot 4 = 24, 24 / 8 = 3$ which is odd.<br>
+   Now if we repeat the reasoning reversing the results for $p - 1$ and $p + 1$ we will see that we will end up having the same results above, indeed $p$ will always be $1, 3, 5, 7$ and we already covered each case.<br>
+   We can conclude saying that it was quite obvious that we wouldn't have ended up having odd results in the form $2k + 1$ but only $0s$ because $p - 1$ and $p + 1$ are always even. Using the **multiplication property** becomes quite intuitive to see when we'll end up having odd results or not by the way.
    
    ### Quadratic reciprocity prelude
 
