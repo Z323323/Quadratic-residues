@@ -240,23 +240,7 @@
    $->$<br>
    $p \equiv 1 \mod 8$ or $p \equiv - 1 \mod 8$
 
-   Now let's analyze all the possible results, if we have 
-
-   $p \equiv 1 \mod 8 (p - 1 \equiv 0 \mod 8)$
-
-   then
-
-   $p + 1 \equiv 2 \mod 8$
-
-   otherwise if
-
-   $p \equiv - 1 \mod 8 (p + 1 \equiv 0 \mod 8)$
-
-   then
-
-   $p - 1 \equiv 6 \mod 8$
-
-   indeed as I said both $p - 1$, and $p + 1$ are always even. Now, the problem with the initial hypothesis is that we can't be sure it covers every case.
+   Now, the problem with the initial hypothesis is that we can't be sure it covers every case.
    Let's analyze every other possible case.
 
    $p \equiv 3 \mod 8$<br>
@@ -313,9 +297,7 @@
 
    $(p - 1)/6 = 2m$<br>
    $->$<br>
-   $(p - 1)/12 = m$
-   $->$<br>
-   $p - 1 = 12m$
+   $p - 1 = 12m$<br>
    $->$<br>
    $p \equiv 1 \mod 12$
 
@@ -325,20 +307,24 @@
    $->$<br>
    $(p + 1)/12 = m + 2$<br>
    $->$<br>
-   $p + 1 = 12m + 24$
+   $p + 1 = 12m + 24$<br>
    $->$<br>
    $p \equiv - 1 \mod 12$
 
    Now considering the odd results we would have
 
    $(p - 1)/6 = 2m + 1$<br>
+   $->$<br>
    $p - 1 = 12m + 6$<br>
+   $->$<br>
    $p \equiv 7 \mod 12$
 
    Repeating for $p + 1$
 
    $(p + 1)/6 = 2m + 3$<br>
+   $->$<br>
    $p + 1 = 12m + 18$<br>
+   $->$<br>
    $p \equiv 5 \mod 12$
 
    Since $7 \mod 12 = - 5 \mod 12$ we end up having
@@ -371,12 +357,12 @@
 
    $m \equiv u \mod 2$
 
-   Here we can immediately spot that this structure is almost the same as the one we saw in the Gauss' Lemma, the difference is that the numbers are added together and are divided by $p$.
+   The proof for this theorem can be found at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. I won't copy paste it since it would be useless. This theorem is important because knowing such result allows us to use $m$ instead of $u$ to derive the results of Gauss' Lemma, which simplify the process a lot. Also the construction of $m$ and the proof are quite complex, I wouldn't focus too much on $m$ and just accept how it has been formed, because it will be useful later.
    
  </p>
 
- ### Theorem of quadratic reciprocity
+ ## Law of quadratic reciprocity
 
  <p>
-   
+   Refer to [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. 
  </p>
