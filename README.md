@@ -286,6 +286,78 @@
    then
 
    $2^{(p - 1)/2} \equiv - 1 \mod p$
+
+   </p>
+
+ ## The '3' case
+
+ <p>
+
+   By Gauss' Lemma
+   
+   $3^{(p - 1)/2} \equiv (- 1)^u \mod p$
+
+   We have the same problem faced above, that is, to find $u$. Recalling that $u$ is the number of elements of the set we seen above which is $> p/2$, we find that (substituting $q$ with $3$) the set we are looking for will be
+
+   $3 \cdot \\{(p - 1)/6 + 1, \dots, (p - 1)/3\\}$
+
+   Thus
+
+   $\displaystyle \frac{p - 1}{3} - \frac{p - 1}{6} = \frac{p - 1}{6}$
+
+   is the number of elements of the previous set. This means that we will end up having
+
+   $3^{(p - 1)/2} \equiv (- 1)^{(p - 1)/6} \mod p$
+
+   Thus we'll have $(p - 1)/6$ even for
+
+   $(p - 1)/6 = 2m$<br>
+   $->$<br>
+   $(p - 1)/12 = m$
+   
+   Since $p - 1$ will always be even, we will have an even result for
+
+   $p \equiv 1 \mod 12$
+
+   and also since
+
+   $p + 1 = p - 1 + 2$<br>
+   $->$<br>
+   $(p + 1)/12 = m + 2$<br>
+   $->$<br>
+   $p \equiv - 1 \mod 12$
+
+   Now considering the odd results we would have
+
+   $(p - 1)/6 = 2m + 1$<br>
+   $p - 1 = 12m + 6$<br>
+   $p \equiv 7 \mod 12$
+
+   Repeating for $p + 1$
+
+   $(p + 1)/6 = 2m + 3$<br>
+   $p + 1 = 12m + 18$<br>
+   $p \equiv 5 \mod 12$
+
+   Since $7 \mod 12 = - 5 \mod 12$ we end up having
+
+   $3^{(p - 1)/2} \equiv - 1 \mod p$
+
+   if
+
+   $p \equiv \pm 5 \mod 12$
+
+   and 
+
+   $3^{(p - 1)/2} \equiv 1 \mod p$
+
+   if
+
+   $p \equiv \pm 1 \mod 12$
+
+   Honestly this stuff is considered elementary but it's not at all imho, the abstraction is over the moon, and I'm not sure of many things I wrote even though the results match. Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. This results match by the way, but for more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
+   
+ </p>
    
    ### Quadratic reciprocity prelude
 
