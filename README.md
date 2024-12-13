@@ -228,11 +228,11 @@
 
    $\displaystyle \frac{(p - 1)/2((p - 1)/2 + 1)}{2} = \frac{(p - 1)/2(p + 1)/2}{2} = \frac{p^2 - 1}{8}$
 
-   Now we can further analyze $(p^2 - 1)/8$ and see that $(p^2 - 1)/8$ is even iff 
+   Now we can further analyze when $(p^2 - 1)/8$ is even. 
 
-   $\displaystyle \frac{p^2 - 1}{8} = 2m$<br>
+   $\displaystyle \frac{p^2 - 1}{8}$<br>
    $->$<br>
-   $\displaystyle \frac{(p - 1)(p + 1)}{8} = 2m$<br>
+   $\displaystyle \frac{(p - 1)(p + 1)}{8}$<br>
 
    If either $p - 1 | 8$ or $p + 1 | 8$ (can't be both) our result will be matched since both are even. Thus
 
@@ -314,9 +314,9 @@
    $(p - 1)/6 = 2m$<br>
    $->$<br>
    $(p - 1)/12 = m$
-   
-   Since $p - 1$ will always be even, we will have an even result for
-
+   $->$<br>
+   $p - 1 = 12m$
+   $->$<br>
    $p \equiv 1 \mod 12$
 
    and also since
@@ -324,6 +324,8 @@
    $p + 1 = p - 1 + 2$<br>
    $->$<br>
    $(p + 1)/12 = m + 2$<br>
+   $->$<br>
+   $p + 1 = 12m + 24$
    $->$<br>
    $p \equiv - 1 \mod 12$
 
@@ -355,7 +357,7 @@
 
    $p \equiv \pm 1 \mod 12$
 
-   Honestly this stuff is considered elementary but it's not at all imho, the abstraction is over the moon, and I'm not sure of many things I wrote even though the results match. Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. This results match by the way, but for more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
+   Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. This results match by the way, but for more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
    
  </p>
    
