@@ -246,26 +246,24 @@
    $p \equiv 3 \mod 8$<br>
    $->$<br>
    $p + 1 \equiv 4 \mod 8$<br>
-   $->$<br>
    $p - 1 \equiv 2 \mod 8$
 
-   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $4 \cdot 2 = 8, 8 / 8 = 1$ which is odd.
+   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $4 \cdot 2 = 8, 8 / 8 = 1$ which is odd. Now why is this enough to say that the result will be odd? Imagine $(p - 1)/8$ and $(p + 1)/8$ as separated entities, the results will be even or odd, but if we sum these quotients we get an even result. Now since we know that the final remainders will produce an odd result we see that $even + odd = odd$. Same below.
 
    $p \equiv 5 \mod 8$<br>
    $->$<br>
    $p + 1 \equiv 6 \mod 8$<br>
-   $->$<br>
    $p - 1 \equiv 4 \mod 8$
 
    From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $6 \cdot 4 = 24, 24 / 8 = 3$ which is odd. Hence we see that if
 
-   $p \equiv 1, - 1 \mod 8$
+   $p \equiv \pm 1 \mod 8$
 
    $2^{(p - 1)/2} \equiv 1 \mod p$
 
    otherwise if
 
-   $p \equiv 3, 5 \mod 8$
+   $p \equiv \pm 3 \mod 8$
 
    then
 
@@ -301,17 +299,7 @@
    $->$<br>
    $p \equiv 1 \mod 12$
 
-   and also since
-
-   $p + 1 = p - 1 + 2$<br>
-   $->$<br>
-   $(p + 1)/12 = m + 2$<br>
-   $->$<br>
-   $p + 1 = 12m + 24$<br>
-   $->$<br>
-   $p \equiv - 1 \mod 12$
-
-   Now considering the odd results we would have
+   Now considering the odd result we would have
 
    $(p - 1)/6 = 2m + 1$<br>
    $->$<br>
@@ -319,21 +307,13 @@
    $->$<br>
    $p \equiv 7 \mod 12$
 
-   Repeating for $p + 1$
-
-   $(p + 1)/6 = 2m + 3$<br>
-   $->$<br>
-   $p + 1 = 12m + 18$<br>
-   $->$<br>
-   $p \equiv 5 \mod 12$
-
    Since $7 \mod 12 = - 5 \mod 12$ we end up having
 
    $3^{(p - 1)/2} \equiv - 1 \mod p$
 
    if
 
-   $p \equiv \pm 5 \mod 12$
+   $p \equiv - 5 \mod 12$
 
    and 
 
@@ -341,13 +321,13 @@
 
    if
 
-   $p \equiv \pm 1 \mod 12$
+   $p \equiv 1 \mod 12$
 
-   Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. This results match by the way, but for more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
+   These results are partially correct for some arcane reason that we will probably better understand after the following sections. Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. For more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
    
  </p>
    
-   ### Quadratic reciprocity prelude
+   ### Quadratic reciprocity prelude (yet another Gauss' Theorem)
 
    Let $p$ be an odd prime and $q$ an integer which is coprime with $p$. Let
 
@@ -357,12 +337,104 @@
 
    $m \equiv u \mod 2$
 
-   The proof for this theorem can be found at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. I won't copy paste it since it would be useless. This theorem is important because knowing such result allows us to use $m$ instead of $u$ to derive the results of Gauss' Lemma, which simplify the process a lot. Also the construction of $m$ and the proof are quite complex, I wouldn't focus too much on $m$ and just accept how it has been formed, because it will be useful later.
+   The proof for this theorem can be found at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. I won't copy paste it since it would be useless. This theorem is important because knowing such result allows us to use $m$ instead of $u$ to derive the results of Gauss' Lemma, which simplify the process a lot.
    
  </p>
 
- ## Law of quadratic reciprocity
+## Eisenstein's Lemma
+
+<p>
+  $a^{(p - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor au/p \rfloor} (\mod p)$
+
+  where
+
+  $\lfloor x \rfloor = floor(x)$
+
+  Let $u$ be any even integer in the set $\\{1, \dots, p - 1\\}$. Let $a$ any positive integer coprime with $p$, and $r(u) = au \mod p$, then
+
+  $(- 1)^{r(u)}r(u)$
+
+  is even. Furthermore every result will be distinct because if
+
+  $au_1 \equiv au_2 \mod p$
+
+  then $p | u_1 - u_2$ which is impossible since they are even. This means that there will be exactly $(p - 1)/2$ results mapped by $r(u)$ and every one of them will be distinct and therefore that these results will be a rearrangement of $\\{2, 4, \dots, p - 1\\}$ since they are all even. Multiplying them we get
+
+  $(- 1)^{r(2)}2a \cdot (- 1)^{r(4)}4a \cdot \dots \cdot (- 1)^{r(p - 1)}(p - 1)a \equiv 2 \cdot 4 \cdot \dots \cdot (p - 1) (\mod p)$
+
+  Using the **cancellation law** we get
+
+  $a^{(p - 1)/2}(- 1)^{r(2) + r(4) + \dots + r(p - 1)} \equiv 1 \mod p$
+
+  This means that $a^{(p - 1)/2}$ always produce a remainder $\pm 1$ which has the same sign as $(- 1)^{r(2) + r(4) + \dots + r(p - 1)}$, and then
+
+  $a^{(p - 1)/2} \equiv (- 1)^{r(2) + r(4) + \dots + r(p - 1)} \mod p$
+
+  Now we can note that 
+
+  $\displaystyle \frac{au}{p} = \lfloor \frac{au}{p} \rfloor + \frac{r(u)}{p}$
+
+  keeping in mind that $au/p$ won't be integer. From this result we can notice that
+
+  $\displaystyle au = p \lfloor \frac{au}{p} \rfloor + r(u)$
+
+  and since $p$ is odd and $u$ even, that $\lfloor au/p \rfloor$ and $r(u)$ are congruent $\mod 2$. To better understand this last step, note that $au$ will be always even, and to get an even result on the right we will need $r(u)$ and $\lfloor au/p \rfloor$ congruent $\mod 2$ (they are both even or odd). This because $p$ is always odd and $odd \cdot odd = odd$, in such case we will necessary have $r(u)$ odd too because $odd + odd = even$ (but $odd + even = odd$). In the case where $\lfloor au/p \rfloor$ will be even we will have $odd \cdot even = even$, therefore if $r(u)$ was odd we would end up having $even + odd = odd$ which is wrong because $au$ is even, and therefore $r(u)$ should be even and finally this means that we necessary have
+
+  $\displaystyle \lfloor \frac{au}{p} \rfloor \equiv r(u) \mod 2$
+
+  This is a more elegant way to prove this fact compared to Gauss' Theorem.<br>
+  Now to finally complete the lemma, since they are congruent $\mod 2$ we can use $\displaystyle \lfloor \frac{au}{p} \rfloor$ instead of $r(u)$ as exponent into the previous result and see that
+
+  $a^{(p - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor au/p \rfloor} (\mod p)$
+
+  where $\sum_{u}\lfloor au/p \rfloor$ is the summation for every $u$ in the set
+
+  $\\{2, 4, \dots, p - 1\\}$
+  
+</p>
+
+ ## My proof of quadratic reciprocity
 
  <p>
-   Refer to [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. 
+   Let $p, q$ be two prime numbers. We can see that this is more than enough to state
+
+   $\displaystyle (\frac{q}{p}) = q^{(p - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor qu/p \rfloor} (\mod p)$
+
+   and
+
+   $\displaystyle (\frac{p}{q}) = p^{(q - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor pu/q \rfloor} (\mod q)$
+
+   Now from Eisenstein Lemma
+
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor} = (- 1)^{\sum_{2}^{p - 1} r(u) + \sum_{2}^{q - 1} r(u)}$
+
+   Let's consider the Gauss formula and try to calculate those summations, we can see
+
+   $\sum_{2}^{p - 1} r(u) = (q)\sum_{z = 2}^{p - 1} z$<br>
+   $\sum_{2}^{q - 1} r(u) = (p)\sum_{z = 2}^{q - 1} z$<br>
+
+   Thus we need to calc the summation of even numbers. We can see that
+
+   $2 = (2)1$
+   $4 = (2)2$
+   $6 = (2)3$
+   $\dots$
+   $p - 1 = (2)((p - 1)/2)$
+
+   The same goes for $p - 1$, hence
+
+   $(q)\sum_{z = 2}^{p - 1} z + (p)\sum_{z = 2}^{q - 1} z = (2q)\sum_{z = 1}^{(p - 1)/2} z + (2p)\sum_{z = 1}^{(q - 1)/2} z$
+
+   
+
+   which represents the sum of even numbers from $2$ to $x - 1$
+   
+ </p>
+
+
+   
+
+   
+
+   
  </p>
