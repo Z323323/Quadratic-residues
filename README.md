@@ -344,6 +344,7 @@
 ## Eisenstein's Lemma
 
 <p>
+  
   $a^{(p - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor au/p \rfloor} (\mod p)$
 
   where
@@ -393,7 +394,7 @@
   
 </p>
 
- ## My proof of quadratic reciprocity
+ ## ~Eisenstein's proof of quadratic reciprocity
 
  <p>
    Let $p, q$ be two prime numbers. We can see that this is more than enough to state
@@ -404,30 +405,84 @@
 
    $\displaystyle (\frac{p}{q}) = p^{(q - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor pu/q \rfloor} (\mod q)$
 
-   Now from Eisenstein Lemma
+   Now, let's try to make this magical proof to work. Consider
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor} = (- 1)^{\sum_{2}^{p - 1} r(u) + \sum_{2}^{q - 1} r(u)}$
+   $\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor$
 
-   Let's consider the Gauss formula and try to calculate those summations, we can see
+   We can rewrite these as
 
-   $\sum_{2}^{p - 1} r(u) = (q)\sum_{z = 2}^{p - 1} z$<br>
-   $\sum_{2}^{q - 1} r(u) = (p)\sum_{z = 2}^{q - 1} z$<br>
-
-   Thus we need to calc the summation of even numbers. We can see that
-
-   $2 = (2)1$
-   $4 = (2)2$
-   $6 = (2)3$
-   $\dots$
-   $p - 1 = (2)((p - 1)/2)$
-
-   The same goes for $p - 1$, hence
-
-   $(q)\sum_{z = 2}^{p - 1} z + (p)\sum_{z = 2}^{q - 1} z = (2q)\sum_{z = 1}^{(p - 1)/2} z + (2p)\sum_{z = 1}^{(q - 1)/2} z$
-
+   $2(\sum_{Z = 1}^{(p - 1)/2} \lfloor qZ/p \rfloor + \sum_{Z = 1}^{(q - 1)/2} \lfloor pZ/q \rfloor)$
    
+   because
 
-   which represents the sum of even numbers from $2$ to $x - 1$
+   $2 = 1(2)$<br>
+   $4 = 2(2)$<br>
+   $6 = 3(2)$<br>
+   $\dots$
+
+   Now you should try to refer to [https://dms.umontreal.ca/~revealed/App8A.pdf] (last part). We can start by analyzing
+
+   $\sum_{Z = 1}^{(p - 1)/2} \lfloor qZ/p \rfloor$
+
+   and note that for ex., computing
+
+   $\displaystyle \frac{q(p - 1)/2}{p}$
+
+   means that we are multiplying $q$ by a value which is less than half $p$, and then we divide by $p$. It follows almost intuitively that the result will fall under $q/2$. Now consider the geometrical structure which Eisenstein made. Consider the line which splits the rectangle $R$ in half: the formula of the line is
+
+   $py = qx$<br>
+   $->$<br>
+   $y = qx / p$
+
+   Let's consider $q > p$ for simplicity, so you can refer to $a$ as $q$ and $b$ as $p$ in the pictures of the linked paper; everything should be more intuitive setting this constraint. We can see how the previous formula of the line simply scale $x$ by $q/p$ factor, which is quite intuitive. Now let's retake the previous formula
+
+   $\displaystyle \frac{q(p - 1)/2}{p}$
+
+   We said this value must be lower than $q/2$; do you notice any correlation with our line formula? They are the exact same formula (substituting $x$ with $Z$). Now our initial formula had the floor function, then we need to rewrite the latter as
+
+   $\displaystyle \lfloor \frac{q(p - 1)/2}{p} \rfloor$
+
+   It's really intuitive now to see that the results of this formula will always be lower than the previous one, since $qZ / p$ will never be an integer. We can see every term which will be erased by the floor function compared to $\displaystyle \frac{qZ}{p}$, iterating on $Z$ backwards and solving the numerator making it dependent on $(p - 1)/2$, $\displaystyle \frac{q(p - 1)/2}{p} = \frac{qp/2}{p} - \frac{q/2}{p} \mapsto - \frac{q/2}{p}$ (as we did earlier in the '2' case of Gauss Lemma), by
+
+   $- q/2, - 3q/2, - 5q/2, \dots, - (q/2 - 7q/2), - (q/2 - 5q/2), - (q/2 - 3q/2)$<br>
+   $->$<br>
+   $- q/2, - 3q/2, - 5q/2, \dots, 3q, 2q, q$
+
+   I know this looks completely nonsense, how is that possible that the floor function adds where it clearly only subtracts? Well ask god why is that, I think that the reason is that what we are actually finding is not that the floor function adds something. We can notice that for ex.
+
+   $- 3q/2 = (q - 3)/2= (q - 1)/2 - 1$
+
+   and therefore
+
+   $\sum_{Z = 1}^{(p - 1)/2} \\{ qZ/p \\} = (q^2 - 1)/8$
+
+   where $\\{ x \\}$ in this case means 'the fractional part of $x$'.<br>
+   Now this means that
+
+   $\sum_{Z = 1}^{(p - 1)/2} \lfloor qZ/p \rfloor + \sum_{Z = 1}^{(p - 1)/2} \lfloor pZ/q \rfloor = \sum_{Z = 1}^{(p - 1)/2} qZ/p - (q^2 - 1)/8 + \sum_{Z = 1}^{(p - 1)/2} pZ/q - (p^2 - 1)/8$
+
+   and therefore since
+
+   $\sum_{Z = 1}^{(p - 1)/2} qZ/p + \sum_{Z = 1}^{(p - 1)/2} pZ/q = q(p^2 - 1)/8p + p(q^2 - 1)/8q$<br>
+   $->$<br>
+   $\sum_{Z = 1}^{(p - 1)/2} \lfloor qZ/p \rfloor + \sum_{Z = 1}^{(p - 1)/2} \lfloor pZ/q \rfloor = q(p^2 - 1)/8p - (p^2 - 1)/8 + p(q^2 - 1)/8q - (q^2 - 1)/8$<br>
+   $->$<br>
+   $\displaystyle q(p^2 - 1)/8p - (p^2 - 1)/8 + p(q^2 - 1)/8q - (q^2 - 1)/8 = \frac{(q - p)(p^2 - 1)/8)}{p} + \frac{(p - q)(q^2 - 1)/8)}{q} = \frac{q(q - p)(p^2 - 1)/8) + p(p - q)(q^2 - 1)/8)}{pq} = \frac{q^2(p^2 - 1)/8) - pq(p^2 - 1)/8) + p^2(q^2 - 1)/8) - pq(q^2 - 1)/8)}{pq}$
+   $->$<br>
+   $\frac{q^2(p + 1)(p - 1)/8 - pq(p^2 - 1)/8 + p^2(q + 1)(q - 1)/8 - pq(q^2 - 1)/8}{pq} = \frac{(q^2p - q^2 + q^2p + q^2)/8 - pq(p^2 - 1)/8 + (p^2q - p^2 + p^2q + p^2)/8 - pq(q^2 - 1)/8}{pq} = \frac{2(q^2p)/8 - pq(p^2 - 1)/8 + 2(p^2q)/8 - pq(q^2 - 1)/8}{pq}$
+   $->$<br>
+   $\displaystyle \frac{2(q^2p)/8 - pq(p^2 - 1)/8 + 2(p^2q)/8 - pq(q^2 - 1)/8}{pq} = q/4 - (p^2 - 1)/8 + p/4 - (q^2 - 1)/8$
+
+   we basically map every lattice point of the triangle $A$. Since it is delimited by $[1, (p - 1)/2]$ (left, right) and $Z \lfloor q/p \rfloor = Z$ (upper) with $Z = \\{1, 2, \dots, (q - 1)/2\\}$ we can calculate the area of the triangle and find every lattice point which coincides with the intial summation result, then
+
+   $\displaystyle \frac{(p - 1)(q - 1)}{8}$
+
+   and
+
+   $2(\sum_{Z = 1}^{(p - 1)/2} \lfloor qZ/p \rfloor + \sum_{Z = 1}^{(q - 1)/2} \lfloor pZ/q \rfloor)$
+   $->$<br>
+   $\displaystyle \frac{(p - 1)(q - 1)}{4}$
+   
    
  </p>
 
