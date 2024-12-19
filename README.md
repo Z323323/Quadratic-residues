@@ -449,9 +449,9 @@
 
   ![Floor1](./Floor1.png)
 
-  It's easy to see that the general form of the result of the previous summations (I'd rather look at my results and not the ones of the photo because I haven't made some transformation to match the general form in a clearer format [not only actually, also because I don't get them :'D]) is
+  It's easy to see that the general form of the results of the previous summations (I'd rather look at my results and not the ones of the photo because I haven't made some transformation to match the general form in a clearer format [not only actually, also because I don't get them :'D]) is
 
-  $\displaystyle \lfloor \frac{x}{a} \rfloor + bn + c$
+  $\displaystyle a \lfloor \frac{x}{a} \rfloor + bn + c$
 
   An accurate analysis of the '4' case shows that
 
@@ -462,12 +462,12 @@
 
   ![Floor2](./Floor2.png)
 
-  From now on, our goal will be to calculate this vertical summation, then we will transfer the reasoning to our case and hopefully prove the Law of quadratic reciprocity. As the author of the book did, we will find every single term of
+  The easiest term to derive is $\displaystyle \frac{kn}{m}$, and we obtain
 
-  $\displaystyle \lfloor \frac{x}{a} \rfloor + bn + c$
+  $\displaystyle (\frac{n}{m}) \sum_{Z = 1}^{m - 1} Z = \frac{n(m - 1)}{2}$
 
-  that is, $a, b$ and $c$, one at a time.<br>
-  
+  quite easily using the Gauss' Formula.<br>
+  Now, instead of calculating this summation we can make a couple adjustments to derive the correct result we are interested in.
   
 </p>
 
@@ -486,7 +486,67 @@
 
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
 
+   or written in a clearer format
+
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor + \sum_{Z = 1}^{(q - 1)/2} \lfloor 2pZ/q \rfloor}$
+
+   Let's start from
+
+   $\sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor$
+
+   [which holds because
+
+   $2 = 2(1)$<br>
+   $4 = 2(2)$<br>
+   $6 = 2(3)$<br>
+   $\dots$].
+
+   We get a series which is similar with the previous section's one, but different still. First of all, we can note that the $x$ does not exist and we only have the $kn$ corrispondence. Also, we know $gcd(q, p) = 1$.<br>
+   We can build a similar structure with the previous section one and, assuming $q > p$, get
+
+   $q \mod p = q - kp \mod p$
+
+   where 
+
+   $\displaystyle kp = p \lfloor \frac{q}{p} \rfloor$<br>
+   $->$<br>
+   $\displaystyle q \mod p = q - p \lfloor \frac{q}{p} \rfloor$
+
+   and
+
+   $\displaystyle p \equiv - p \lfloor \frac{q}{p} \rfloor (p \lfloor \frac{q}{p} \rfloor)^{-1} \mod q$ (this is experimental, don't give to much importance)
+
+   or simply
+
+   $p \equiv p \mod q$
+
+   Let's now try to set a series like the previous section ones, but adapted for our case, since $\displaystyle q \equiv q - p \lfloor \frac{q}{p} \rfloor \mod p$, then
+
+   $\displaystyle 2q \equiv 2q - 2p \lfloor \frac{q}{p} \rfloor \mod p$
+
+   and
+
+   $\displaystyle 2q - 2p \lfloor \frac{q}{p} \rfloor  \mod p$
+
+   $\displaystyle q \mod p = q - p \lfloor \frac{q}{p} \rfloor$<br>
+   $->$<br>
+   $\displaystyle \frac{q - (q - p \lfloor \frac{q}{p} \rfloor)}{p}$
+
+   is an integer divisible by $p$, thus we have
+
+   $\displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \frac{p \lfloor \frac{q}{p} \rfloor}{p} = \displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \lfloor \frac{q}{p} \rfloor$
+
+   Quindi bisogna aggiungere $p \lfloor \frac{q}{p} \rfloor$ per ottenere un numero divisibile per $p$
+
+  
+
+   Rewriting the formula of the previous section adapted for our case, we get
+
+   $\displaystyle \lfloor \frac{kq}{p} \rfloor = \lfloor \frac{kq \mod p}{p} \rfloor + \frac{kq}{p} - \frac{kq \mod p}{p}$
+
+   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q}{p} \rfloor + ) + (\lfloor \frac{4q}{p} \rfloor + )$
    
+   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q}{p} \rfloor + ) + (\lfloor \frac{4q}{p} \rfloor + )$
 
    
 
