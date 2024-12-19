@@ -536,7 +536,7 @@
 
    $\displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \frac{p \lfloor \frac{q}{p} \rfloor}{p} = \displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \lfloor \frac{q}{p} \rfloor$
 
-   Quindi bisogna aggiungere $p \lfloor \frac{q}{p} \rfloor$ per ottenere un numero divisibile per $p$
+   Ok mi sa che ci siamo quasi gesù cristo. Adesso devo far vedere che $\lfloor \frac{q}{p} \rfloor$ è uguale a $\frac{kq}{p} - \frac{kq \mod p}{p}$ e che quindi posso considerare il caso generale e quindi le formule derivate del caso generale, anche se mi manca di capirle pienamente. La gran cosa è che penso di poter ignorare il primo termine visto che è palesemente sempre = 0.
 
   
 
