@@ -326,20 +326,6 @@
    These results are partially correct for some arcane reason that we will probably better understand after the following sections. Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. For more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
    
  </p>
-   
-   ### Quadratic reciprocity prelude (yet another Gauss' Theorem)
-
-   Let $p$ be an odd prime and $q$ an integer which is coprime with $p$. Let
-
-   $m = q/p + q2/p + \dots + q(p - 1)/2/p$
-
-   then 
-
-   $m \equiv u \mod 2$
-
-   The proof for this theorem can be found at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. I won't copy paste it since it would be useless. This theorem is important because knowing such result allows us to use $m$ instead of $u$ to derive the results of Gauss' Lemma, which simplify the process a lot.
-   
- </p>
 
 ## Eisenstein's Lemma
 
@@ -391,6 +377,8 @@
   where $\sum_{u}\lfloor au/p \rfloor$ is the summation for every $u$ in the set
 
   $\\{2, 4, \dots, p - 1\\}$
+
+  This result is particularly important because it means that $\sum_{u}\lfloor au/p \rfloor \equiv u \mod 2$, where the $u$ in the left part has nothing to do with the $u$ in the right, that is, the $u$ in the right is the one of the Gauss' Lemma. This means that we can safely use this summation to find if a number is a quadratic residue or not, but the actual power of this will be clearer in the next sections.
   
 </p>
 
@@ -457,7 +445,29 @@
 
   The third case is equivalent to the first because if $n \equiv 3 \mod 4$ then $(n - 3)/4$, $(2n - 2)/4$ and $(3n - 1)/4$ are integers.
 
+  Now we can collect all the previous result and search for some recurrent pattern.
 
+  ![Floor1](./Floor1.png)
+
+  It's easy to see that the general form of the result of the previous summations (I'd rather look at my results and not the ones of the photo because I haven't made some transformation to match the general form in a clearer format [not only actually, also because I don't get them :'D]) is
+
+  $\displaystyle \lfloor \frac{x}{a} \rfloor + bn + c$
+
+  An accurate analysis of the '4' case shows that
+
+  $\displaystyle \lfloor \frac{x + kn}{m} \rfloor = \lfloor \frac{x + kn \mod m}{m} \rfloor + \frac{kn}{m} - \frac{kn \mod m}{m}$
+
+  is a complete general form.<br>
+  Now we can look at the summation (which is generalized by $k$ in the previous formula) of the general form, for $0 \leq k \leq m - 1$.
+
+  ![Floor2](./Floor2.png)
+
+  From now on, our goal will be to calculate this vertical summation, then we will transfer the reasoning to our case and hopefully prove the Law of quadratic reciprocity. As the author of the book did, we will find every single term of
+
+  $\displaystyle \lfloor \frac{x}{a} \rfloor + bn + c$
+
+  that is, $a, b$ and $c$, one at a time.<br>
+  
   
 </p>
 
