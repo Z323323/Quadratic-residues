@@ -394,10 +394,77 @@
   
 </p>
 
- ## ~Eisenstein's proof of quadratic reciprocity
+## Floor function analysis interlude
+
+<p>
+  Refer to [https://seriouscomputerist.atariverse.com/media/pdf/book/Concrete%20Mathematics.pdf] (~p.90) if anything should not be clear, I'm using this book to understand this subject, and most of this section is literally copy-pasted. Our goal will be to compute
+
+  $\sum_{u}\lfloor qu/p \rfloor$
+
+  where $p$ and $q$ are primes and $u$ is even from $2$ to $p - 1$. But before doing so, let's roll back the reasoning a bit (a lot actually).
+
+  Example: we want to calculate this sum
+
+  $\displaystyle \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + n}{2} \rfloor$
+
+  We can see that if $n$ is even then this is equal to
+
+  $\displaystyle \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x}{2} \rfloor + \frac{n}{2} = 2\lfloor \frac{x}{2} \rfloor + \frac{n}{2}$
+
+  Otherwise if $n$ is odd then $(n - 1)/2$ is an integer and so
+
+  $\displaystyle \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + n}{2} \rfloor = \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + 1 + n - 1}{2} \rfloor = \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + 1}{2} \rfloor + \frac{n - 1}{2} = 2\lfloor \frac{x}{2} \rfloor + \frac{n - 1}{2}$
+
+  Let's continue the exploration.
+
+  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x + n}{3} \rfloor + \lfloor \frac{x + 2n}{3} \rfloor$
+
+  If $n$ is a multiple of $3$, $(n \equiv 0 \mod 3)$ we'll have
+
+  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x}{3} \rfloor + \frac{n}{3} + \lfloor \frac{x}{3} \rfloor + \frac{2n}{3} = 3\lfloor \frac{x}{3} \rfloor + \frac{n}{3} + \frac{2n}{3} = 3\lfloor \frac{x}{3} \rfloor + n$
+
+  If $n \equiv 1 \mod 3$ then $(n - 1)/3$ and $(2n - 2)/3$ are integers. The second one is quite intuitive but to be completely sure we can use the **multiplication property** and see that
+
+  $(2 \mod 3)(n \mod 3) \mod 3 \equiv 2 \mod 3$
+
+  then 
+  
+  $(2 \mod 3)(n \mod 3) - 2 \equiv 0 \mod 3$
+
+  Let's go over, for such case we will have
+
+  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x + 1}{3} \rfloor + \frac{n - 1}{3} + \lfloor \frac{x + 2}{3} \rfloor + \frac{2n - 2}{3} = 3\lfloor \frac{x}{3} \rfloor + n - 1$
+
+  Now if $n \equiv 2 \mod 3$ then $(n - 2)/3$ and $(2n - 1)/3$ are integers, to clarify the second
+
+  $(2 \mod 3)(n \mod 3) \mod 3 = 4 \mod 3 \equiv 1 \mod 3$
+
+  then
+
+  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x + 2}{3} \rfloor + \frac{n - 2}{3} + \lfloor \frac{x + 1}{3} \rfloor + \frac{2n - 1}{3} = 3\lfloor \frac{x}{3} \rfloor + n - 1$
+
+  To conclude let's analyze the '4' case. If $n \equiv 0 \mod 4$
+
+  $\displaystyle \lfloor \frac{x}{4} \rfloor + \lfloor \frac{x}{4} \rfloor + \frac{n}{4} + \lfloor \frac{x}{4} \rfloor + \frac{2n}{4} + \lfloor \frac{x}{4} \rfloor + \frac{3n}{4} = 4\lfloor \frac{x}{4} \rfloor + \frac{3n}{2}$
+
+  If $n \equiv 1 \mod 4$ then $(n - 1)/4$, $(2n - 2)/4$ and $(3n - 3)/4$ are integers, then
+
+  $\displaystyle \lfloor \frac{x}{4} \rfloor + \lfloor \frac{x + 1}{4} \rfloor + \frac{n - 1}{4} + \lfloor \frac{x + 2}{4} \rfloor + \frac{2n - 2}{4} + \lfloor \frac{x + 3}{4} \rfloor + \frac{3n - 3}{4} = 4\lfloor \frac{x}{4} \rfloor + \frac{3n}{2} - \frac{3}{2}$
+
+  If $n \equiv 2 \mod 4$ then $(n - 2)/4$, $2n/4$ and $(3n - 2)/4$ are integers, then
+
+  $\displaystyle \lfloor \frac{x}{4} \rfloor + \lfloor \frac{x + 2}{4} \rfloor + \frac{n - 2}{4} + \lfloor \frac{x}{4} \rfloor + \frac{2n}{4} + \lfloor \frac{x + 2}{4} \rfloor + \frac{3n - 2}{4} = 4\lfloor \frac{x}{4} \rfloor + \frac{3n}{2} - 1$
+
+  The third case is equivalent to the first because if $n \equiv 3 \mod 4$ then $(n - 3)/4$, $(2n - 2)/4$ and $(3n - 1)/4$ are integers.
+
+
+  
+</p>
+
+ ## Law of quadratic reciprocity
 
  <p>
-   Let $p, q$ be two prime numbers. We can see that this is more than enough to state
+   Let $p, q$ be two prime numbers. We can see that this is more than enough to state from Eisenstein's Lemma that
 
    $\displaystyle (\frac{q}{p}) = q^{(p - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor qu/p \rfloor} (\mod p)$
 
@@ -405,85 +472,13 @@
 
    $\displaystyle (\frac{p}{q}) = p^{(q - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor pu/q \rfloor} (\mod q)$
 
-   hence
+   $->$
 
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
 
-   By Eisenstein we can rewrite everything as
-
-   $\displaystyle (\frac{q}{p}) = q^{(p - 1)/2} \equiv (- 1)^{\sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p}$
-
-   $\displaystyle (\frac{p}{q}) = p^{(q - 1)/2} \equiv (- 1)^{\sum_{Z = 1}^{(q - 1)/2} 2pZ \mod q}$
-
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p + \sum_{Z = 1}^{(q - 1)/2} 2pZ \mod q}$
-
-   because
-
-   $2 = 1(2)$<br>
-   $4 = 2(2)$<br>
-   $6 = 3(2)$<br>
-   $\dots$
-
-   $\sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p = ?$
-
-   Since 
-
-   $2(p - 1)/2 = p - 1$<br>
-   $2((p - 1)/2 - 1) = p - 3$<br>
-   $2((p - 1)/2 - 2) = p - 5$<br>
-   $\dots$<br>
-   $2((p - 1)/2 - ((p - 1)/2 - 3)) = 2(6/2) = 6 \mod p$<br>
-   $2((p - 1)/2 - ((p - 1)/2 - 2)) = 2(4/2) = 4 \mod p$<br>
-   $2((p - 1)/2 - ((p - 1)/2 - 1)) = 2(2/2) = 2 \mod p$<br>
-
-   we can be sure that multiplying such terms by $q(- 1)^{\sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p}$ and applying the modulo will produce a rearrangement of the even terms in the set $\\{2, 4, \dots, p - 1\\}$, thus
-
-   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p = \frac{q(p^2 - 1)}{4}(- 1)^{\displaystyle \sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p} = \frac{q(p - 1)(p + 1)}{4}(- 1)^{\displaystyle \sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p}$
-
-   Now we can recognise that since by Eisenstein we have
-
-   $\displaystyle (\frac{q}{p}) = q^{(p - 1)/2} \equiv (- 1)^{\sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p}$
-
-   and from our reasoning
-
-   $\displaystyle (\frac{q}{p}) = q^{(p - 1)/2} \equiv (- 1)^{(- 1)^{\displaystyle \sum_{Z = 1}^{(p - 1)/2} 2qZ \mod p}\frac{(p - 1)(p + 1)}{4}} \mod p$
-
-   it must be that 
-
-   $\displaystyle (\frac{q}{p}) = q^{(p - 1)/2} \equiv (- 1)^{\frac{(p - 1)(p + 1)}{4}} \mod p$
-
-   Now we can recognise that
-
-   $\displaystyle \frac{(p - 1)(p + 1)}{4} = \frac{p - 1}{2} \frac{p + 1}{2}$
-
-   Repeating the whole reasoning for 
-
-   $\displaystyle (\frac{p}{q}) = p^{(q - 1)/2} \equiv (- 1)^{\sum_{Z = 1}^{(q - 1)/2} 2pZ \mod q}$
-
-   we get
-
-   $\displaystyle (\frac{p}{q}) = p^{(q - 1)/2} \equiv (- 1)^{\frac{(q - 1)(q + 1)}{4}}$
-
-   Thus why
-
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(p - 1)(q - 1)}{4}} ?$
-
-   We can see that
-
-   $\displaystyle \frac{p - 1}{2}\frac{q - 1}{2} \equiv \frac{p - 1}{2}\frac{p + 1}{2}\frac{q - 1}{2}\frac{q + 1}{2} \mod 2$
-
-   because if $\displaystyle \frac{p - 1}{2}$ is odd then $\displaystyle \frac{p + 1}{2}$ is even and viceversa, and $odd \cdot even = even$ so it's not true that
-
-   $\displaystyle (\frac{p}{q}) = (- 1)^{\frac{(q - 1)(q + 1)}{4}} = (- 1)^{\frac{(q - 1)}{2}}$
-
-   but when we consider $\displaystyle (\frac{q}{p})$ the same reasoning holds for it and if $\displaystyle \frac{p - 1}{2}$ is odd
    
+
+   
+
  </p>
 
-
-   
-
-   
-
-   
- </p>
