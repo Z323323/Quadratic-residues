@@ -522,9 +522,22 @@
    $->$<br>
    $\displaystyle \lfloor \frac{2q}{p} \rfloor = \lfloor \frac{2q - (2q - 2p \lfloor \frac{q}{p} \rfloor) + (2q - 2p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor$
 
-   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is clearly an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ clearly matches our Eisenstein's summation terms form.
+   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is clearly an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ clearly matches our Eisenstein's summation terms form.<br>
+   Now we can get the trick which allows to derive the fundamental intuition to understand the theorem, that is
+   
+   $\displaystyle \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{4q - 4p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{(p - 1)q - (p - 1)p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$
 
-   $\displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \frac{p \lfloor \frac{q}{p} \rfloor}{p} = \displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \lfloor \frac{q}{p} \rfloor$
+   This means that
+
+   $\displaystyle \lfloor \frac{2q}{p} \rfloor = 2\lfloor \frac{q}{p} \rfloor$<br>
+   $\displaystyle \lfloor \frac{4q}{p} \rfloor = 4\lfloor \frac{q}{p} \rfloor$<br>
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{(p - 1)q}{p} \rfloor = (p - 1)\lfloor \frac{q}{p} \rfloor$<br>
+
+   [[Little extra]]
    
    Rewriting the formula of the previous section adapted for our case, we get
 
@@ -538,23 +551,64 @@
 
    $\displaystyle \lfloor \frac{q}{p} \rfloor = \frac{kq}{p} - \frac{kq \mod p}{p} = \frac{q}{p} - (\frac{q - p \lfloor \frac{q}{p} \rfloor}{p}) = \lfloor \frac{q}{p} \rfloor$
 
-   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor) + (\lfloor \frac{4q - 4p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor) + \dots$
+   [[end of extra]]
 
-   where since all the $\lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor$ like terms are clearly $0$, we'll end up having
+   Since the previous result, we can now rewrite
+
+   $\sum_{u}\lfloor qu/p \rfloor$
+
+   as
 
    $\displaystyle 2\lfloor \frac{q}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor + 6\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)\lfloor \frac{q}{p} \rfloor$
 
-   which is further rewritable as
+   Before proceeding to analyze Eisenstein's lattice points, let's analyze
 
-   $\displaystyle (2)\sum_{Z = 1}^{(p - 1)/2} \lfloor \frac{q}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor + 3\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)/2\lfloor \frac{q}{p} \rfloor$
+   $\sum_{u}\lfloor pu/q \rfloor$
 
-   and then
+   If we repeat the same procedure done for $\sum_{u}\lfloor qu/p \rfloor$ (remember our hypothesis $q > p$) we'll end up having
 
-   $\displaystyle \frac{(p^2 - 1)\lfloor \frac{q}{p} \rfloor}{4} = \frac{p^2\lfloor \frac{q}{p} \rfloor - \lfloor \frac{q}{p} \rfloor}{4} = \frac{p\lfloor \frac{q}{p} \rfloor(p - 1)}{4}$
+   $\displaystyle \lfloor \frac{2p}{q} \rfloor = 2\lfloor \frac{p}{q} \rfloor$
+
+   etc., and since $q > p$ by hypothesis
+
+   $\displaystyle \lfloor \frac{2p}{q} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{4p}{q} \rfloor = 0$<br>
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{(p - 1)p}{q} \rfloor = 0$<br>
+
+   This looks like it's nosense since it has sense to assume that
+
+   $\displaystyle \lfloor \frac{2p}{q} \rfloor = 1$<br>
+
+   (it can't be more than $1$ since $p$ can be at max $q - 2$).
+
+   We can see that if
+
+   $\displaystyle \lfloor \frac{2p}{q} \rfloor = 1$<br>
+
+   then $p$ must be some value in this set
    
-   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q}{p} \rfloor + ) + (\lfloor \frac{4q}{p} \rfloor + )$
+   $\\{(q + 1)/2, (q + 5)/2, \dots, q - 2\\}$
 
+   with
    
+   $(q - 1)/2 + 1 = (q + 1)/2$
+
+   Now, to safely assume that the previous statement is completely true we should note that to safely consider every $\lfloor qu/p \rfloor = 0$ we should only consider 
+
+   $\displaystyle \lfloor \frac{(p - 1)q}{q} \rfloor = 0$
+
+   which imply
+
+   $(p - 1)q < q$<br>
+   $->$<br>
+   $p - 1 < 1$<br>
+   $->$<br>
+   $p = 1$
+
+   $\displaystyle \lfloor \frac{(pq + p - q - 1)/2}{q} \rfloor = p - 1$<br>
+
 
  </p>
+ 
 
