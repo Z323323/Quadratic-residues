@@ -180,7 +180,7 @@
  <p>
    The problem with the Gauss' Lemma is clearly to know $u$. For $q = 2$ we have
    
-   $\displaystyle (\frac{2}{p}) = (- 1)^{(p^2 - 1)/8} = (- 1)^{(p + 1)/4}$
+   $\displaystyle (\frac{2}{p}) = (- 1)^{(p^2 - 1)/8}$
    
    Let's get why. Restarting from
 
@@ -467,6 +467,10 @@
   $\displaystyle (\frac{n}{m}) \sum_{Z = 1}^{m - 1} Z = \frac{n(m - 1)}{2}$
 
   quite easily using the Gauss' Formula.<br>
+
+  Now, to get the first term, the huge trick is to recognize that $\displaystyle \frac{x + kn \mod m}{m}$ will produce a 
+
+  
   Now, instead of calculating this summation we can make a couple adjustments to derive the correct result we are interested in.
   
 </p>
@@ -486,23 +490,9 @@
 
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
 
-   or written in a clearer format
+  ### Proof of the Law of QR using Eisenstein's lattice points and the floor function (while deriving a clearer proof than Wikipedia)
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor + \sum_{Z = 1}^{(q - 1)/2} \lfloor 2pZ/q \rfloor}$
-
-   Let's start from
-
-   $\sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor$
-
-   [which holds because
-
-   $2 = 2(1)$<br>
-   $4 = 2(2)$<br>
-   $6 = 2(3)$<br>
-   $\dots$].
-
-   We get a series which is similar with the previous section's one, but different still. First of all, we can note that the $x$ does not exist and we only have the $kn$ corrispondence. Also, we know $gcd(q, p) = 1$.<br>
-   We can build a similar structure with the previous section one and, assuming $q > p$, get
+   Assuming $q > p$, we have
 
    $q \mod p = q - kp \mod p$
 
@@ -512,39 +502,55 @@
    $->$<br>
    $\displaystyle q \mod p = q - p \lfloor \frac{q}{p} \rfloor$
 
-   and
-
-   $\displaystyle p \equiv - p \lfloor \frac{q}{p} \rfloor (p \lfloor \frac{q}{p} \rfloor)^{-1} \mod q$ (this is experimental, don't give to much importance)
-
-   or simply
-
-   $p \equiv p \mod q$
-
-   Let's now try to set a series like the previous section ones, but adapted for our case, since $\displaystyle q \equiv q - p \lfloor \frac{q}{p} \rfloor \mod p$, then
+   and by the **multiplication property** is easy to see that
 
    $\displaystyle 2q \equiv 2q - 2p \lfloor \frac{q}{p} \rfloor \mod p$
 
-   and
-
-   $\displaystyle 2q - 2p \lfloor \frac{q}{p} \rfloor  \mod p$
+   Now, since our formula to fight is
+   
+   $\sum_{u}\lfloor qu/p \rfloor$
+   
+   we can try to extract something from $\displaystyle \lfloor \frac{qu}{p} \rfloor$ using the same tactic of the previous section about the floor function, and see that
 
    $\displaystyle q \mod p = q - p \lfloor \frac{q}{p} \rfloor$<br>
    $->$<br>
-   $\displaystyle \frac{q - (q - p \lfloor \frac{q}{p} \rfloor)}{p}$
+   $\displaystyle \lfloor \frac{q}{p} \rfloor = \lfloor \frac{q - (q - p \lfloor \frac{q}{p} \rfloor) + (q - p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \lfloor \frac{q}{p} \rfloor$
 
-   is an integer divisible by $p$, thus we have
+   where $\displaystyle q - (q - p \lfloor \frac{q}{p} \rfloor)$ is clearly an integer divisible by $p$. The same goes for 
+
+   $\displaystyle 2q \equiv 2q - 2p \lfloor \frac{q}{p} \rfloor \mod p$<br>
+   $->$<br>
+   $\displaystyle \lfloor \frac{2q}{p} \rfloor = \lfloor \frac{2q - (2q - 2p \lfloor \frac{q}{p} \rfloor) + (2q - 2p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor$
+
+   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is clearly an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ clearly matches our Eisenstein's summation terms form.
 
    $\displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \frac{p \lfloor \frac{q}{p} \rfloor}{p} = \displaystyle \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \lfloor \frac{q}{p} \rfloor$
-
-   Ok mi sa che ci siamo quasi gesù cristo. Adesso devo far vedere che $\lfloor \frac{q}{p} \rfloor$ è uguale a $\frac{kq}{p} - \frac{kq \mod p}{p}$ e che quindi posso considerare il caso generale e quindi le formule derivate del caso generale, anche se mi manca di capirle pienamente. La gran cosa è che penso di poter ignorare il primo termine visto che è palesemente sempre = 0.
-
-  
-
+   
    Rewriting the formula of the previous section adapted for our case, we get
 
    $\displaystyle \lfloor \frac{kq}{p} \rfloor = \lfloor \frac{kq \mod p}{p} \rfloor + \frac{kq}{p} - \frac{kq \mod p}{p}$
 
-   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q}{p} \rfloor + ) + (\lfloor \frac{4q}{p} \rfloor + )$
+   indeeed we see that
+
+   $\displaystyle \lfloor \frac{q}{p} \rfloor = \frac{kq}{p} - \frac{kq \mod p}{p}$
+
+   because
+
+   $\displaystyle \lfloor \frac{q}{p} \rfloor = \frac{kq}{p} - \frac{kq \mod p}{p} = \frac{q}{p} - (\frac{q - p \lfloor \frac{q}{p} \rfloor}{p}) = \lfloor \frac{q}{p} \rfloor$
+
+   $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor) + (\lfloor \frac{4q - 4p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor) + \dots$
+
+   where since all the $\lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor$ like terms are clearly $0$, we'll end up having
+
+   $\displaystyle 2\lfloor \frac{q}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor + 6\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)\lfloor \frac{q}{p} \rfloor$
+
+   which is further rewritable as
+
+   $\displaystyle (2)\sum_{Z = 1}^{(p - 1)/2} \lfloor \frac{q}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor + 3\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)/2\lfloor \frac{q}{p} \rfloor$
+
+   and then
+
+   $\displaystyle \frac{(p^2 - 1)\lfloor \frac{q}{p} \rfloor}{4} = \frac{p^2\lfloor \frac{q}{p} \rfloor - \lfloor \frac{q}{p} \rfloor}{4} = \frac{p\lfloor \frac{q}{p} \rfloor(p - 1)}{4}$
    
    $\displaystyle \sum_{Z = 1}^{(p - 1)/2} \lfloor 2qZ/p \rfloor = (\lfloor \frac{2q}{p} \rfloor + ) + (\lfloor \frac{4q}{p} \rfloor + )$
 
