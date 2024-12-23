@@ -594,17 +594,200 @@
    
    $(q - 1)/2 + 1 = (q + 1)/2$
 
-   Now, to safely assume that the previous statement is completely true we should note that to safely consider every $\lfloor qu/p \rfloor = 0$ we should only consider 
+   Now, to safely assume that the previous statement is completely true we should note that to safely consider every $\lfloor pu/q \rfloor = 0$ we should only consider 
 
-   $\displaystyle \lfloor \frac{(p - 1)q}{q} \rfloor = 0$
+   $\displaystyle \lfloor \frac{(q - 1)p}{q} \rfloor = 0$
 
-   which imply
+   which clearly implies
 
-   $(p - 1)q < q$<br>
-   $->$<br>
-   $p - 1 < 1$<br>
-   $->$<br>
    $p = 1$
+
+   A fast calculation of the $\sum_{u}\lfloor qu/p \rfloor$ series for our $p = 1$ case shows
+
+   $(2q) \sum_{Z = 1}^{(p - 1)/2} Z = q(p^2 - 1)/4$
+
+   Here one could argue that if $p = 1$ then no series exist since $p - 1 = 0$ which is correct, but the previous formula still holds nonetheless. If we manage to show that $p = q - 2$ produce the same result, then we can safely consider only the first series $\sum_{u}\lfloor qu/p \rfloor$, since $p = q - 2$ is the highest possible difference between the two cases (the other one being $p = 1$).<br>
+   Thus, considering $\sum_{u}\lfloor pu/q \rfloor$, we get
+
+   $(q - 2)(q - 1) = q^2 - q - 2q + 2 = q^2 - 3q + 2$<br>
+   $->$<br>
+   $\displaystyle \lfloor \frac{q^2 - 3q + 2}{q} \rfloor = q - 3 = p - 1$
+
+   $(q - 2)(q - 3) = q^2 - 3q - 2q + 6 = q^2 - 5q + 6$<br>
+   $->$<br>
+   $\displaystyle \lfloor \frac{q^2 - 5q + 6}{q} \rfloor = q - 5 = p - 3$
+
+   $\dots$
+
+   
+
+
+   since $p = q - 2$ with $p \neq 1$ implies $q \geq 5$. If we keep considering lower cases until we get $2$, we'll get
+
+   $\displaystyle \lfloor \frac{(q - 2)\frac{q - 1}{2}}{q} \rfloor = \lfloor \frac{(q - 2)(q/2 - 1/2)}{q} \rfloor = \lfloor \frac{q^2/2 - q/2 - q + 1}{q} \rfloor = \lfloor \frac{q/2(q - 1) - q + 1}{q} \rfloor = \lfloor \frac{(q - 1)^2/2 - q + 1}{q} \rfloor = (q - 1)/2 - 1 = (q - 3)/2 = (p - 1)/2$
+
+   because 
+
+   $\displaystyle \lfloor \frac{q^2/2}{q} \rfloor = (q - 1)/2$
+
+   and reaching '2' we get
+
+   $\displaystyle \lfloor \frac{(q - 2)2}{q} \rfloor = 1$
+
+   It's clear that we won't get a $2$, because
+
+   $\displaystyle \lfloor \frac{(q - 2)4}{q} \rfloor = 3$
+
+   Hence since the formula under analysis is
+
+   $\sum_{u}\lfloor pu/q \rfloor$
+
+   it's clear that we will never have direct integer results from the fraction, but if we consider the previous cases is clear that we get a result which is equal to the $u$ corrispondence with $p$. 
+
+   Hence we will face the previous behaviour until $(p = q - 2)$
+
+   $\displaystyle \lfloor \frac{(q - 2)(q - 2)}{q} \rfloor = \frac{(q^2 - 4q - 4)}{q} = q - 5 = p - 3$
+
+   Since this result doesn't match with our previous series one (which is fine) let's see until which value we don't get a $2$.
+
+   $(q - 2)x / q = 2$<br>
+   $->$<br>
+   $x = 2q/(q - 2) = q/(q - 2)/2$
+
+   which is not an integer, but
+
+   $q/(q - 3)/2$
+
+   which is strictly bigger gives
+
+   $q/(p - 1)/2$
+
+   or
+
+   $q/(q - 3)/2 = 2q / p - 1$
+
+   Repeating the process for every even integer (which is what we get into the initial series) gives
+
+   $x_2 = 2q / p - 1$<br>
+   $x_4 = 4q / p - 1$<br>
+   $x_6 = 6q / p - 1$
+
+   and so on.<br>
+
+   Now the problem is that
+
+   $x_2 = 2q / q - 3$<br>
+   $x_4 = 4q / q - 3$<br>
+   $x_6 = 6q / q - 3$
+
+   are not integers. We can make a slight modification and see that setting (strictly increasing)
+
+   $x_2 = 2q / q - 2$<br>
+   $x_4 = 4q / q - 2$<br>
+   $x_6 = 6q / q - 2$
+
+   ->
+
+   $x_2 = 2q / p$<br>
+   $x_4 = 4q / p$<br>
+   $x_6 = 6q / p$
+
+   we obtain
+
+   $p(2q / p)/q = 2$<br>
+   $p(4q / p)/q = 4$<br>
+   $p(6q / p)/q = 6$<br>
+
+   The problem is that
+
+   $x_2 = 2q / q - 2$<br>
+   $x_4 = 4q / q - 2$<br>
+   $x_6 = 6q / q - 2$
+
+   are not integers. Hence we must strictly increase again by $2$ obtaining a formula which become
+
+   $p2/q = 2$<br>
+   $p4/q = 4$<br>
+   $p6/q = 6$<br>
+
+
+   $p = q - 2$
+
+   $q = p + 2$
+
+   
+   This result is particularly important because this means that if we substitute $x$ into the formula we get (for ex. with the '2' case)
+
+   $\displaystyle \lfloor \frac{pu}{q} \rfloor = 2$<br>
+   $->$<br>
+   $\displaystyle \frac{p(2q / p - 1)}{q} = p(2 / p - 1) = \frac{2p}{p - 1} = 2$
+
+   which is completely not dependent on $q$. Also this means that continuing we get
+
+   $\frac{(q - 1)p}{p - 1} = q - 1$
+
+   which is crazy, and also I think I'm crazy.
+   
+   
+   to get $q(p - 1)$ as result we need to have
+
+   $x = (p - 1)^2q / p - 1 = (p - 1)q$
+
+   Remembering the role of $x$ into $\sum_{u}\lfloor pu/q \rfloor$ is
+
+   $px / q$
+
+   and that $u = x$ should only reach $q - 1$ at max, we will need, since
+
+   $(p - 1)q = q^2 - 2q$
+
+   another $[(q - 1)^2 = q^2 - 2q + 1]$ 
+
+   Now look at this
+
+   $\displaystyle \lfloor \frac{(q - 2)\frac{q + 1}{2}}{q} \rfloor = \lfloor \frac{(q - 2)(q/2 + 1/2)}{q} \rfloor = \lfloor \frac{q^2/2 + q/2 - q - 1}{q} \rfloor = \lfloor \frac{q^2/2 - (q - 2)/2}{q} \rfloor = (q - 1)/2 = (p + 1)/2 = (p - 1)/2 + 1$
+
+   and
+
+   $\displaystyle \lfloor \frac{(q - 2)\frac{q - 3}{2}}{q} \rfloor = \lfloor \frac{(q - 2)(q/2 - 3/2)}{q} \rfloor = \lfloor \frac{q^2/2 - 3q/2 - q + 3}{q} \rfloor = (q - 1)/2 - 2 = (q - 5)/2 = (p - 3)/2 = (p - 1)/2 - 1$<br>
+   $\displaystyle \lfloor \frac{(q - 2)\frac{q - 5}{2}}{q} \rfloor = \lfloor \frac{(q - 2)(q/2 - 5/2)}{q} \rfloor = \lfloor \frac{q^2/2 - 5q/2 - q + 5}{q} \rfloor = (q - 1)/2 - 4 = (q - 9)/2 = (p - 7)/2 = (p - 1)/2 - 3$<br>
+
+
+   Which means that we obtained the series
+
+   $2, 4, \dots, q - 1$
+
+   which summed produce
+
+   $(2) \sum_{Z = 1}^{(q - 1)/2} Z = (q^2 - 1)/4$
+
+   Now, on the other hand we must have a look at how the previous series $\sum_{u}\lfloor qu/p \rfloor$ is affected by considering $p = q - 2$. We consider the corner cases as above.
+
+   $\displaystyle \frac{qu}{q - 2} = 2$<br>
+   $->$<br>
+   $\displaystyle u = \frac{2q - 4}{q}$<br>
+   $->$<br>
+   $\displaystyle u = \frac{2p}{p + 2}$
+   $->$<br>
+   $\displaystyle u = \frac{2p}{p} = 2$
+
+   indeed
+
+   1. $\displaystyle \lfloor \frac{2q}{q - 2} \rfloor = 2$<br>
+   2. $\displaystyle \lfloor \frac{(q - 3)(q)}{q - 2} \rfloor = \lfloor \frac{(q - 2 - 1)(q)}{q - 2} \rfloor = q - 1 = p + 1$
+
+   This is because you should imagine to remove one $q - 2$ at a time from $q(q - 2)$, everytime you do so you accumulate a remainder of $- 1$. Once you get at the $q - 2$ copy of $q - 2$ you have accumulated $- 1$, $q - 2$ times, thus you only have $1$ copy of $q - 2$ left and the result of $q - 1$ follows.
+
+   Hence a fast calculation of the results produce
+
+   $(2) \sum_{Z = 1}^{(p - 1)/2} Z = (p^2 - 1)/4$
+
+   And
+
+   $\displaystyle (q^2 - 1)/4 + (p^2 - 1)/4 = \frac{(q^2 - 1) + (p^2 - 1)}{4}$
+   
+
+   
 
    $\displaystyle \lfloor \frac{(pq + p - q - 1)/2}{q} \rfloor = p - 1$<br>
 
