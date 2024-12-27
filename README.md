@@ -495,7 +495,7 @@
 
    $\displaystyle 2q \equiv 2q - 2p \lfloor \frac{q}{p} \rfloor \mod p$
 
-   Now, since our formula to fight is
+   Now, since our formula is
    
    $\sum_{u}\lfloor qu/p \rfloor$
    
@@ -511,8 +511,8 @@
    $->$<br>
    $\displaystyle \lfloor \frac{2q}{p} \rfloor = \lfloor \frac{2q - (2q - 2p \lfloor \frac{q}{p} \rfloor) + (2q - 2p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor$
 
-   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is clearly an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ clearly matches our Eisenstein's summation terms form.<br>
-   Now we can get the trick which allows to derive the fundamental intuition to understand the theorem, that is
+   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ clearly matches our Eisenstein's summation terms form.<br>
+   It results that
    
    $\displaystyle \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
    $\displaystyle \lfloor \frac{4q - 4p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
@@ -550,13 +550,13 @@
 
    $\displaystyle 2\lfloor \frac{q}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor + 6\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)\lfloor \frac{q}{p} \rfloor$
 
-   It's quite clear that such summation will be even, thus we can safely remove it from the calculation, since it doesn't change the parity of the exponent. Obviously the viceversa would be the same (p > q).
+   It's clear that such summation will be even, thus we can safely remove it from the calculation, since it doesn't change the parity of the exponent. The viceversa would be obviously the same $(p > q)$.
 
    Let's now take
 
    $\sum_{u}\lfloor pu/q \rfloor$
 
-   into analysis. It's clear that if $q > p$, $p$ will be something of the form $q - 2m$ for some $1 \leq m < (q - 1)/2 \mapsto 1 \leq m \leq (q - 3)/2$ (because we need to remove the case of $p$ being $1$). Now let's consider our first case $\displaystyle \lfloor \frac{p2}{q} \rfloor$. It's clear that it will never be $2$, since $p < q$, but there are still $2$ cases left, that is $1$ and $0$. A fast check enables us to see two corner cases, that is, $p = q - 2$ and $p = 3$ results for the last term of the summation.
+   into analysis. If $q > p$, $p$ will be something of the form $q - 2m$ for some $1 \leq m < (q - 1)/2 \mapsto 1 \leq m \leq (q - 3)/2$ (because we need to remove the case of $p$ being $1$). Now let's quickly consider our last summation term case $\displaystyle \lfloor \frac{p(q - 1)}{q} \rfloor$. A fast check enables us to see two corner cases, that is, $p = q - 2$ and $p = 3$ results for the last term of the summation.
 
    $\displaystyle \lfloor \frac{(q - 2)(q - 1)}{q} \rfloor = \lfloor \frac{q^2 - 3q + 2}{q} \rfloor = q - 3 = p - 1$
 
@@ -564,7 +564,7 @@
 
    $\displaystyle \lfloor \frac{3(q - 1)}{q} \rfloor = \lfloor \frac{3q - 3}{q} \rfloor = 2 = p - 1$
 
-   It's quite clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $p - 1$ because of the floor function erasing the remainder. Now we can further note another strange behaviour of this summation (which is one of the hardest thing to understand about this theorem). Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of term of the summation equal to $0$, indeed
+   It results clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $p - 1$ because of the floor function erasing the remainder. Now we can further note another strange behaviour of this summation (which is one of the hardest thing to understand about this theorem). Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of terms of the summation equal to $0$, indeed
 
    $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
    $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
@@ -576,7 +576,7 @@
 
    $\lfloor pu/q \rfloor = 1$
    
-   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they reason about $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. Also, they set such primes not randomly at all. That's probably the most 'good looking' case you can find having $q$ which is strictly bigger than $q - (q - 1)/2$. For some reason which I'm not going to delve because they would complicate the proof further, we can see that
+   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they took $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. Also, they set such primes not randomly at all. That's probably the most 'good looking' case you can find having $q$ which is strictly bigger than $q - (q - 1)/2$. For some reason which I'm not going to delve because they would complicate the proof further, we can see that
 
    $\displaystyle \lfloor \frac{7(2)}{11} \rfloor = 1$<br>
 
@@ -588,7 +588,7 @@
 
    $\lfloor pu/q \rfloor$
 
-   is a linear function. Imagine to substitute $u$ with $x$ in the cartesian graph, we would end up having a function which is represented by this formula:
+   is a pseudo-linear function. Imagine to substitute $u$ with $x$ in the cartesian graph and remove the floor function; we would end up having a function which is represented by this formula:
 
    $y = px/q$
 
@@ -596,7 +596,7 @@
 
    $y = x(p/q)$
 
-   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$. Which means that the major difference lies into the floor function. We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero. Also since everything just said, it's quite easy now to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Now why all this stuff to understand the previous concept about results of the function (the real one)? Because understanding such linearity allows us to understand an important thing. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $previous + next = p - 1$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can be sure that by the linearity we will have
+   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$, which means that the major difference lies into the floor function. We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero, indeed $0$ will be our starting point. Also since everything just said, it's not trivial to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a polygon inside a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ which (the polygon) splits the rectangle in half. It's really important to understand the connection between this polygon, and the triangle drawn by $y = px/q$. Now why all this stuff to understand the previous concept about results of the function (the floored one)? Because understanding such 'linearity' / 'corrispondence between the polygon and the triangle', allows us to understand an important thing. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $previous + next = p - 1$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can be sure that by the linearity we will have
    
    $\displaystyle \lfloor \frac{p(q - 9)/2}{q} \rfloor + \lfloor \frac{p(q + 9)/2}{q} \rfloor = p - 1$
 
@@ -622,20 +622,26 @@
 
    $\\{28, 30, 32, 34, 36, 38, \\{39.5\\}, 40, 42, 44, 46, 48, 50\\}$
 
-   hence what we said previously holds, since we can safely remove all values preceding $q/2$ obtaining $p - 1, p - 1, \dots$ and preserving the parity. From the previous structure it also turns out how easy could be to derive a triangle being the half of the previous rectangle, since we could use the $0s$ and $(p - 1)s$ (which are accidentally the same number of terms), that is, $|{2} + {4} + \dots + {26}| = 13 = |{54} + {56} + \dots + {78}| + 1$ where the $+ 1$ is because the element $\displaystyle \lfloor \frac{3(54)}{79} \rfloor$ should not be changed, but it's not clear under this example.<br>
+   Thus what we said previously holds, since we can safely remove all values preceding $q/2$ obtaining $p - 1, p - 1, \dots$ and preserving the parity. From the previous structure it also turns out how easy could be to derive a triangle being the half of the previous rectangle, since we could use the $0s$ and $(p - 1)s$ (which are accidentally the same number of terms), that is, $|\\{2\\} + \\{4\\} + \dots + \\{26\\}| = 13 = |\\{54\\} + \\{56\\} + \dots + \\{78\\}| + 1$ where the $+ 1$ is because the element $\displaystyle \lfloor \frac{3(54)}{79} \rfloor$ should not be changed, but it's not clear under this example.<br>
    
    So why is this so important. It is because knowing this allows us to always remove **pairs** of terms instead of one, which preserves the parity because $p - 1$ is even and because we know our summation is made of $n$ number of terms where $n$ is even $(n = q - 1)$. Once this is clear we can basically recycle Wiki stuff, and see that our rectangle mentioned previously is collapsible into the rectangle with corners at
 
-   $\\{(0,0), ((q - 1)/2, 0), (0, (p - 1)), ((q - 1)/2, p - 1)\\}$
+   $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$
 
-   preserving the parity. Now, noting that it's always feasible to build such triangle, we can calculate it's area which will be our final result, that is
+   preserving the parity. Now, noting that it's always feasible to build such triangle, we can calculate it's area since after the collapse it results clear that our lattice points mapped by $\lfloor pu/q \rfloor$ represent the area of such triangle (the polygon actually but their area is equal) which will be our final result, that is
 
-   $(b \cdot h)/2$<br>
-   $->$<br>
    $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
 
-   
+   and therefore
 
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
+
+ </p>
+
+ ## Further conclusions and Jacobi symbol
+
+ <p>
+   
  </p>
  
 
