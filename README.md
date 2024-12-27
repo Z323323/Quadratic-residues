@@ -479,7 +479,7 @@
 
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
 
-  ### Proof of the Law of QR using Eisenstein's lattice points and the floor function (while deriving a clearer proof than Wikipedia)
+  ### Proof of the Law of QR using Eisenstein's lattice points and some basic floor function theory
 
    Assuming $q > p$, we have
 
@@ -596,9 +596,17 @@
 
    $y = x(p/q)$
 
-   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$, which means that the major difference lies into the floor function. We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero, indeed $0$ will be our starting point. Also since everything just said, it's not trivial to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a polygon inside a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ which (the polygon) splits the rectangle in half. It's really important to understand the connection between this polygon, and the triangle drawn by $y = px/q$ because their area will be the same ;).
+   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$, which means that the major difference lies into the floor function.
    
-   ![]()
+   ![E1](./Eisenstein0.png)
+
+   *Where a = p, b = q and the shadowed rectangle should be one of the values of our floored function (which sucks as image because it looks like not being an integer and the x value not being even)*
+   
+   We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero, indeed $0$ will be our starting point. Also since everything just said, it's not trivial to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a polygon inside a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ which (the polygon) splits the rectangle in half. It's really important to understand the connection between this polygon, and the triangle drawn by $y = px/q$ because their area will be the same ;).
+   
+   ![E2](./Eisenstein2.svg.png)
+
+   *This image from Wiki is really good to understand everything. Here p = 11, q = 7. The points showed are the results of our floored function at those x values.*
    
    Understanding such 'linearity' / 'corrispondence between the polygon and the triangle', basically solves this nightmare theorem. Before going into the last step, imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $p - 1 - previous = next$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can almost be sure that by the linearity we will have
    
