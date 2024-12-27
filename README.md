@@ -550,94 +550,61 @@
 
    $\displaystyle 2\lfloor \frac{q}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor + 6\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)\lfloor \frac{q}{p} \rfloor$
 
+   It's quite clear that such summation will be even, thus we can safely remove it from the calculation, since it doesn't change the parity of the exponent. Obviously the viceversa would be the same (p > q).
+
    Let's now take
 
    $\sum_{u}\lfloor pu/q \rfloor$
 
-   into analysis. It's clear that if $q > p$, $p$ will be something of the form $q - 2m$ for some $1 \leq m < (q - 1)/2 \mapsto 1 \leq m \leq (q - 3)/2$ (because we need to remove the case of $p$ being $1$). Now let's consider our first case $\displaystyle \lfloor \frac{p2}{q} \rfloor$. It's clear that it will never be $2$, since $p < q$, but there are still $2$ cases left, that is $1$ and $0$.
+   into analysis. It's clear that if $q > p$, $p$ will be something of the form $q - 2m$ for some $1 \leq m < (q - 1)/2 \mapsto 1 \leq m \leq (q - 3)/2$ (because we need to remove the case of $p$ being $1$). Now let's consider our first case $\displaystyle \lfloor \frac{p2}{q} \rfloor$. It's clear that it will never be $2$, since $p < q$, but there are still $2$ cases left, that is $1$ and $0$. A fast check enables us to see two corner cases, that is, $p = q - 2$ and $p = 3$ results for the last term of the summation.
 
-   $\displaystyle \lfloor \frac{p2}{q} \rfloor = \lfloor \frac{(q - 2m)2}{q} \rfloor = \lfloor \frac{2q - 4m}{q} \rfloor$
-
-   and
-
-   $\displaystyle \lfloor \frac{2q - 4m}{q} \rfloor = 1$
-
-   if
-
-   $4m \leq q$ <br>
-   $->$<br>
-   $m \leq (q - 1)/4$
-
-   because $m$ has to be an integer (it can't be $q/4$) that is
-
-   $p \geq q - 2(q - 1)/4 \geq q - (q - 1)/2$
-
-   Generalizing on $u$, we can set $u = 2n$, and
-
-   $\displaystyle \lfloor \frac{p2n}{q} \rfloor = \lfloor \frac{(q - 2m)2n}{q} \rfloor = \lfloor \frac{2nq - 4nm}{q} \rfloor$
+   $\displaystyle \lfloor \frac{(q - 2)(q - 1)}{q} \rfloor = \lfloor \frac{q^2 - 3q + 2}{q} \rfloor = q - 3 = p - 1$
 
    and
 
-   $\displaystyle \lfloor \frac{2nq - 4nm}{q} \rfloor = n$
+   $\displaystyle \lfloor \frac{3(q - 1)}{q} \rfloor = \lfloor \frac{3q - 3}{q} \rfloor = 2 = p - 1$
 
-   if
+   It's quite clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $p - 1$ because of the floor function erasing the remainder. Now we can further note another strange behaviour of this summation (which is one of the hardest thing to understand about this theorem). Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of term of the summation equal to $0$, indeed
+
+   $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{3(6)}{79} \rfloor = 0$<br>
+   $\dots$
+   $\displaystyle \lfloor \frac{3(78)}{79} \rfloor = 2$ (with an ereased remainder of $76$)
    
-   $4nm \leq nq$ <br>
-   $->$<br>
-   $4m \leq q$ <br>
-   $->$<br>
-   $m \leq (q - 1)/4$
+   In general the potential cases of difference between $q$ and $p$ varies up to infinity, thus how do we manage to solve this¿ One really big problem is that we can't know in general when
 
-   that is
-
-   $p \geq q - 2(q - 1)/4 \geq q - (q - 1)/2$
-
-   Thus, for every $p > q/2$ we will have a series of results which are equal to $n$ every time, where each $n$ will be odd. Now what would happen when we have $p < q/2$? Let's take $m = (q - 1)/4 + 1 = (q + 3)/4$ which implies
-
-   $p = q - 2(q + 3)/4 = q - (q + 3)/2$
-
-   We want to find when such number will produce $1$ initially, that is, for example for the first case we would get
-
-   $\displaystyle \lfloor \frac{p2}{q} \rfloor = \lfloor \frac{(q - (q + 3)/2)2}{q} \rfloor = \lfloor \frac{2q - q - 3}{q} \rfloor = \lfloor \frac{q - 3}{q} \rfloor = 0$
-
-   Thus generalizing
-
-   $\displaystyle \lfloor \frac{(q - (q + 3)/2)2n}{q} \rfloor = \lfloor \frac{(q - 3)n}{q} \rfloor = 1$
-
-   iff
-
-   $(q - 3)n \geq q$ <br>
-   $->$<br>
-   $\displaystyle n \geq \frac{q}{q - 3}\geq \frac{q - 3 + 3}{q - 3} \geq 1 + \frac{3}{q - 3}$
-
-   which basically means that $n$ should be more than $1$, indeed 
-
-   $\displaystyle \lfloor \frac{((q - (q + 3)/2)2)2)}{q} \rfloor = \lfloor \frac{2q - 6}{q} \rfloor = 1$
-
-   A fast check for $n = 3$ shows
-
-   $\displaystyle \lfloor \frac{3q - 9}{q} \rfloor = 2$
-
-   and keeping the $2$, it's easy to see that $n$ can't go over $(q - 1)/2$ and
-
-   $\displaystyle \lfloor \frac{(q - 3)(q - 1)/2}{q} \rfloor = \lfloor \frac{(q - 3)(q - 1)/2}{q} \rfloor = \lfloor \frac{q^2/2 - 2q + 3/2}{q} \rfloor = (q - 1)/2 - 2$
+   $\lfloor pu/q \rfloor = 1$
    
-   Now, following the same reasoning on $n$ and keeping the focus on the units part of
+   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they reason about $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. Also, they set such primes not randomly at all. That's probably the most 'good looking' case you can find having $q$ which is strictly bigger than $q - (q - 1)/2$. For some reason which I'm not going to delve because they would complicate the proof further, we can see that
 
-   $\displaystyle \lfloor \frac{3q - 9}{q} \rfloor = 2$
+   $\displaystyle \lfloor \frac{7(2)}{11} \rfloor = 1$<br>
 
-   that is, $9$, we can see that such number is scaled by the $n$ factor. Since $n$ reaches $(q - 1)/2$, it results clear that we will have a futher subtraction by $1$ from a certain point. So let's understand what this point is. We know that $9$ is obtained scaling $3$ by $n = 3$. Also we can see that the $3$ number itself i .<br>
-   A quick recap on $m$ and $p$ shows
+   thus at the first term of the summation we already have a $1$ which trust me simply everything a lot (but it's not the general case, IMHO we should always delve the worst cases to show how something works). Now, having said this import clarification, in general we can't know when we will end up having 
 
-   $(q + 3)/4 \leq m \leq (q - 3)/2$
+   $\lfloor pu/q \rfloor = 1$
 
-   for the cases we are considering now. And
+   as I already said and also we can't know in general we we will start facing $2, 3, \dots$ etc. Then how can we solve this. The most important thing to understand is that
 
-   $p = q - 2m$<br>
-   $->$<br>
-   $q - (q + 3)/2 \geq p \geq 3$
+   $\lfloor pu/q \rfloor$
 
+   is a linear function. Imagine to substitute $u$ with $x$ in the cartesian graph, we would end up having a function which is represented by this formula:
+
+   $y = px/q$
+
+   or
+
+   $y = x(p/q)$
+
+   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differ from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$. Which means that the major difference holds in the floor function. We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $x(p/q)$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero. Now why all this stuff to understand the previous concept about results of the function (the real one)? Because understanding such linearity allows us to understand an important thing. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $previous + next = p - 1$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can be sure that by the linearity we will have
    
+   $\displaystyle \lfloor \frac{p(q - 9)/2}{q} \rfloor + \lfloor \frac{p(q + 9)/2}{q} \rfloor = p - 1$
+
+   So why is this so important. It is because knowing this allows us to always remove **pairs** of terms instead of one, which preserves the parity because $p - 1$ is even. Once this is clear we can basically recycle Wiki stuff, and see that our line
+
+   $y = x(p/q)$
+
+   which end
 
    
 
