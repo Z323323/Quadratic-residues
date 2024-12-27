@@ -569,8 +569,8 @@
    $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
    $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
    $\displaystyle \lfloor \frac{3(6)}{79} \rfloor = 0$<br>
-   $\dots$
-   $\displaystyle \lfloor \frac{3(78)}{79} \rfloor = 2$ (with an ereased remainder of $76$)
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{3(78)}{79} \rfloor = 2 = p - 1$ (with an ereased remainder of $76$)
    
    In general the potential cases of difference between $q$ and $p$ varies up to infinity, thus how do we manage to solve this¿ One really big problem is that we can't know in general when
 
@@ -596,15 +596,43 @@
 
    $y = x(p/q)$
 
-   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differ from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$. Which means that the major difference holds in the floor function. We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $x(p/q)$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero. Now why all this stuff to understand the previous concept about results of the function (the real one)? Because understanding such linearity allows us to understand an important thing. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $previous + next = p - 1$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can be sure that by the linearity we will have
+   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$. Which means that the major difference lies into the floor function. We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero. Also since everything just said, it's quite easy now to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Now why all this stuff to understand the previous concept about results of the function (the real one)? Because understanding such linearity allows us to understand an important thing. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $previous + next = p - 1$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can be sure that by the linearity we will have
    
    $\displaystyle \lfloor \frac{p(q - 9)/2}{q} \rfloor + \lfloor \frac{p(q + 9)/2}{q} \rfloor = p - 1$
 
-   So why is this so important. It is because knowing this allows us to always remove **pairs** of terms instead of one, which preserves the parity because $p - 1$ is even. Once this is clear we can basically recycle Wiki stuff, and see that our line
+   All this remembering that it's not always the case this equality works, but it works for corner cases like the one mentioned previously. Indeed, for cases like the one taken by the Wiki proof, there's no reason to further delve this behaviour (the complete picture will be clearer when we map the lattice points and derive the final formula). We can also notice another interesting thing about the previous example.
 
-   $y = x(p/q)$
+   $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{3(6)}{79} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{3(8)}{79} \rfloor = 0$<br>
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{3(26)}{79} \rfloor = 0$<br>
+   $\displaystyle \lfloor \frac{3(28)}{79} \rfloor = 1 = p - 1 - 1$<br>
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{3(52)}{79} \rfloor = 1 = p - 1 - 1$<br>
+   $\displaystyle \lfloor \frac{3(54)}{79} \rfloor = 2 = p - 1$<br>
+   $\dots$<br>
+   $\displaystyle \lfloor \frac{3(72)}{79} \rfloor = 2 = p - 1$<br>
+   $\displaystyle \lfloor \frac{3(74)}{79} \rfloor = 2 = p - 1$<br>
+   $\displaystyle \lfloor \frac{3(76)}{79} \rfloor = 2 = p - 1$<br>
+   $\displaystyle \lfloor \frac{3(78)}{79} \rfloor = 2 = p - 1$ (with an ereased remainder of $76$)
+   
+   Hence taking $q/2 = 39.5$ we can see
 
-   which end
+   $\\{28, 30, 32, 34, 36, 38, \\{39.5\\}, 40, 42, 44, 46, 48, 50\\}$
+
+   hence what we said previously holds, since we can safely remove all values preceding $q/2$ obtaining $p - 1, p - 1, \dots$ and preserving the parity. From the previous structure it also turns out how easy could be to derive a triangle being the half of the previous rectangle, since we could use the $0s$ and $(p - 1)s$ (which are accidentally the same number of terms), that is, $|{2} + {4} + \dots + {26}| = 13 = |{54} + {56} + \dots + {78}| + 1$ where the $+ 1$ is because the element $\displaystyle \lfloor \frac{3(54)}{79} \rfloor$ should not be changed, but it's not clear under this example.<br>
+   
+   So why is this so important. It is because knowing this allows us to always remove **pairs** of terms instead of one, which preserves the parity because $p - 1$ is even and because we know our summation is made of $n$ number of terms where $n$ is even $(n = q - 1)$. Once this is clear we can basically recycle Wiki stuff, and see that our rectangle mentioned previously is collapsible into the rectangle with corners at
+
+   $\\{(0,0), ((q - 1)/2, 0), (0, (p - 1)), ((q - 1)/2, p - 1)\\}$
+
+   preserving the parity. Now, noting that it's always feasible to build such triangle, we can calculate it's area which will be our final result, that is
+
+   $(b \cdot h)/2$<br>
+   $->$<br>
+   $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
 
    
 
