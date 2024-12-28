@@ -483,7 +483,7 @@
 
    Assuming $q > p$, we have
 
-   $q \mod p = q - kp \mod p$
+   $q \mod p = q - kp$
 
    where 
 
@@ -511,7 +511,7 @@
    $->$<br>
    $\displaystyle \lfloor \frac{2q}{p} \rfloor = \lfloor \frac{2q - (2q - 2p \lfloor \frac{q}{p} \rfloor) + (2q - 2p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor$
 
-   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ clearly matches our Eisenstein's summation terms form.<br>
+   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ matches our Eisenstein's summation terms form.<br>
    It results that
    
    $\displaystyle \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
@@ -550,13 +550,13 @@
 
    $\displaystyle 2\lfloor \frac{q}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor + 6\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)\lfloor \frac{q}{p} \rfloor$
 
-   It's clear that such summation will be even, thus we can safely remove it from the calculation, since it doesn't change the parity of the exponent. The viceversa would be obviously the same $(p > q)$.
+   It's clear that such summation will always be even, thus we can safely remove it from the calculation, since it doesn't change the parity of the exponent. The viceversa would be obviously the same $(p > q)$.
 
    Let's now take
 
    $\sum_{u}\lfloor pu/q \rfloor$
 
-   into analysis. If $q > p$, $p$ will be something of the form $q - 2m$ for some $1 \leq m < (q - 1)/2 \mapsto 1 \leq m \leq (q - 3)/2$ (because we need to remove the case of $p$ being $1$). Now let's quickly consider our last summation term case $\displaystyle \lfloor \frac{p(q - 1)}{q} \rfloor$. A fast check enables us to see two corner cases, that is, $p = q - 2$ and $p = 3$ results for the last term of the summation.
+   into analysis. If $q > p$, $p$ will be something of the form $q - 2m$ for some $1 \leq m < (q - 1)/2 \mapsto 1 \leq m \leq (q - 3)/2$ (because we need to remove the case of $p$ being $1$). Let's consider our last summation term case $\displaystyle \lfloor \frac{p(q - 1)}{q} \rfloor$. A quick check enables us to see two corner cases, that is, $p = q - 2$ and $p = 3$ results for the last term of the summation.
 
    $\displaystyle \lfloor \frac{(q - 2)(q - 1)}{q} \rfloor = \lfloor \frac{q^2 - 3q + 2}{q} \rfloor = q - 3 = p - 1$
 
@@ -564,7 +564,7 @@
 
    $\displaystyle \lfloor \frac{3(q - 1)}{q} \rfloor = \lfloor \frac{3q - 3}{q} \rfloor = 2 = p - 1$
 
-   It results clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $p - 1$ (floor function erasing the last step remainder). Now we can further note another strange behaviour of this summation (which is one of the hardest thing to understand about this theorem). Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of terms of the summation equal to $0$, indeed
+   It results clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $4$ $[p - 1]$ (remember the floor function erasing the last step remainder). Now we can dig into one non-trivial example. Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of terms of the summation equal to $0$, indeed
 
    $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
    $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
@@ -572,19 +572,17 @@
    $\dots$<br>
    $\displaystyle \lfloor \frac{3(78)}{79} \rfloor = 2 = p - 1$ (with an ereased remainder of $76$)
    
-   In general the potential cases of difference between $q$ and $p$ varies up to infinity, thus how do we manage to solve this¿ One really big problem is that we can't know in general when
-
-   $\lfloor pu/q \rfloor = 1$
+   In general the potential cases of difference between $q$ and $p$ varies up to infinity which limits our power of analysis quite a bit.<br>
    
-   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they took $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. Also, they set such primes not randomly at all. That's probably the most 'good looking' case you can find having $q$ which is strictly bigger than $q - (q - 1)/2$. For some reason which I'm not going to delve because they would complicate the proof further, we can see that
-
+   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they took $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. Also, they set such primes not randomly at all. That's probably the most 'good looking' case you can find having $p$ which is strictly bigger than $q - (q - 1)/2$, which for some reasons I'm not going to delve because they would extend the proof further (they are not complex by the way), produce
+   
    $\displaystyle \lfloor \frac{7(2)}{11} \rfloor = 1$<br>
 
-   Thus at the first term of the summation we already have a $1$ which could simplify the proof for some reasons (not considering corner cases which Wiki covers by the way, infact their proof is not easy to understand) but it's not the general case; IMHO we should always delve the worst cases to show how something works. Now, having said this clarification, in general we can't know when we will end up having 
+   at the first term of the summation. This particular behaviour could simplify the proof for some reasons (not considering corner cases which Wiki covers by the way, infact their proof is not easy to understand) but it's not the general case; IMHO we should always delve the worst cases to show how something works. Now, having said this clarification, note that we will jump back and forth from the Wiki example (reversing $q$ and $p$), i.e. $q = 11, p = 7$ to our corner case with $q = 79, p = 3$. In general we can't know exactly when we will end up having 
 
    $\lfloor pu/q \rfloor = 1$
 
-   as I already said and also we can't know in general when we will start facing $2, 3, \dots$ etc. Then how can we solve this? It turns out that we don't need to know it (but just because of Eisenstein's intuitions). The most important thing to understand is that
+   and also we can't know in general when we will start facing $2, 3, \dots$ etc. but it turns out that we don't need to know it to derive the solution of the theorem. The most important thing to understand is that
 
    $\lfloor pu/q \rfloor$
 
@@ -596,13 +594,8 @@
 
    $y = x(p/q)$
 
-   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$, which means that the major difference lies into the floor function.
-   
-   ![E1](./Eisenstein0.png)
-
-   *Where a = p, b = q and the shadowed rectangle should be one of the values of our floored function (which sucks as image because it looks like not being an integer and the x value not being even)*
-   
-   We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Now if we start drawing such line in the graph starting from $2$ that would be an error because we would implicitly set $x_0 = 2$, that is $2$ would represent the zero, indeed $0$ will be our starting point. Also since everything just said, it's not trivial to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a polygon inside a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ which (the polygon) splits the rectangle in half. It's really important to understand the connection between this polygon, and the triangle drawn by $y = px/q$ because their area will be the same ;).
+   which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$, which means that the major difference lies into the floor function.<br>
+   We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Since everything just said, it's not trivial to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a polygon inside a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ which (the polygon) splits the rectangle in half. It's really important to understand the connection between this polygon, and the triangle drawn by $y = px/q$ because their area will be the same ;).
    
    ![E2](./Eisenstein2.svg.png)
 
