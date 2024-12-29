@@ -601,55 +601,18 @@
    
    Now, showing the simmetry / linearity of the floor function won't be easy, especially for the Wiki example. My previous corner-case example shows it better if further analyzed. You can find it at the end of this section so you should consider to have a look at it if you find the Wiki one particularly challenging to understand.
 
-   My initial goal was to show the simmetry of our function $\lfloor pu/q \rfloor$ in the cartesian graph, since to prove this theorem we will calculate the area of a triangle which splits a rectangle having corners at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$. These coordinates are not a starting point of course, but it's quite easy to roll back the reasoning and find the initial coordinates which you can easily find into the previous picture, that is $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Thus we will basically divide the length of the rectangle $(R)$ by $2$, really hard I know. Well, the funny part here is that it will be really hard. I said that my goal was to show some simmetry, since as I said initially the floor function is basically a pseudo-linear function, hence we should necessary find that it divides $R$ which is drawable connecting the previous coordinates in half. Since the floor function is defined at even points in the $x-axis$ and as you just saw it could increase by more than $1$ at a time, connecting the top of the various (vertical) lattice points we should find a polygon which splits the initial $R$ in half (I specified 'initial' because the derived one is just the initial one with the length halved, thus the simmetry should be individuable into the first $R$ already). Since that polygon splits $R$ in half, its area should be the same as the triangle defined by the diagonal of $R$. Now, if you try to draw this stuff into the previous picture and find this symmetry which I'm talking about, you can trust me it will be quite hard, especially for the Wiki example. This is what I found initially.
-
-   ![EP1](./EP1.jpg)
-
-   As you can see, the simmetry I was talking about is easily individuable only for the rectangle of length $q - 1$ (which is fine) and height $p$ (which is not :'D), and also not considering the lattice points at $x$ coordinate $(q + 1)/2$. After many battles to find the cursed simmetry I have come to this picture below.
+   My initial goal was to show the simmetry of our function $\lfloor pu/q \rfloor$ in the cartesian graph, since to prove this theorem we will calculate the area of a triangle which splits a rectangle having corners at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$. These coordinates are not a starting point of course, but it's quite easy to roll back the reasoning and find the initial coordinates which you can easily find into the previous picture, that is $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Thus we will basically divide the length of the rectangle $(R)$ by $2$, really hard I know. Well, the funny part here is that the problem is right before splitting the rectangle in half. I said that my goal was to show some simmetry, since as I said initially the floor function is basically a pseudo-linear function, hence we should necessary find that it divides $R$ (which is drawable connecting the previous coordinates) in half. Thus we should find a polygon which splits the initial $R$ in half (I specified 'initial' because the derived one is just the initial one with the length halved, thus the simmetry should be individuable into the first $R$ already). Since that polygon splits $R$ in half, its area should be the same as the triangle defined by the diagonal of $R$. Now, after many battles, I understood a basic reality. If the number of lattice points is $odd$ we will never find a way to find a simmetry connecting the top of the (different $x$ coordinates) lattice points (and drawing our polygon) which is trivial because I'm telling you this after risking my mental sanity :'D. Thus, why do we calculate the the area of the triangle mentioned previously in either case? Before asking this question, let me show you the real simmetry and equivalence of the polygon defined by the lattice points. In order to achieve this under the Wiki example, I basically added the point which makes the number of lattice points even, because (spoiler) $\displaystyle (\frac{11}{7})(\frac{7}{11}) = - 1$. Indeed the number of lattice points is $odd$ and the simmetry is impossible under the correct conditions.
    
-   ![EP2](./EP2.jpg)
+   ![XX](./XX.jpg)
 
-   If you look at the picture carefully, you'll notice how it's simply not possible to split the rectangle $R$ (now I'm talking about the right one, with height $p - 1$ and length $q - 1$) in half preserving the simmetry. Indeed if you look at the diagonal of the inner rectangle, you'll notice it doesn't pass through $0$. I was almost giving up, but then I have come to this.
-
-   ![EP0](./EP0.jpg)
-
-   Still, the line which splits the inner rectangle doesn't pass through $0$, which is a problem. Also, the point at $x = (q + 1)/2$ is clearly still a problem. Well, good news brother, we just find that these two problems eliminate themselves and we finally found the simmetry. Indeed if you take a look at the picture, the line which splits the rectangle in half starts at $1/2$. Now, look at what's left from the top of the lattice points at $x = (q + 1)/2$ to reach both our polygon boundary and the line which splits the inner rectangle in half. Yes it's $1/2$.
+   You can clearly see how the red line splits the rectangle $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ in half (diagonal shown in blue). Now, let's ask the previous question, which basically solves this theorem at this point. It turns out that the final answer to the big question is NOT about finding some equivalence or simmetry. The answer is: calculating the area of the triangle means to calculate the number of lattice points leaving out an $odd$ number number of them when the total number of lattice points is $odd$, and an $even$ number of them when the total number is $even$. Since the number of lattice points under the diagonal is always even, the previous points which are left out the calculation will make the result $odd$ or $even$ accordingly. I can't honestly find another reason to explain this theorem, which is quite crazy indeed. It's not a case that Gauss delved this theorem for years. It's result is really just anti-intuitive and finding a proof always presents many walls along the way. Anyways, once we got this behaviour (which should be formally proved and it would be quite a problem to do) we can basically recycle the previous structures and collapse every set of vertical lattice points into the first half of points in the $x-axis$ producing the rectangle at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Since the structure will be preserved we can safely calculate the area of the triangle and the previous reasoning follows.
    
    $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
 
    and therefore
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$ _
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
    
-   Before going over to the next section, we can recycle our previous 'corner-case' example to show everything from a different point of view. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $p - 1 - previous = next$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can almost be sure that by the linearity we will have
-   
-   $\displaystyle \lfloor \frac{p(q - 9)/2}{q} \rfloor + \lfloor \frac{p(q + 9)/2}{q} \rfloor = p - 1$
-
-   The reason why I took $(q - 9)/2$ instead of $(q - 1)/2$ or $(q + 1)/2$ is left for you to understand. It will be clearer proceeding to the end.
-
-   All this remembering that I'm not $100\\%$ sure $(99\\%)$ it will be always the case this equality works, but for sure (here I'm $100\\%$) the poligon created by connecting the point of $\lfloor pu/q \rfloor$ in the cartesian graph will split the rectangle mentioned previously in a half (which is the most important part which solves the theorem). Now we can also dissect the previous example to show everything with an abstract microscope.
-
-   $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
-   $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
-   $\displaystyle \lfloor \frac{3(6)}{79} \rfloor = 0$<br>
-   $\displaystyle \lfloor \frac{3(8)}{79} \rfloor = 0$<br>
-   $\dots$<br>
-   $\displaystyle \lfloor \frac{3(26)}{79} \rfloor = 0$<br>
-   $\displaystyle \lfloor \frac{3(28)}{79} \rfloor = 1 = p - 1 - 1$<br>
-   $\dots$<br>
-   $\displaystyle \lfloor \frac{3(52)}{79} \rfloor = 1 = p - 1 - 1$<br>
-   $\displaystyle \lfloor \frac{3(54)}{79} \rfloor = 2 = p - 1$<br>
-   $\dots$<br>
-   $\displaystyle \lfloor \frac{3(72)}{79} \rfloor = 2 = p - 1$<br>
-   $\displaystyle \lfloor \frac{3(74)}{79} \rfloor = 2 = p - 1$<br>
-   $\displaystyle \lfloor \frac{3(76)}{79} \rfloor = 2 = p - 1$<br>
-   $\displaystyle \lfloor \frac{3(78)}{79} \rfloor = 2 = p - 1$ (with an ereased remainder of $76$)
-   
-   Hence taking $q/2 = 39.5$ we can see
-
-   $\\{28, 30, 32, 34, 36, 38, \\{39.5\\}, !40!, 42, 44, 46, 48, 50, 52\\}$
-
-   Our simmetry which we were talking about is clearly visible, and $40$ is the element which basically determines $\displaystyle (\frac{79}{3})(\frac{3}{79}) = - 1$.
    
    
 
