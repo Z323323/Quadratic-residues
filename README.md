@@ -564,7 +564,7 @@
 
    $\displaystyle \lfloor \frac{3(q - 1)}{q} \rfloor = \lfloor \frac{3q - 3}{q} \rfloor = 2 = p - 1$
 
-   It results clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $4$ $[p - 1]$ (remember the floor function erasing the last step remainder). Now we can dig into one non-trivial example. Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of terms of the summation equal to $0$, indeed
+   It results clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $4$ $[p - 1]$ (remember the floor function erasing the last step remainder). Now we start the madness seeing one corner-case (it will turn out to be simpler going forward) example. Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of terms of the summation equal to $0$, indeed
 
    $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
    $\displaystyle \lfloor \frac{3(4)}{79} \rfloor = 0$<br>
@@ -574,11 +574,11 @@
    
    In general the potential cases of difference between $q$ and $p$ varies up to infinity which limits our power of analysis quite a bit.<br>
    
-   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they took $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. Also, they set such primes not randomly at all. That's probably the most 'good looking' case you can find having $p$ which is strictly bigger than $q - (q - 1)/2$, which for some reasons I'm not going to delve because they would extend the proof further (they are not complex by the way), produce
+   If you take a quick look at [https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity] you'll find out that they took $\sum_{u}\lfloor qu/p \rfloor$ because they set $p = 11, q = 7$, thus $p > q$, which is the viceversa of my assumption. We can see that the Wiki example produce (reversing $p$ and $q$ is safe and easy)
    
    $\displaystyle \lfloor \frac{7(2)}{11} \rfloor = 1$<br>
 
-   at the first term of the summation. This particular behaviour could simplify the proof for some reasons (not considering corner cases which Wiki covers by the way, infact their proof is not easy to understand) but it's not the general case; IMHO we should always delve the worst cases to show how something works. Now, having said this clarification, note that we will jump back and forth from the Wiki example (reversing $q$ and $p$), i.e. $q = 11, p = 7$ to our corner case with $q = 79, p = 3$. In general we can't know exactly when we will end up having 
+   at the first term of the summation. In general we can't know exactly when we will end up having 
 
    $\lfloor pu/q \rfloor = 1$
 
@@ -595,13 +595,31 @@
    $y = x(p/q)$
 
    which better clarify how $y$ is basically a linear function (it's a straight line) and how $x$ is scaled by the (constant) $p/q$ factor. We can note that this function basically differs from ours in two things being the floor function, and $u$ which is basically $x$ taken at even numbers from $2$ to $q - 1$, which means that the major difference lies into the floor function.<br>
-   We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. Since everything just said, it's not trivial to see that if we connect $y = \lfloor pu/q \rfloor$ points we basically draw a polygon inside a rectangle with corners at $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ which (the polygon) splits the rectangle in half. It's really important to understand the connection between this polygon, and the triangle drawn by $y = px/q$ because their area will be the same ;).
+   We can easily see that 'the flooring' mechanism is quite easy after all, that is, we know that $xp/q$ will never be an integer because $xp$ and $q$ don't share divisors, which means that our initial function mapped into the cartesian graph (starting from our derived one) will basically be the derived one where every result at $x$ even is the same but removing the fractional part. This is better clarified by seeing the Wiki example, which shows the lattice points under our derived $y = x(p/q)$ formula which (the lattice points) represent the results of our initial formula $\lfloor pu/q \rfloor$. Wiki uses $q = 7, p = 11$, and therefore you can safely swap them and consider $q = 11, p = 7$ which follows our reasoning (without imagining them swapped in the picture, just focus on it like it is, it's fine).
    
    ![E2](./Eisenstein2.svg.png)
-
-   *This image from Wiki is really good to understand everything. Here p = 11, q = 7. The points showed are the results of our floored function at those x values.*
    
-   Understanding such 'linearity' / 'corrispondence between the polygon and the triangle', basically solves this nightmare theorem. Before going into the last step, imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $p - 1 - previous = next$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can almost be sure that by the linearity we will have
+   Now, showing the simmetry / linearity of the floor function won't be easy, especially for the Wiki example. My previous corner-case example shows it better if further analyzed. You can find it at the end of this section so you should consider to have a look at it if you find the Wiki one particularly challenging to understand.
+
+   My initial goal was to show the simmetry of our function $\lfloor pu/q \rfloor$ in the cartesian graph, since to prove this theorem we will calculate the area of a triangle which splits a rectangle having corners at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$. These coordinates are not a starting point of course, but it's quite easy to roll back the reasoning and find the initial coordinates which you can easily find into the previous picture, that is $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Thus we will basically divide the length of the rectangle $(R)$ by $2$, really hard I know. Well, the funny part here is that it will be really hard. I said that my goal was to show some simmetry, since as I said initially the floor function is basically a pseudo-linear function, hence we should necessary find that it divides $R$ which is drawable connecting the previous coordinates in half. Since the floor function is defined at even points in the $x-axis$ and as you just saw it could increase by more than $1$ at a time, connecting the top of the various (vertical) lattice points we should find a polygon which splits the initial $R$ in half (I specified 'initial' because the derived one is just the initial one with the length halved, thus the simmetry should be individuable into the first $R$ already). Since that polygon splits $R$ in half, its area should be the same as the triangle defined by the diagonal of $R$. Now, if you try to draw this stuff into the previous picture and find this symmetry which I'm talking about, you can trust me it will be quite hard, especially for the Wiki example. This is what I found
+
+   ![EP1](./EP1.jpg)
+
+   As you can see, the simmetry I was talking about is individuable only for the rectangle of length $q - 1$ (which is fine) and height $p$ (which is not :'D), and also not considering the lattice points at $x$ coordinate $(q + 1)/2$. Let's find a reason (or trick :D) to make all this to work. Since my construction, the points at $x = (q + 1)/2$ don't respect the simmetry, and furthermore it's easy to see that such coordinate will always be the exact half of our blue rectangle (they are IMHO the points which determine the parity of the whole exponent). We can do a little trick and 
+
+   There's just one step dividing us from the final result, that is, our lattice points are collapsible into the rectangle with corners at 
+
+   $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$
+
+   basically grouping all lattice points in the first $(q - 1)/2$ points in the $x-axis$. We can see that our lattice points create a dense set of points which basically represent our polygon mentioned above (which in turn represents the triangle which splits in half our new rectangle having the lenght halved). Thus we can proceed calculating the area and finding the solution of the theorem because the area of the polygon / triangle will represent the result of $\sum_{u}\lfloor pu/q \rfloor$.
+
+   $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
+
+   and therefore
+
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$ _
+   
+   Before going over to the next section, we can recycle our previous 'corner-case' example to show everything from a different point of view. Imagine having $\lfloor pu/q \rfloor = 1$ at some point strictly before $q/2$ in the $x-axis$, i.e. at $(q - 1)/2$. After that point we know by the linearity of the function that we will end up having another result which is equal to the previous if the previous was $(p - 1)/2$, or equal to $p - 1 - previous = next$. By the same reasoning, if we had some integer result $> 0$ at for ex. $(q - 9)/2 = (q - 1)/2 - 4$ (which means that we would have $3$ integer results before $q/2$, i.e. at $\\{(q - 1)/2, (q - 5)/2, (q - 9)/2\\}$) we can almost be sure that by the linearity we will have
    
    $\displaystyle \lfloor \frac{p(q - 9)/2}{q} \rfloor + \lfloor \frac{p(q + 9)/2}{q} \rfloor = p - 1$
 
@@ -631,17 +649,7 @@
 
    Our simmetry which we were talking about is clearly visible, and $40$ is the element which basically determines $\displaystyle (\frac{79}{3})(\frac{3}{79}) = - 1$.
    
-   There's just one step dividing us from the final result, that is, our rectangle mentioned previously is collapsible into the rectangle with corners at
-
-   $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$
-
-   (preserving the parity because we actually just moved the elements which is fair). Now we can see that our lattice points create a dense set of points which basically represent our polygon mentioned above (which in turn represents the triangle which splits in half our new rectangle having the lenght halved). Thus we can proceed calculating the area and finding the solution of the theorem.
-
-   $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
-
-   and therefore
-
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
+   
 
  </p>
 
