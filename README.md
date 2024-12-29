@@ -609,12 +609,8 @@
 
    ![EP2](./EP2.jpg)
 
-   There's just one step dividing us from the final result, that is, our lattice points are collapsible into the rectangle with corners at 
-
-   $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$
-
-   basically grouping all lattice points in the first $(q - 1)/2$ points in the $x-axis$. We can see that our lattice points create a dense set of points which basically represent our polygon mentioned above (which in turn represents the triangle which splits in half our new rectangle having the lenght halved). Thus we can proceed calculating the area and finding the solution of the theorem because the area of the polygon / triangle will represent the result of $\sum_{u}\lfloor pu/q \rfloor$.
-
+   The reason why I'm telling you it's not fully justified is because if you look at the picture carefully, you'll notice how it's simply not possible to split the rectangle $R$ (now I'm talking about the right one, with height $p - 1$ and length $q - 1$) in half preserving the simmetry. Indeed if you look at the diagonal of the inner rectangle, you'll notice it doesn't pass through $0$. This means that the only reasonable thing to state is that the polygon drawn by the floor function 
+   
    $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
 
    and therefore
