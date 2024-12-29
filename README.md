@@ -605,7 +605,9 @@
 
    ![EP1](./EP1.jpg)
 
-   As you can see, the simmetry I was talking about is individuable only for the rectangle of length $q - 1$ (which is fine) and height $p$ (which is not :'D), and also not considering the lattice points at $x$ coordinate $(q + 1)/2$. Let's find a reason (or trick :D) to make all this to work. Since my construction, the points at $x = (q + 1)/2$ don't respect the simmetry, and furthermore it's easy to see that such coordinate will always be the exact half of our blue rectangle (they are IMHO the points which determine the parity of the whole exponent). We can do a little trick and 
+   As you can see, the simmetry I was talking about is individuable only for the rectangle of length $q - 1$ (which is fine) and height $p$ (which is not :'D), and also not considering the lattice points at $x$ coordinate $(q + 1)/2$. After many battles to justify the geometry equivalence of the triangle which splits $R$ in half and the floor function polygon I have come to a simple conclusion. It's not possible. To further justify my statement look at the next picture yourself. There simply isn't a way to fully justify it.
+
+   ![EP2](./EP2.jpg)
 
    There's just one step dividing us from the final result, that is, our lattice points are collapsible into the rectangle with corners at 
 
