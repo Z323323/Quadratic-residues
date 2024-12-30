@@ -477,7 +477,9 @@
 
    $->$
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$<br>
+   $->$<br>
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
 
   ### Proof of the Law of QR using Eisenstein's lattice points and some basic floor function theory
 
@@ -605,7 +607,7 @@
 
    You can clearly see how the red line splits the rectangle $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ in half (diagonal shown in blue). This means that grouping every set of vertical lattice points into the first half of points in the $x-axis$ produce the triangle which splits the rectangle at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$ in half, as you can see below ($\lfloor pu/q \rfloor$ in green | diagonal of the rectangle in cyan).
 
-   ![XXX](./XXX.jpg)
+   ![R](./R.jpg)
 
    This whole reasoning means that
 
