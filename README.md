@@ -603,17 +603,34 @@
    
    ![XX](./XX.jpg)
 
-   You can clearly see how the red line splits the rectangle $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ in half (diagonal shown in blue). Now, let's ask the previous question, which basically solves this theorem at this point. It turns out that the final answer to the big question is NOT about finding some equivalence or simmetry. The answer is: calculating the area of the triangle means to calculate the number of lattice points leaving out an $odd$ number number of them when the total number of lattice points is $odd$, and an $even$ number of them when the total number is $even$. You can easily check this out below.
+   You can clearly see how the red line splits the rectangle $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$ in half (diagonal shown in blue). This means that grouping every set of vertical lattice points into the first half of points in the $x-axis$ produce the triangle which splits the rectangle at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$ in half, as you can see below ($\lfloor pu/q \rfloor$ in green | diagonal of the rectangle in cyan).
+
+   ![XXX](./XXX.jpg)
+
+   This whole reasoning means that
+
+   $\lfloor pu/q \rfloor _{even} = (p - 1)(q - 1)/4$
+
+   and
+
+   $\lfloor pu/q \rfloor _{odd} = \lfloor pu/q \rfloor _{even} \pm 1$<br>
+   $->$<br>
+   $(p - 1)(q - 1)/4 = \lfloor pu/q \rfloor _{even} \pm 1$ if $\lfloor pu/q \rfloor$ is $odd$.<br>
+   $(p - 1)(q - 1)/4 = \lfloor pu/q \rfloor _{even}$ if $\lfloor pu/q \rfloor$ is $even$.
+   
+   Below you can clearly see that the simmetry is impossible under correct conditions (for this particular example) and it also better clarifies the formulas above. 
    
    ![XXXX](./XXXX.jpg)
-   
-   Since the number of lattice points under the diagonal is always even, the previous points which are left out the calculation will make the result $odd$ or $even$ accordingly. This means that if we have $(p - 1)/2$ $odd$, $(p - 1)/2 - 1 = (p - 3)/2$ will be $even$ and viceversa if $(q - 1)/2$ is $even$, $(q - 3)/2$ will be $odd$ (even tough I believe that the number of lattice points under the diagonal will always be even, thus if the total number is odd the result will always be $- 1$). Here I split the formula but it's the same for $(p - 1)(q - 1)/4 - 1$. Generalizing we get $(p - 1)(q - 1)/4 - (2k + 1)$. This whole thing means that either the number of lattice points is even, or the result will be $- 1$ because the $odd$ number left will make the result of $(p - 1)(q - 1)/4$ $odd$ since $(p - 1)(q - 1)/4$ is always even. Honestly, this theorem is quite crazy, and you could find this explanation somehow easy but there's a lot of blood behind it. Also, my 'proof' is not a real proof since a couple of things should be proved mathematically but I'm not going to do that, I can't waste my entire life behind this theorem. It's not a case that Gauss delved this theorem for years. Its result is really just anti-intuitive and finding a proof always presents many walls along the way. Anyways, once we got this behaviour (which should be formally proved and it would be quite a problem to do) we can basically recycle the previous structures and collapse every set of vertical lattice points into the first half of points in the $x-axis$ producing the rectangle at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$. Since the structure will be preserved we can safely calculate the area of the triangle and the previous reasoning follows.
-   
-   $\displaystyle \frac{((q - 1)/2)(p - 1)}{2} = \frac{(q - 1)(p - 1)}{4}$
 
-   and therefore
+   From our reasoning it follows that
 
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
+   
+   [[Extra]]
+
+   The formula of the diagonal of $R$ is
+   
+   $y = (p - 1)x/(q - 1)$
    
  </p>
 
