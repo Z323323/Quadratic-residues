@@ -382,88 +382,6 @@
   
 </p>
 
-## Floor function analysis interlude
-
-<p>
-  Refer to [https://seriouscomputerist.atariverse.com/media/pdf/book/Concrete%20Mathematics.pdf] (~p.90) if anything should not be clear, I'm using this book to understand this subject, and most of this section is literally copy-pasted. Our goal will be to compute
-
-  $\sum_{u}\lfloor qu/p \rfloor$
-
-  where $p$ and $q$ are primes and $u$ is even from $2$ to $p - 1$. But before doing so, let's roll back the reasoning a bit (a lot actually).
-
-  Example: we want to calculate this sum
-
-  $\displaystyle \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + n}{2} \rfloor$
-
-  We can see that if $n$ is even then this is equal to
-
-  $\displaystyle \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x}{2} \rfloor + \frac{n}{2} = 2\lfloor \frac{x}{2} \rfloor + \frac{n}{2}$
-
-  Otherwise if $n$ is odd then $(n - 1)/2$ is an integer and so
-
-  $\displaystyle \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + n}{2} \rfloor = \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + 1 + n - 1}{2} \rfloor = \lfloor \frac{x}{2} \rfloor + \lfloor \frac{x + 1}{2} \rfloor + \frac{n - 1}{2} = 2\lfloor \frac{x}{2} \rfloor + \frac{n - 1}{2}$
-
-  Let's continue the exploration.
-
-  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x + n}{3} \rfloor + \lfloor \frac{x + 2n}{3} \rfloor$
-
-  If $n$ is a multiple of $3$, $(n \equiv 0 \mod 3)$ we'll have
-
-  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x}{3} \rfloor + \frac{n}{3} + \lfloor \frac{x}{3} \rfloor + \frac{2n}{3} = 3\lfloor \frac{x}{3} \rfloor + \frac{n}{3} + \frac{2n}{3} = 3\lfloor \frac{x}{3} \rfloor + n$
-
-  If $n \equiv 1 \mod 3$ then $(n - 1)/3$ and $(2n - 2)/3$ are integers. The second one is quite intuitive but to be completely sure we can use the **multiplication property** and see that
-
-  $(2 \mod 3)(n \mod 3) \mod 3 \equiv 2 \mod 3$
-
-  then 
-  
-  $(2 \mod 3)(n \mod 3) - 2 \equiv 0 \mod 3$
-
-  Let's go over, for such case we will have
-
-  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x + 1}{3} \rfloor + \frac{n - 1}{3} + \lfloor \frac{x + 2}{3} \rfloor + \frac{2n - 2}{3} = 3\lfloor \frac{x}{3} \rfloor + n - 1$
-
-  Now if $n \equiv 2 \mod 3$ then $(n - 2)/3$ and $(2n - 1)/3$ are integers, to clarify the second
-
-  $(2 \mod 3)(n \mod 3) \mod 3 = 4 \mod 3 \equiv 1 \mod 3$
-
-  then
-
-  $\displaystyle \lfloor \frac{x}{3} \rfloor + \lfloor \frac{x + 2}{3} \rfloor + \frac{n - 2}{3} + \lfloor \frac{x + 1}{3} \rfloor + \frac{2n - 1}{3} = 3\lfloor \frac{x}{3} \rfloor + n - 1$
-
-  To conclude let's analyze the '4' case. If $n \equiv 0 \mod 4$
-
-  $\displaystyle \lfloor \frac{x}{4} \rfloor + \lfloor \frac{x}{4} \rfloor + \frac{n}{4} + \lfloor \frac{x}{4} \rfloor + \frac{2n}{4} + \lfloor \frac{x}{4} \rfloor + \frac{3n}{4} = 4\lfloor \frac{x}{4} \rfloor + \frac{3n}{2}$
-
-  If $n \equiv 1 \mod 4$ then $(n - 1)/4$, $(2n - 2)/4$ and $(3n - 3)/4$ are integers, then
-
-  $\displaystyle \lfloor \frac{x}{4} \rfloor + \lfloor \frac{x + 1}{4} \rfloor + \frac{n - 1}{4} + \lfloor \frac{x + 2}{4} \rfloor + \frac{2n - 2}{4} + \lfloor \frac{x + 3}{4} \rfloor + \frac{3n - 3}{4} = 4\lfloor \frac{x}{4} \rfloor + \frac{3n}{2} - \frac{3}{2}$
-
-  If $n \equiv 2 \mod 4$ then $(n - 2)/4$, $2n/4$ and $(3n - 2)/4$ are integers, then
-
-  $\displaystyle \lfloor \frac{x}{4} \rfloor + \lfloor \frac{x + 2}{4} \rfloor + \frac{n - 2}{4} + \lfloor \frac{x}{4} \rfloor + \frac{2n}{4} + \lfloor \frac{x + 2}{4} \rfloor + \frac{3n - 2}{4} = 4\lfloor \frac{x}{4} \rfloor + \frac{3n}{2} - 1$
-
-  The third case is equivalent to the first because if $n \equiv 3 \mod 4$ then $(n - 3)/4$, $(2n - 2)/4$ and $(3n - 1)/4$ are integers.
-
-  Now we can collect all the previous result and search for some recurrent pattern.
-
-  ![Floor1](./Floor1.png)
-
-  It's easy to see that the general form of the results of the previous summations (I'd rather look at my results and not the ones of the photo because I haven't made some transformation to match the general form in a clearer format [not only actually, also because I don't get them :'D]) is
-
-  $\displaystyle a \lfloor \frac{x}{a} \rfloor + bn + c$
-
-  An accurate analysis of the '4' case shows that
-
-  $\displaystyle \lfloor \frac{x + kn}{m} \rfloor = \lfloor \frac{x + kn \mod m}{m} \rfloor + \frac{kn}{m} - \frac{kn \mod m}{m}$
-
-  is a complete general form.<br>
-  Now we can look at the summation (which is generalized by $k$ in the previous formula) of the general form, for $0 \leq k \leq m - 1$.
-
-  ![Floor2](./Floor2.png)
-
-</p>
-
  ## Law of quadratic reciprocity
 
  <p>
@@ -481,80 +399,9 @@
    $->$<br>
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
 
-  ### Proof of the Law of QR using Eisenstein's lattice points and some basic floor function theory
-
-   Assuming $q > p$, we have
-
-   $q \mod p = q - kp$
-
-   where 
-
-   $\displaystyle kp = p \lfloor \frac{q}{p} \rfloor$<br>
-   $->$<br>
-   $\displaystyle q \mod p = q - p \lfloor \frac{q}{p} \rfloor$
-
-   and by the **multiplication property** is easy to see that
-
-   $\displaystyle 2q \equiv 2q - 2p \lfloor \frac{q}{p} \rfloor \mod p$
-
-   Now, since our formula is
+  ### Proof of the Law of QR using Eisenstein's lattice points
    
-   $\sum_{u}\lfloor qu/p \rfloor$
-   
-   we can try to extract something from $\displaystyle \lfloor \frac{qu}{p} \rfloor$ using the same tactic of the previous section about the floor function, and see that
-
-   $\displaystyle q \mod p = q - p \lfloor \frac{q}{p} \rfloor$<br>
-   $->$<br>
-   $\displaystyle \lfloor \frac{q}{p} \rfloor = \lfloor \frac{q - (q - p \lfloor \frac{q}{p} \rfloor) + (q - p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{q - p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + \lfloor \frac{q}{p} \rfloor$
-
-   where $\displaystyle q - (q - p \lfloor \frac{q}{p} \rfloor)$ is clearly an integer divisible by $p$. The same goes for 
-
-   $\displaystyle 2q \equiv 2q - 2p \lfloor \frac{q}{p} \rfloor \mod p$<br>
-   $->$<br>
-   $\displaystyle \lfloor \frac{2q}{p} \rfloor = \lfloor \frac{2q - (2q - 2p \lfloor \frac{q}{p} \rfloor) + (2q - 2p \lfloor \frac{q}{p} \rfloor)}{p} \rfloor = \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor + 2\lfloor \frac{q}{p} \rfloor$
-
-   where $\displaystyle 2q - (2q - 2p \lfloor \frac{q}{p} \rfloor)$ is an integer divisible by $p$, and $\displaystyle \lfloor \frac{2q}{p} \rfloor$ matches our Eisenstein's summation terms form.<br>
-   It results that
-   
-   $\displaystyle \lfloor \frac{2q - 2p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
-   $\displaystyle \lfloor \frac{4q - 4p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$<br>
-   $\dots$<br>
-   $\displaystyle \lfloor \frac{(p - 1)q - (p - 1)p \lfloor \frac{q}{p} \rfloor}{p} \rfloor = 0$
-
-   This means that
-
-   $\displaystyle \lfloor \frac{2q}{p} \rfloor = 2\lfloor \frac{q}{p} \rfloor$<br>
-   $\displaystyle \lfloor \frac{4q}{p} \rfloor = 4\lfloor \frac{q}{p} \rfloor$<br>
-   $\dots$<br>
-   $\displaystyle \lfloor \frac{(p - 1)q}{p} \rfloor = (p - 1)\lfloor \frac{q}{p} \rfloor$<br>
-
-   [[Little extra]]
-   
-   Rewriting the formula of the previous section adapted for our case, we get
-
-   $\displaystyle \lfloor \frac{kq}{p} \rfloor = \lfloor \frac{kq \mod p}{p} \rfloor + \frac{kq}{p} - \frac{kq \mod p}{p}$
-
-   indeeed we see that
-
-   $\displaystyle \lfloor \frac{q}{p} \rfloor = \frac{kq}{p} - \frac{kq \mod p}{p}$
-
-   because
-
-   $\displaystyle \lfloor \frac{q}{p} \rfloor = \frac{kq}{p} - \frac{kq \mod p}{p} = \frac{q}{p} - (\frac{q - p \lfloor \frac{q}{p} \rfloor}{p}) = \lfloor \frac{q}{p} \rfloor$
-
-   [[end of extra]]
-
-   Since the previous result, we can now rewrite
-
-   $\sum_{u}\lfloor qu/p \rfloor$
-
-   as
-
-   $\displaystyle 2\lfloor \frac{q}{p} \rfloor + 4\lfloor \frac{q}{p} \rfloor + 6\lfloor \frac{q}{p} \rfloor + \dots + (p - 1)\lfloor \frac{q}{p} \rfloor$
-
-   It's clear that such summation will always be even, thus we can safely remove it from the calculation, since it doesn't change the parity of the exponent. The viceversa would be obviously the same $(p > q)$.
-
-   Let's now take
+   Let's take
 
    $\sum_{u}\lfloor pu/q \rfloor$
 
@@ -564,8 +411,8 @@
 
    and
 
-   $\displaystyle \lfloor \frac{3(q - 1)}{q} \rfloor = \lfloor \frac{3q - 3}{q} \rfloor = 2 = p - 1$
-
+   $\displaystyle \lfloor \frac{3(q - 1)}{q} \rfloor = \lfloor \frac{3q - 3}{q} \rfloor = 2 = p - 1$<br>
+   
    It results clear that the final result will always be $p - 1$ and I'm pretty sure it could be formalyzed somehow. For ex. imagine $5(y - 1)/y, y > 5$. We basically took $y - 1, 5$ times, then imagine to keep removing $y$; we will basically remove $y - 1 (+ 1)$ every step therefore having necessarily a result which is $4$ $[p - 1]$ (remember the floor function erasing the last step remainder). Now we start the madness seeing one corner-case example. Let $p = 3$ and $q = 79$, it's quite clear that we will have a lot of terms of the summation equal to $0$, indeed
 
    $\displaystyle \lfloor \frac{3(2)}{79} \rfloor = 0$<br>
@@ -624,22 +471,92 @@
    
    ![XXXX](./XXXX.jpg)
 
-   From our reasoning it follows that
+   An equivalent construction can be derived for $\lfloor qu/p \rfloor$, reversing $p$ and $q$. Considering our result, it follows that
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
+   $\displaystyle \lfloor qu/p \rfloor = \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2}$<br>
+   $\displaystyle \lfloor pu/q \rfloor = \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2}$
+
+   and
+
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
+
+   which means that if $\displaystyle \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2}$ is odd, then both $(q - 1)/2$ and $(p - 1)/2$ are odd and the result is $- 1$. If only one of them is $even$ then the result is $1$. This means that we can rewrite our result as
    
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$ _
+
+   Also, from the Euler's Criterion we necessarily have $- 1$ as result iff $p \equiv q \equiv - 1 \mod 4$, because otherwise the result will always be $1$ (and $p \equiv q \equiv 2 \mod 4$ is impossible). At the same time by definition of Legendre Symbol we have
+
+   $\displaystyle (\frac{- 1}{q}) = (- 1)^{\frac{p - 1}{2}}$<br>
+   $\displaystyle (\frac{- 1}{p}) = (- 1)^{\frac{q - 1}{2}}$
+
+   thus, it must be also true that
+
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{q - 1}{2}} (- 1)^{\frac{p - 1}{2}}$
+
+   where $p \equiv q \equiv - 1 \mod 4$ implies
+
+   $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
+
+   which hasn't got a goddamn sense but this is the truth somehow ahah. You can easily check this out using $q = 11, p = 7$. It's like if
+
+   $\displaystyle \frac{q - 1}{2}\frac{p - 1}{2}$
+
+   and
+
+   $\displaystyle \frac{q - 1}{2} + \frac{p - 1}{2}$
+
+   are coexisting somehow. You can easily spot that these rules break each other while being true. I guess the reason could be the abstraction of considering the different $- 1 \mod Z$ as the same value, while they are different ones.
+
    [[Extra]]
 
-   The formula of the diagonal of $R$ is
+   The formula of the diagonal of the first $R$ is
    
    $y = (p - 1)x/(q - 1)$
    
  </p>
 
- ## Further conclusions and Jacobi symbol
+ ## Further conclusions about reciprocity
 
  <p>
+   If
+
+   $p \equiv - 1 \mod 4$<br>
+   $q \equiv - 1 \mod 4$<br>
+   $->$<br>
+   $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
+
+   else if
+
+   $p \equiv 1 \mod 4$<br>
+   $q \equiv 1 \mod 4$<br>
+   $->$<br>
+   $\displaystyle (\frac{q}{p}) = (\frac{p}{q})$
+
+   Let's get why, this is quite tricky as always. In the first case, we know from the first section of the article that $- 1$ can't be a quadratic residue $\mod q$ or $\mod p$. From the QR Law, we can see that we can rewrite the formula as
+
+   $(- 1)^{\frac{(q - 1)(p - 1)}{4}}$<br>
+   $->$<br>
+   $(- 1)^{\frac{(q - 1)}{2}\frac{(p - 1)}{2}}$<br>
+   $->$<br>
+   $(- 1)^{\frac{(q - 1)}{2}^{\frac{(p - 1)}{2}}}$<br>
+   $(- 1)^{\frac{(p - 1)}{2}^{\frac{(q - 1)}{2}}}$
    
+   From our QR proof, if $q > p$
+
+   $q^{(p - 1)/2} \mod p = (- 1)^{\sum_{u}\lfloor qu/p \rfloor} = 1$<br>
+   $p^{(q - 1)/2} \mod q = (- 1)^{\sum_{u}\lfloor pu/q \rfloor} = \pm 1$
+
+   $->$<br>
+
+   $q^{(p - 1)/2} \mod p = (- 1)^{\sum_{u}\lfloor qu/p \rfloor} = 1$<br>
+
+   but
+
+   $p^{(q - 1)/2} \mod q = (- 1)^{\sum_{u}\lfloor pu/q \rfloor} = \pm 1$
+   
+   $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
+
+
  </p>
  
 
