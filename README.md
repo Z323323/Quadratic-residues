@@ -399,7 +399,7 @@
    $->$<br>
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
 
-  ### Proof of the Law of QR using Eisenstein's lattice points
+  ### Expl. of the Law of QR using Eisenstein's lattice points
    
    Let's take
 
@@ -448,7 +448,7 @@
    
    ![E2](./Eisenstein2.svg.png)
    
-   My initial goal was to show the simmetry of our function $\lfloor pu/q \rfloor$ in the cartesian graph, since to prove this theorem we will calculate the area of a triangle which splits a rectangle having corners at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$. These coordinates are not a starting point of course, but it's quite easy to roll back the reasoning and find the initial coordinates which you can easily find into the previous picture, that is $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Thus we will basically divide the length of the rectangle $(R)$ by $2$, really hard I know. Well, the funny part here is that the problem is right before splitting the rectangle in half. I said that my goal was to show some simmetry, since as I said initially the floor function is basically a pseudo-linear function, hence we should necessary find that it divides $R$ (which is drawable connecting the previous coordinates) in half. Thus we should find a polygon which splits the initial $R$ in half (I specified 'initial' because the derived one is just the initial one with the length halved, thus the simmetry should be individuable into the first $R$ already). Since that polygon splits $R$ in half, its area should be the same as the triangle defined by the diagonal of $R$. Now, after many battles, I understood a basic reality. If the number of lattice points is $odd$ we will never find a way to find a simmetry connecting the top of the (different $x$ coordinates) lattice points (and drawing our polygon) which is trivial because I'm telling you this after risking my mental sanity :'D. Thus, why do we calculate the the area of the triangle mentioned previously in either case? Before asking this question, let me show you the real simmetry and equivalence of the polygon defined by the lattice points. In order to achieve this under the Wiki example, I basically added the point which makes the number of lattice points even, because (spoiler) $\displaystyle (\frac{11}{7})(\frac{7}{11}) = - 1$. Indeed the number of lattice points is $odd$ and the simmetry is impossible under the correct conditions.
+   My initial goal was to show the simmetry of our function $\lfloor pu/q \rfloor$ in the cartesian graph, since to prove this theorem we will calculate the area of a triangle which splits a rectangle having corners at $\\{(0,0), ((q - 1)/2, 0), (0, p - 1), ((q - 1)/2, p - 1)\\}$. These coordinates are not a starting point of course, but it's quite easy to roll back the reasoning and find the initial coordinates which you can easily find into the previous picture, that is $\\{(0,0), (q - 1, 0), (0, p - 1), (q - 1, p - 1)\\}$. Thus we will basically divide the length of the rectangle $(R)$ by $2$, really hard I know. Well, the funny part here is that the problem is right before splitting the rectangle in half. I said that my goal was to show some simmetry, since as I said initially the floor function is basically a pseudo-linear function, hence we should necessary find that it divides $R$ (which is drawable connecting the previous coordinates) in half. Thus we should find a polygon which splits the initial $R$ in half (I specified 'initial' because the derived one is just the initial one with the length halved, thus the simmetry should be individuable into the first $R$ already). Since that polygon splits $R$ in half, its area should be the same as the triangle defined by the diagonal of $R$. Now, after many battles, I understood a basic reality. If the number of lattice points is $odd$ we will never find a way to find a simmetry connecting the top of the (different $x$ coordinates) lattice points (and drawing our polygon) which is trivial because I'm telling you this after risking my mental sanity :'D. Thus, why do we calculate the area of the triangle mentioned previously in either case? Before asking this question, let me show you the real simmetry and equivalence of the polygon defined by the lattice points. In order to achieve this under the Wiki example, I basically added the point which makes the number of lattice points even, because (spoiler) $\displaystyle (\frac{11}{7})(\frac{7}{11}) = - 1$. Indeed the number of lattice points is $odd$ and the simmetry is impossible under the correct conditions.
    
    ![XX](./XX.jpg)
 
@@ -484,28 +484,29 @@
    
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$ _
 
-   Also, from the Euler's Criterion we necessarily have $- 1$ as result iff $p \equiv q \equiv - 1 \mod 4$, because otherwise the result will always be $1$ (and $p \equiv q \equiv 2 \mod 4$ is impossible). At the same time by definition of Legendre Symbol we have
-
-   $\displaystyle (\frac{- 1}{q}) = (- 1)^{\frac{p - 1}{2}}$<br>
-   $\displaystyle (\frac{- 1}{p}) = (- 1)^{\frac{q - 1}{2}}$
-
-   thus, it must be also true that
-
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{q - 1}{2}} (- 1)^{\frac{p - 1}{2}}$
-
-   where $p \equiv q \equiv - 1 \mod 4$ implies
+   Now
+   
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = - 1$
+   
+   implies
 
    $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
 
-   which hasn't got a goddamn sense but this is the truth somehow ahah. You can easily check this out using $q = 11, p = 7$. It's like if
+   Here should be noted that $- 1$ as result (and the last property which followed) is only possible if $q \equiv p \equiv - 1 \mod 4$ because
 
-   $\displaystyle \frac{q - 1}{2}\frac{p - 1}{2}$
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)}{2}\frac{(p - 1)}{2}}$
 
-   and
+   and if $q \equiv p \equiv 1 \mod 4$ (even only one of them) it would mean that $4|q - 1$ and/or $4|p - 1$ which would make the result even.
 
-   $\displaystyle \frac{q - 1}{2} + \frac{p - 1}{2}$
+   Ex:
+   
+   $\displaystyle (\frac{11}{7})(\frac{7}{11}) = (11^3 \mod 7) \cdot (7^5 \mod 11) = (1 \mod 7) \cdot (- 1 \mod 11) = - 1$
 
-   are coexisting somehow. You can easily spot that these rules break each other while being true. I guess the reason could be the abstraction of considering the different $- 1 \mod Z$ as the same value, while they are different ones.
+   Indeed both $(p - 1)/2$ and $(q - 1)/2$ are odd preserving our QR, but at the same time one of them equals $1$ not $- 1$.
+   
+   There are different proof of QR which could be more consistent. I believe that Rousseau one deserves a try (not easy at all, but little background is involved). You can find it here [https://stacky.net/files/115/RousseauQR.pdf].
+
+   After many battles I decided to call this section 'Explanation' and not proof because there are some parts missing, and other ones which should be mathematically proved. One thing I suggest you if you're reading this, is to use the formula below to better show mathematically the number of lattice points which end up being over the diagonal of $R$.
 
    [[Extra]]
 
@@ -518,43 +519,7 @@
  ## Further conclusions about reciprocity
 
  <p>
-   If
-
-   $p \equiv - 1 \mod 4$<br>
-   $q \equiv - 1 \mod 4$<br>
-   $->$<br>
-   $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
-
-   else if
-
-   $p \equiv 1 \mod 4$<br>
-   $q \equiv 1 \mod 4$<br>
-   $->$<br>
-   $\displaystyle (\frac{q}{p}) = (\frac{p}{q})$
-
-   Let's get why, this is quite tricky as always. In the first case, we know from the first section of the article that $- 1$ can't be a quadratic residue $\mod q$ or $\mod p$. From the QR Law, we can see that we can rewrite the formula as
-
-   $(- 1)^{\frac{(q - 1)(p - 1)}{4}}$<br>
-   $->$<br>
-   $(- 1)^{\frac{(q - 1)}{2}\frac{(p - 1)}{2}}$<br>
-   $->$<br>
-   $(- 1)^{\frac{(q - 1)}{2}^{\frac{(p - 1)}{2}}}$<br>
-   $(- 1)^{\frac{(p - 1)}{2}^{\frac{(q - 1)}{2}}}$
-   
-   From our QR proof, if $q > p$
-
-   $q^{(p - 1)/2} \mod p = (- 1)^{\sum_{u}\lfloor qu/p \rfloor} = 1$<br>
-   $p^{(q - 1)/2} \mod q = (- 1)^{\sum_{u}\lfloor pu/q \rfloor} = \pm 1$
-
-   $->$<br>
-
-   $q^{(p - 1)/2} \mod p = (- 1)^{\sum_{u}\lfloor qu/p \rfloor} = 1$<br>
-
-   but
-
-   $p^{(q - 1)/2} \mod q = (- 1)^{\sum_{u}\lfloor pu/q \rfloor} = \pm 1$
-   
-   $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
+  
 
 
  </p>
