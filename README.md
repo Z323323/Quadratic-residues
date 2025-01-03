@@ -114,7 +114,7 @@
 
    then $n$ is composite.<br>
 
-   This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ is way different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$. Just note this:
+   This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ but $\phi(n)$ is different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$. Just note this:
 
    $a^{(n - 1) / 2} \not\equiv a^{\phi(n) / 2}$ for non-primes
 
@@ -194,7 +194,7 @@
    $\dots$<br>
    $(p - 1)/2 = (p - 1)/2(- 1)^{(p - 1)/2}$
 
-   It's easy to see that the lelft part produces $((p - 1)/2)!$, while for the right part we can further split it and take the left part:
+   It's easy to see that the lelft part produces $((p - 1)/2)!$, while for the right part we can further split it and consider the left part:
 
    $- 1$<br>
    $2$<br>
@@ -202,7 +202,7 @@
    $\dots$<br>
    $(p - 1)/2$
 
-   Now before considering the $(- 1)^?$ we can introduce our $2$ which substitutes $q$ and note that considering the numbers backwards we get
+   Now we can see that introducing the $2$ into the series we get
 
    $2(p - 1)/2 \mod p = - 1 \mod p$<br>
    $2((p - 1)/2 - 1) \mod p = 2(p - 3)/2 \mod p = - 3 \mod p$<br>
@@ -212,19 +212,14 @@
    $2((p - 1)/2 - ((p - 1)/2 - 2)) \mod p = 2(4/2) = 4 \mod p$<br>
    $2((p - 1)/2 - ((p - 1)/2 - 1)) \mod p = 2(2/2) = 2 \mod p$<br>
 
-   Thus
+   which means that basically multiplying every term by $2$ reproduce our initial series of terms (without the $(- 1)^{?}s$) thus not altering the result.<br>
+   Hence
 
-   $((p - 1)/2)! \equiv (2)(4)(6) \dots (p - 5)(p - 3)(p - 1)(- 1)^{(p^2 - 1)/8} \equiv (- 1)(2)(- 3)(4) \dots ((p - 1)/2)(- 1)^{(p^2 - 1)/8} (\mod p)$<br>
-   $->$<br>
    $2^{(p - 1)/2}((p - 1)/2)! \equiv ((p - 1)/2)!(- 1)^{(p^2 - 1)/8} \mod p$<br>
    $->$<br>
    $2^{(p - 1)/2} \equiv (- 1)^{(p^2 - 1)/8} \mod p$
 
-   where the second step is quite tricky, and it basically means that
-   
-   $(2)(4)(6) \dots (p - 5)(p - 3)(p - 1) \equiv (2)(4)(6) \dots (p - 5)(p - 3)(p - 1) (\mod p)$
-   
-   and $(p^2 - 1)/8$ is derived using the Gauss' Formula:
+   where $(p^2 - 1)/8$ is derived using the Gauss' Formula:
 
    $\displaystyle \frac{(p - 1)/2((p - 1)/2 + 1)}{2} = \frac{(p - 1)/2(p + 1)/2}{2} = \frac{p^2 - 1}{8}$
 
@@ -248,7 +243,8 @@
    $p + 1 \equiv 4 \mod 8$<br>
    $p - 1 \equiv 2 \mod 8$
 
-   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $4 \cdot 2 = 8, 8 / 8 = 1$ which is odd. Now why is this enough to say that the result will be odd? Imagine $(p - 1)/8$ and $(p + 1)/8$ as separated entities, the results will be even or odd, but if we sum these quotients we get an even result. Now since we know that the final remainders will produce an odd result we see that $even + odd = odd$. Same below.
+   From the **multiplication property** this would produce $(p - 1)(p + 1) \equiv 0 \mod 8$, and $4 \cdot 2 = 8, 8 / 8 = 1$ which is odd. Now why is this enough to say that the result will be odd? Imagine $(p - 1)/8$ and $(p + 1)/8$ as separated entities, the results will be even or odd, but if we sum these quotients we get an even result. Now since we know that the final remainders will produce an odd result we see that $even + odd = odd$. Same below.<br>
+   I was quite unsure about this explanations but I'm going to leave this as it is. I believe that this reasoning is almost similar/the same as the Quadratic Reciprocity one you'll find later, and it's interesting that I found it before knowing anything about the Reciprocity Law. Still unsure by the way but I think it's correct (the results are correct by the way).
 
    $p \equiv 5 \mod 8$<br>
    $->$<br>
@@ -534,5 +530,94 @@
 
  This procedure basically allows us to compute the Jacobi/Legendre Symbol without factoring. Honestly I guess that there's some reason missing behind this because we could have done $(31^{51} \mod 103) \cdot (103^{15} \mod 31) = - 1 \cdot 1 = - 1$. It looks pretty clear that for huge numbers this could be really expensive and that's probably the reason behind those transforms made in the exercise.
  </p>
+
+ ## Using our new power to complete the '3' case of Gauss' Lemma
+
+ <p>
+   We want to know when 
+   
+   $3^{(p - 1)/2} \mod p = 1 \mod p$<br>
+   $3^{(p - 1)/2} \mod p = - 1 \mod p$
+
+   We can calc. from the previous section
+
+   $\displaystyle (\frac{3}{p}) = - (\frac{p}{3}) = (\frac{- 1}{3})(\frac{p}{3})$
+
+   Now
+
+   $(- 1)^{(3 - 1)/2} \mod 3 = - 1 \mod 3$<br>
+   $p^{(3 - 1)/2} \mod 3 = p \mod 3$
+
+   which means that $\displaystyle (\frac{3}{p}) = 1$ if $p \equiv - 1 \mod 3$, otherwise $\displaystyle (\frac{3}{p}) = - 1$ if $p \equiv 1 \mod 3$. Now, if we want to expand to $\mod 12$ we can consider the previous results. By Euler's Criterion we have $\displaystyle (\frac{3}{p}) = - 1$ iff $p \equiv - 1 \mod 4$. We can exhume the CRT here, and
+   
+ 1st case, clear conditions to satisfy $\displaystyle (\frac{3}{p}) = 1$ (extended case):
  
+   $p \equiv 2 \mod 3$<br>
+   $p \equiv 3 \mod 4$<br>
+   $p \equiv ? \mod 12$<br>
+   $-----$<br>
+   $N = 4$<br>
+   $n = ?$<br>
+   $4n - z3 = 1$<br>
+   $-----$<br>
+   $N = 3$<br>
+   $n = ?$<br>
+   $3n - z4 = 1$<br>
+   $-----$<br>
+   $2 \cdot 4 \cdot 1 + 3 \cdot 3 \cdot 3 \mod 12$<br>
+   $->$<br>
+   $8 + 27 \mod 12$<br>
+   $->$<br>
+   $- 1 \mod 12$<br>
+
+ 2nd case, negative conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = 1$ (extended case):
+ 
+   $p \equiv 1 \mod 3$<br>
+   $p \equiv 1 \mod 4$<br>
+   $p \equiv ? \mod 12$
+
+ Without wasting our life, we know this is
+
+   $p \equiv 1 \mod 12$
+
+ 3rd case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = - 1$ (extended case):
+ 
+   $p \equiv 2 \mod 3$<br>
+   $p \equiv 1 \mod 4$<br>
+   $p \equiv ? \mod 12$<br>
+   $-----$<br>
+   $N = 4$<br>
+   $n = ?$<br>
+   $4n - z3 = 1$<br>
+   $-----$<br>
+   $N = 3$<br>
+   $n = ?$<br>
+   $3n - z4 = 1$<br>
+   $-----$<br>
+   $2 \cdot 4 \cdot 1 + 1 \cdot 3 \cdot 3 \mod 12$<br>
+   $->$<br>
+   $8 + 9 \mod 12$<br>
+   $->$<br>
+   $5 \mod 12$
+
+ Without computing the last one, we already know it will be
+
+   $- 5 \mod 12$
+
+   Which finally means that we managed to compute all the cases for $\displaystyle (\frac{3}{p})$:
+
+   $\displaystyle (\frac{3}{p}) = 1$
+
+   if
+
+   $p \equiv \pm 1 \mod 12$
+
+   otherwise
+
+   $\displaystyle (\frac{3}{p}) = - 1$
+
+   if
+
+   $p \equiv \pm 5 \mod 12$
+ </p>
 
