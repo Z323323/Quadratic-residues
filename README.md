@@ -519,30 +519,20 @@
  ## Jacobi Symbol
 
  <p>
- At this point the Jacobi Symbol should be easily understandable by looking at its definition at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. Nontheless, the example showed at the end of the chapter is not straightforward imho. Thus, if you find it challenging you can look at my dissection below. I'll dispose the steps vertically providing explanations orizontally.
+ At this point the Jacobi Symbol should be easily understandable by looking at its definition at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. Nontheless, the example showed at the end of the chapter is not straightforward imho. Thus, if you find it challenging you can look at my dissection below. I'll dispose the steps vertically providing explanations horizontally.
 
  $\displaystyle (\frac{31}{103})$<br>
  $\displaystyle - (\frac{103}{31})$ --- follows from QR since $103 \equiv - 1 \mod 4$ and $31 \equiv - 1 \mod 4$<br>
  $\displaystyle - (\frac{- 21}{31})$ --- because $103 \equiv 10 \mod 21$ and $10 = - 21 \mod 31$<br>
- $\displaystyle - (\frac{- 1}{31})(\frac{21}{31})$ --- because $A^n \cdot B^n = (AB)^n$<br>
-
- Here I want to open a little parenthesis to completely clarify this step.
-
- $A^n \cdot B^n = (AB)^n$
-
- You can check this simple property expl. at [https://math.stackexchange.com/questions/4166313/multiplying-numbers-with-different-bases-with-the-same-exponent].
- 
- $\displaystyle (\frac{31}{21})$ --- because $- (\frac{- 1}{31})(\frac{21}{31}) = - (\frac{- 1}{31})- (\frac{31}{21}) = - (\frac{- 1}{31})- (\frac{- 1}{21})(\frac{31}{21}) = (\frac{- 1}{31})(\frac{- 1}{21})(\frac{31}{21}) = (- 1)^{15 \cdot 10}(\frac{31}{21}) = (\frac{31}{21})$<br>
+ $\displaystyle - (\frac{- 1}{31})(\frac{21}{31})$ --- because $A^n \cdot B^n = (AB)^n$ [https://math.stackexchange.com/questions/4166313/multiplying-numbers-with-different-bases-with-the-same-exponent].<br>
+ $\displaystyle (\frac{31}{21})$ --- because $\displaystyle - (\frac{- 1}{31})(\frac{21}{31}) = - (\frac{- 1}{31})- (\frac{31}{21}) = - (\frac{- 1}{31})- (\frac{- 1}{21})(\frac{31}{21}) = (\frac{- 1}{31})(\frac{- 1}{21})(\frac{31}{21}) = (- 1)^{15 \cdot 10}(\frac{31}{21}) = (\frac{31}{21})$<br>
  $\displaystyle (\frac{- 11}{21})$ --- because $31 \equiv 10 \mod 21$ and $10 = - 11 \mod 21$<br>
  $\displaystyle (\frac{- 1}{21})(\frac{11}{21})$ --- same procedure shown above<br>
  $\displaystyle (\frac{21}{11})$ --- same procedure shown above (applied QR)<br>
  $\displaystyle (\frac{- 1}{11})$ --- $21 \equiv 10 = - 1 \mod 11$<br>
  $- 1$ --- applied Legendre Symbol formula, i.e. $(- 1)^{(11 - 1)/2}$
 
-
- 
-
-
+ This procedure basically allows us to compute the Jacobi/Legendre Symbol without factoring. Honestly I guess that there's some reason missing behind this because we could have done $(31^{51} \mod 103) \cdot (103^{15} \mod 31) = - 1 \cdot 1 = - 1$. It looks pretty clear that for huge numbers this could be really expensive and that's probably the reason behind those transforms made in the exercise.
  </p>
  
 
