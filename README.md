@@ -506,7 +506,7 @@
    
    There are different proof of QR which could be more consistent. I believe that Rousseau one deserves a try (not easy at all, but little background is involved). You can find it here [https://stacky.net/files/115/RousseauQR.pdf].
 
-   After many battles I decided to call this section 'Explanation' and not proof because there are some parts missing, and other ones which should be mathematically proved. One thing I suggest you if you're reading this, is to use the formula below to better show mathematically the number of lattice points which end up being over the diagonal of $R$.
+   After many battles I decided to call this section 'Explanation' and not proof because there are a couple things missing, and other ones which should be mathematically proved. One thing I suggest you if you're reading this, is to use the formula below to better show mathematically the number of lattice points which end up being over the diagonal of $R$. Also, you can directly check our derived formulas in action by looking at the first example at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html] which computes the Legendre Symbol of $\displaystyle (\frac{31}{103})$.
 
    [[Extra]]
 
@@ -516,10 +516,31 @@
    
  </p>
 
- ## Further conclusions about reciprocity
+ ## Jacobi Symbol
 
  <p>
-  
+ At this point the Jacobi Symbol should be easily understandable by looking at its definition at [https://crypto.stanford.edu/pbc/notes/numbertheory/quadrecip.html]. Nontheless, the example showed at the end of the chapter is not straightforward imho. Thus, if you find it challenging you can look at my dissection below. I'll dispose the steps vertically providing explanations orizontally.
+
+ $\displaystyle (\frac{31}{103})$<br>
+ $\displaystyle - (\frac{103}{31})$ --- follows from QR since $103 \equiv - 1 \mod 4$ and $31 \equiv - 1 \mod 4$<br>
+ $\displaystyle - (\frac{- 21}{31})$ --- because $103 \equiv 10 \mod 21$ and $10 = - 21 \mod 31$<br>
+ $\displaystyle - (\frac{- 1}{31})(\frac{21}{31})$ --- because $A^n \cdot B^n = (AB)^n$<br>
+
+ Here I want to open a little parenthesis to completely clarify this step.
+
+ $A^n \cdot B^n = (AB)^n$
+
+ You can check this simple property expl. at [https://math.stackexchange.com/questions/4166313/multiplying-numbers-with-different-bases-with-the-same-exponent].
+ 
+ $\displaystyle (\frac{31}{21})$ --- because $- (\frac{- 1}{31})(\frac{21}{31}) = - (\frac{- 1}{31})- (\frac{31}{21}) = - (\frac{- 1}{31})- (\frac{- 1}{21})(\frac{31}{21}) = (\frac{- 1}{31})(\frac{- 1}{21})(\frac{31}{21}) = (- 1)^{15 \cdot 10}(\frac{31}{21}) = (\frac{31}{21})$<br>
+ $\displaystyle (\frac{- 11}{21})$ --- because $31 \equiv 10 \mod 21$ and $10 = - 11 \mod 21$<br>
+ $\displaystyle (\frac{- 1}{21})(\frac{11}{21})$ --- same procedure shown above<br>
+ $\displaystyle (\frac{21}{11})$ --- same procedure shown above (applied QR)<br>
+ $\displaystyle (\frac{- 1}{11})$ --- $21 \equiv 10 = - 1 \mod 11$<br>
+ $- 1$ --- applied Legendre Symbol formula, i.e. $(- 1)^{(11 - 1)/2}$
+
+
+ 
 
 
  </p>
