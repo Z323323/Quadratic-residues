@@ -8,7 +8,7 @@
 
   $p \equiv 1 \mod 4$
 
-  #### Fast ex.
+  #### Quick ex.
 
   $4^2 \equiv -1 \mod 17$
 
@@ -319,7 +319,7 @@
 
    $p \equiv 1 \mod 12$
 
-   These results are partially correct for some arcane reason that we will probably better understand after the following sections. Most of the times very little explanations are made involving this stuff and so I tried to find complete solutions looking around on the web. For more you could also check [http://mathonline.wikidot.com/legendre-symbol-rules-for-3-p-and-6-p#:~:text=Legendre%20Symbol%20(3%2Fp),-Determine%20a%20rule&text=We%20first%20note%20that%20p,or%2011%20(mod%2012).].
+   These results are partially correct for some reason (I guess I should analyze better the negative cases). You'll find the complete answer to this problem some sections below, so you're fine to go over. Also, the resolution method below is way better because is formalyzed and structured. Computing Gauss' $u$ is clearly not the way to go.
    
  </p>
 
@@ -490,7 +490,7 @@
 
    Here should be noted that $- 1$ as result (and the last property which followed) is only possible if $q \equiv p \equiv - 1 \mod 4$ because
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)}{2}\frac{(p - 1)}{2}}$
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
 
    and if $q \equiv p \equiv 1 \mod 4$ (even only one of them) it would mean that $4|q - 1$ and/or $4|p - 1$ which would make the result even.
 
@@ -548,9 +548,9 @@
    $(- 1)^{(3 - 1)/2} \mod 3 = - 1 \mod 3$<br>
    $p^{(3 - 1)/2} \mod 3 = p \mod 3$
 
-   which means that $\displaystyle (\frac{3}{p}) = 1$ if $p \equiv - 1 \mod 3$, otherwise $\displaystyle (\frac{3}{p}) = - 1$ if $p \equiv 1 \mod 3$. Now, if we want to expand to $\mod 12$ we can consider the previous results. By Euler's Criterion we have $\displaystyle (\frac{3}{p}) = - 1$ iff $p \equiv - 1 \mod 4$. We can exhume the CRT here, and
+   which means that $\displaystyle (\frac{3}{p}) = 1$ if $p \equiv - 1 \mod 3$, otherwise $\displaystyle (\frac{3}{p}) = - 1$ if $p \equiv 1 \mod 3$. Now, we know from the previous section that the previous step $\displaystyle (\frac{3}{p}) = - (\frac{p}{3})$ is safe iff $p \equiv - 1 \mod 4$. Now we can exhume the CRT.
    
- 1st case, clear conditions to satisfy $\displaystyle (\frac{3}{p}) = 1$ (extended case):
+_ 1st case, clear conditions to satisfy $\displaystyle (\frac{3}{p}) = 1$ _
  
    $p \equiv 2 \mod 3$<br>
    $p \equiv 3 \mod 4$<br>
@@ -570,7 +570,7 @@
    $->$<br>
    $- 1 \mod 12$<br>
 
- 2nd case, negative conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = 1$ (extended case):
+_ 2nd case, negative conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = 1$ _
  
    $p \equiv 1 \mod 3$<br>
    $p \equiv 1 \mod 4$<br>
@@ -580,7 +580,7 @@
 
    $p \equiv 1 \mod 12$
 
- 3rd case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = - 1$ (extended case):
+_ 3rd case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = - 1$ _
  
    $p \equiv 2 \mod 3$<br>
    $p \equiv 1 \mod 4$<br>
@@ -600,8 +600,26 @@
    $->$<br>
    $5 \mod 12$
 
- Without computing the last one, we already know it will be
+_ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p}) = - 1$ _
 
+   $p \equiv 1 \mod 3$<br>
+   $p \equiv 3 \mod 4$<br>
+   $p \equiv ? \mod 12$<br>
+   $-----$<br>
+   $N = 4$<br>
+   $n = ?$<br>
+   $4n - z3 = 1$<br>
+   $-----$<br>
+   $N = 3$<br>
+   $n = ?$<br>
+   $3n - z4 = 1$<br>
+   $-----$<br>
+   $1 \cdot 4 \cdot 1 + 3 \cdot 3 \cdot 3 \mod 12$<br>
+   $->$<br>
+   $5 + 27 \mod 12$<br>
+   $->$<br>
+   $8 \mod 12$<br>
+   $->$<br>
    $- 5 \mod 12$
 
    Which finally means that we managed to compute all the cases for $\displaystyle (\frac{3}{p})$:
@@ -619,5 +637,67 @@
    if
 
    $p \equiv \pm 5 \mod 12$
+ </p>
+
+ ## Tonelli-Shanks root square algorithm
+
+ <p>
+   This section refers to [https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm] entirely.
+   
+   In the previous sections we faced the problem of knowing whether a number is a quadratic residue or not, and many conditions involved in the process of understanding it. Now we want to actually compute $R$ where
+
+   $R^2 \equiv n \mod p$
+
+   that is, to find the root square of $n$ $(\mod p)$.
+
+   Imagine a scenario where we want to compute the square root of $n$, but we are not sure if it is a quadratic residue. From the previous sections, we know this won't be a problem because we can easily check it using the Euler's Criterion (or Jacobi Symbol).
+
+   We can start by factoring out $p - 1$ the powers of $2$, obtaining
+
+   $p - 1 = 2^{S}Q$
+
+   where $Q$ is odd.
+   
+   Now we can analyze the first and perhaps most important intuition.
+
+   If
+
+   $\displaystyle R \equiv n^{\frac{Q + 1}{2}} \mod p$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.1]$
+
+   then
+   
+   $R^2 \equiv n^{Q + 1} = (n)(n^{Q}) \mod p$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.2]$
+
+   Now, if
+
+   $n^{Q} \equiv 1 \mod p$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.3]$
+
+   then
+
+   $R^2 \equiv n \mod p$
+
+   which would mean that we would have found $R$ $(1.1)$.<br>
+   Now the first question that came to my mind was how can we manage to get $(1.3)$, which is indeed the only problem here, but it turns out that it's easier than it looks at first. We can see that
+
+   $\displaystyle n^{Q^{2^{S - 1}}} = n^{Q2^{S - 1}} = n^{\frac{p - 1}{2}}$
+
+   This means that $n^{Q}$ is the $S - 1$-th root of $n^{\frac{p - 1}{2}}$, and since
+
+   $\displaystyle n^{\frac{p - 1}{2}} \equiv 1 \mod p$
+
+   then $n^{Q}$ will either be $- 1$ or $1$. We can make a quick check to see if
+
+   $n^{Q2^{S - 2}} \equiv 1 \mod p$
+
+   If it does, then $n^{Q} \equiv 1 \mod p$ because of the cyclicness of subgroups. If it doesn't, then
+
+   $n^{Q2^{S - 2}} \equiv - 1 \mod p$
+
+   and we need to proceed differently.
+
+   
+
+   
+   
  </p>
 
