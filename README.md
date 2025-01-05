@@ -741,6 +741,6 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    $->$<br>
    $\displaystyle R^2 \equiv n \mod p$<br>
 
-   which is always safe to compute since $(1.4)$. Honestly I don't completely understand Wiki complexities. I guess ''my'' version is correct.
+   which is always safe to compute since $(1.4)$. Honestly I don't completely understand Wiki complexities. I guess ''my'' version is correct, but I'll get back here if I spot problems.
  </p>
 
