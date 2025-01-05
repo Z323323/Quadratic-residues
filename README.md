@@ -1,4 +1,4 @@
-# Quadratic residues
+# Quadratic residues concepts
 
 ## Euler's Criterion and Legendre symbol
 
