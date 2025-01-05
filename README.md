@@ -1,5 +1,9 @@
 # Quadratic residues
 
+<p>
+  Many quadratic residues concepts, from Euler's Criterion constraints to Tonelli-Shanks algorithm.
+</p>
+
 ## Euler's Criterion and Legendre symbol
 
 <p>
