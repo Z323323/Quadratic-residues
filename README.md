@@ -681,23 +681,66 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    $\displaystyle n^{Q^{2^{S - 1}}} = n^{Q2^{S - 1}} = n^{\frac{p - 1}{2}}$
 
-   This means that $n^{Q}$ is the $S - 1$-th root of $n^{\frac{p - 1}{2}}$, and since
+   This means that $n^{Q}$ is the $S - 1$-th square root of $n^{\frac{p - 1}{2}}$, and since
 
    $\displaystyle n^{\frac{p - 1}{2}} \equiv 1 \mod p$
 
-   then $n^{Q}$ will either be $- 1$ or $1$. We can make a quick check to see if
+   (because $n$ is a quadratic residue) then $n^{Q}$ will either be $- 1$ or $1$ (always) because of the cyclicness of subgroups, and because the square roots of $1$ are either $1$ or $- 1$ $(\mod p)$. Now we can observe that either
 
-   $n^{Q2^{S - 2}} \equiv 1 \mod p$
+   $p - 1 | 4$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.4]$<br>
+   $->$<br>
+   $p \equiv 1 \mod 4$
 
-   If it does, then $n^{Q} \equiv 1 \mod p$ because of the cyclicness of subgroups. If it doesn't, then
+   or
 
-   $n^{Q2^{S - 2}} \equiv - 1 \mod p$
+   $p - 1 | 2$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.5]$<br>
+   $->$<br>
+   $p - 1 \equiv 2 \mod 4$<br>
+   $->$<br>
+   $p \equiv - 1 \mod 4$
 
-   and we need to proceed differently.
+   Under $(1.5)$ we will have
 
+   $p - 1 = 2Q$
+
+   and
+
+   $\displaystyle R \equiv n^{\frac{Q + 1}{2}} \mod p$<br>
+   $->$<br>
+   $\displaystyle R^2 \equiv (n)(n^{Q}) \mod p$<br>
+   $->$<br>
+   $\displaystyle R^2 \equiv n \mod p$
+
+   because
+
+   $\displaystyle n^{Q} = n^{\frac{p - 1}{2}}$
+
+   thus, we will always refer to $(1.4)$ from now on, because $(1.5)$ will always resolve without problems. Wiki reports
    
+   $\displaystyle R \equiv \pm n^{\frac{p + 1}{4}} \mod p$
 
+   under $(1.5)$, because
+
+   $\displaystyle R^2 \equiv n^{\frac{p + 1}{2}} \mod p$<br>
+   $->$<br>
+   $\displaystyle R^2 \equiv (n)(n^{\frac{p - 1}{2}}) \mod p$
+
+   where $\pm$ is because of the square.
    
+   Now we can safely get back to our wider case knowing we will always operate under $(1.4)$ to resolve the problem of
+
+   $n^{Q} \equiv - 1 \mod p$
+
+   To solve this we will need to find a number $z$ such that
+
+   $\displaystyle z^{\frac{p - 1}{2}} \equiv - 1 \mod p$
+
+   that is $z$ will be a quadratic non-residue. To understand why, we will then compute
    
+   $\displaystyle R \equiv z^{\frac{p - 1}{4}}n^{\frac{Q + 1}{2}} \mod p$<br>
+   $->$<br>
+   $\displaystyle R^2 \equiv n \mod p$<br>
+
+   which is always safe to compute since $(1.4)$. Honestly I don't completely understand Wiki complexities. I guess ''my'' version is correct.
  </p>
 
