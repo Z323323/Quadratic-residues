@@ -676,16 +676,18 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    $R^2 \equiv n \mod p$
 
-   which would mean that we would have found $R$ $(1.1)$.<br>
-   Now the first question that came to my mind was how can we manage to get $(1.3)$, which is indeed the only problem here, but it turns out that it's easier than it looks at first. We can see that
+   which would mean that we would have found $R$ $([1.1])$.<br>
+   Now the first question that came to my mind was how can we manage to get $[1.3]$, which is indeed the only problem here, but it turns out that it's easier than it looks at first. We can see that
 
    $\displaystyle n^{Q^{2^{S - 1}}} = n^{Q2^{S - 1}} = n^{\frac{p - 1}{2}}$
 
-   This means that $n^{Q}$ is the $S - 1$-th square root of $n^{\frac{p - 1}{2}}$, and since
-
+   This means that $n^{Q}$ is the $S - 1$-th square root of $n^{\frac{p - 1}{2}}$, and
+   
    $\displaystyle n^{\frac{p - 1}{2}} \equiv 1 \mod p$
 
-   (because $n$ is a quadratic residue) then $n^{Q}$ will either be $- 1$ or $1$ (always) because of the cyclicness of subgroups, and because the square roots of $1$ are either $1$ or $- 1$ $(\mod p)$. Now we can observe that either
+   because $n$ is a quadratic residue.
+
+   Now we can observe that either
 
    $p - 1 | 4$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.4]$<br>
    $->$<br>
@@ -699,7 +701,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    $->$<br>
    $p \equiv - 1 \mod 4$
 
-   Under $(1.5)$ we will have
+   We can see that under $[1.5]$ we will have
 
    $p - 1 = 2Q$
 
@@ -715,32 +717,135 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    $\displaystyle n^{Q} = n^{\frac{p - 1}{2}}$
 
-   thus, we will always refer to $(1.4)$ from now on, because $(1.5)$ will always resolve without problems. Wiki reports
+   thus, under $[1.5]$ our formula will always resolve without problems. Wiki reports
    
-   $\displaystyle R \equiv \pm n^{\frac{p + 1}{4}} \mod p$
+   $\displaystyle R \equiv \pm n^{\frac{p + 1}{4}} \mod p$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.6]$
 
-   under $(1.5)$, because
+   under $[1.5]$, because
 
    $\displaystyle R^2 \equiv n^{\frac{p + 1}{2}} \mod p$<br>
    $->$<br>
    $\displaystyle R^2 \equiv (n)(n^{\frac{p - 1}{2}}) \mod p$
 
-   where $\pm$ is because of the square.
+   where $\pm$ is because of the square and $\displaystyle Q = \frac{p - 1}{2}$ for this particular case.
    
-   Now we can safely get back to our wider case knowing we will always operate under $(1.4)$ to resolve the problem of
+   Now, what's the problem if we use this formula for every case? That is, why don't we always set $\displaystyle Q = \frac{p - 1}{2}$ and compute $[1.6]$?
 
-   $n^{Q} \equiv - 1 \mod p$
+   If $[1.4]$ then
 
-   To solve this we will need to find a number $z$ such that
-
-   $\displaystyle z^{\frac{p - 1}{2}} \equiv - 1 \mod p$
-
-   that is $z$ will be a quadratic non-residue. To understand why, we will then compute
-   
-   $\displaystyle R \equiv z^{\frac{p - 1}{4}}n^{\frac{Q + 1}{2}} \mod p$<br>
+   $p - 1 | 4$<br>
    $->$<br>
-   $\displaystyle R^2 \equiv n \mod p$<br>
+   $p + 1 | 2$<br>
+   $->$<br>
+   $p + 1 \nmid 4$
 
-   which is always safe to compute since $(1.4)$. Honestly I don't completely understand Wiki complexities. I guess ''my'' version is correct, but I'll get back here if I spot problems.
+   This means that we can't use $[1.6]$. Otherwise if $[1.5]$ then accidentally
+
+   $p - 1 | 2$<br>
+   $->$<br>
+   $p + 1 | 4$<br>
+   
+   This means that we will need to find another way under $[1.4]$.
+
+   Now I'll proceed with the algorithm. This won't be easy you're advertised.<br>
+   Let $z$ be a quadratic non-residue of $Z_{p}^{*}$, that is
+
+   $z^{\frac{p - 1}{2}} \equiv - 1 \mod p$
+
+   then
+
+   $M = S$
+   $c = z^{Q}$<br>
+   $t = n^{Q}$<br>
+   $R = n^{\frac{Q + 1}{2}}$
+
+   If $t = 1$ return $R$ ($[1.5]$ will be solved here), otherwise we keep squaring on $t$ to find the first $i$ which matches
+
+   $t^{2^{i}} \equiv 1 \mod p$
+
+   then we proceed with the algorithm setting
+   
+   $b = z^{Q^{2^{M - i - 1}}} = z^{Q^{2^{S - i - 1}}}$<br>
+   $M = i$<br>
+   $c = b^2 = (z^{Q^{2^{S - i - 1}}})^2$<br>
+   $t = tb^2 = n^{Q}(z^{Q^{2^{S - i - 1}}})^2$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}$
+
+   $i$ times, where our result will be found on the last iteration.
+
+   We can further analyze the algorithm on the $2nd$ step:
+
+   $b = c^{2^{i - (i - 1) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^2$<br>
+   $M = i - 1$<br>
+   $c = b^2 = (z^{Q^{2^{S - i - 1}}})^4$<br>
+   $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2$
+
+   $3rd$ step:
+
+   $b = c^{2^{i - 1 - (i - 2) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^4$<br>
+   $M = i - 2$<br>
+   $c = b^2 = (z^{Q^{2^{S - i - 1}}})^8$<br>
+   $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$
+
+   $4t\lambda$ step and so on:
+
+   $b = c^{2^{i - 2 - (i - 3) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^8$<br>
+   $M = i - 3$<br>
+   $c = b^2 = (z^{Q^{2^{S - i - 1}}})^16$<br>
+   $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8(z^{Q^{2^{S - i - 1}}})^16$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$
+
+
+
+   where the last one is because
+
+   $R = (n^{\frac{Q + 1}{2}}c^{2^{S - i - 1}})^2$<br>
+   $->$<br>
+   $R = (n)(n^{Q})(c^{2^{S - i - 1}})^2$<br>
+   $->$<br>
+   $R = nt$
+   
+   We must repeat these assignments $i$ times, therefore obtaining
+   
+   $c = b^2 = (c^{2^{S - i - 1}})^2$
+
+   $i$ times 
+
+   $->$<br>
+   $c^{2^{S - i - 1}2^{i}} = c^{2^{S - i - 1 + i}} = c^{2^{S - 1}} = z^{Q2^{S - 1}} \equiv - 1 \mod p$
+
+   and
+
+   $t = tb^2 = n^{Q}(c^{2^{S - i - 1}})^{2}$<br>
+   
+   $i$ times
+
+   $->$<br>
+   $t^{i}(- 1) \mod p$<br>
+
+   now we know that $t^{2^{i}} = n^{Q2^{i}} \equiv 1 \mod p$, and therefore we necessary have
+
+   $t^{i} = \sqrt{n^{Q2^{i}}} \equiv - 1 \mod p$
+   
+   $->$<br>
+   $(- 1)(- 1) = 1 \mod p$<br>
+
+   and
+
+   $R = Rb = n^{\frac{Q + 1}{2}}c^{2^{S - i - 1}}$<br>
+
+   $i$ times
+
+   $->$<br>
+   $R = (n^{\frac{Q + 1}{2}})^{i}(c^{2^{S - i - 1}})^{i}$<br>
+   $->$<br>
+   
+   $->$<br>
+   
+
+
+   
  </p>
 
