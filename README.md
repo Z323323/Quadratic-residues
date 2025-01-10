@@ -813,9 +813,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    Now we can make a simple artifice and consider the result for $Rb$ in the last step as elevated as the same exponent as the previous ones ($t$ and $c$), while reminding that it will exactly be the square root of it, that is
   
    - $R = Rb = n^{{Q + 1}^{2^{i - 2}}}c^{2^{S - i - 1}2^{i - 1}}$
-   - $->$
-   - $artifice$
-   - $->$
+   - $-artifice>$
    - $n^{{Q + 1}^{2^{i - 1}}}c^{2^{S - i - 1}2^{i}}$
    - - $n^{{Q + 1}^{2^{i - 1}}}(- 1) \mod p$
      - $(n)(- 1)(- 1) \mod p$
@@ -824,14 +822,22 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    where
 
    $n^{{Q + 1}^{2^{i - 1}}} \equiv (n)(- 1) \mod p$
+   $->$
+   $n^{2^{i - 1}}n^{Q2^{i - 1}} \equiv (n)(- 1) \mod p$
 
    because we know that
 
-   $n^{Q^{2^{i - 1}}} \equiv - 1 \mod p$
+   $n^{Q2^{i - 1}} \equiv - 1 \mod p$
 
    since
 
-   $n^{Q^{2^{i}}} \equiv 1 \mod p$
+   $n^{Q2^{i}} \equiv 1 \mod p$
+
+   and
+
+   $n^{2^{i - 1}} \equiv n \mod p$
+
+   because
 
    
 
