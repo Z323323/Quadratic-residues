@@ -100,21 +100,25 @@
 
    $s_{1} = (n - 1) / 2, s_{2} = s_{1} / 2, \dots$
 
-   $r$ times, until we get a number which is not divisible by $2$ (if it's not divisible by $2$ initially then $n$ is not prime and we are done), then we perform
+   $r$ times, until we get a number which is not divisible by $2$ (if it's not divisible by $2$ initially then $n$ is not prime and we are done). Simultaneously we perform
 
    $a^{s_{i}} \mod n, i = [1, \dots, r]$
 
-   if it equals $1$ we continue until we get $- 1$ at $s_{r}$, otherwise if any
+   If it equals $1$ we continue until we get $- 1$ which could be up to $s_{r}$, otherwise if we get
 
    $a^{s_{i}} \not\equiv 1 \mod n$
 
-   or
+   and
 
-   $a^{s_{r}} \not\equiv - 1 \mod n$
+   $a^{s_{i}} \not\equiv - 1 \mod n$
 
-   then $n$ is composite.<br>
+   before obtaining $- 1$ then $n$ is composite; otherwise if we keep getting
 
-   This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ but $\phi(n)$ is different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$. Just note this:
+   $a^{s_{i}} \equiv 1 \mod n$
+
+   but not $- 1$ at $s_{r}$ then $n$ is composite.
+   
+   This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ but $\phi(n)$ is different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$ (not sure at all). Just note this:
 
    $a^{(n - 1) / 2} \not\equiv a^{\phi(n) / 2}$ for non-primes
 
@@ -677,7 +681,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    $R^2 \equiv n \mod p$
 
    which would mean that we would have found $R$ $([1.1])$.<br>
-   Now the first question that came to my mind was how can we manage to get $[1.3]$, which is indeed the only problem here, but it turns out that it's easier than it looks at first. We can see that
+   Now the first question that came to my mind was how can we manage to get $[1.3]$, which is indeed the only problem here. We can see that
 
    $\displaystyle n^{Q^{2^{S - 1}}} = n^{Q2^{S - 1}} = n^{\frac{p - 1}{2}}$
 
@@ -747,14 +751,14 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    
    This means that we will need to find another way under $[1.4]$.
 
-   Now I'll proceed with the algorithm. This won't be easy you're advertised.<br>
+   Now I'll proceed with the algorithm which solves both cases by the way. This won't be easy you're advertised.<br>
    Let $z$ be a quadratic non-residue of $Z_{p}^{*}$, that is
 
    $z^{\frac{p - 1}{2}} \equiv - 1 \mod p$
 
    then
 
-   $M = S$
+   $M = S$<br>
    $c = z^{Q}$<br>
    $t = n^{Q}$<br>
    $R = n^{\frac{Q + 1}{2}}$
@@ -765,7 +769,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    then we proceed with the algorithm setting
    
-   $b = z^{Q^{2^{M - i - 1}}} = z^{Q^{2^{S - i - 1}}}$<br>
+   $b = c^{2^{M - i - 1}} = z^{Q^{2^{M - i - 1}}} = z^{Q^{2^{S - i - 1}}}$<br>
    $M = i$<br>
    $c = b^2 = (z^{Q^{2^{S - i - 1}}})^2$<br>
    $t = tb^2 = n^{Q}(z^{Q^{2^{S - i - 1}}})^2$<br>
@@ -779,44 +783,57 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    $M = i - 1$<br>
    $c = b^2 = (z^{Q^{2^{S - i - 1}}})^4$<br>
    $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$<br>
-   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2$
+   $R = Rb = (n^{\frac{Q + 1}{2}})^{2}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2$
 
    $3rd$ step:
 
    $b = c^{2^{i - 1 - (i - 2) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^4$<br>
    $M = i - 2$<br>
    $c = b^2 = (z^{Q^{2^{S - i - 1}}})^8$<br>
-   $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$<br>
-   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$
+   $t = tb^2 = n^{Q^{4}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$<br>
+   $R = Rb = (n^{\frac{Q + 1}{2}})^{4}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$
 
    $4t\lambda$ step and so on:
 
    $b = c^{2^{i - 2 - (i - 3) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^8$<br>
    $M = i - 3$<br>
-   $c = b^2 = (z^{Q^{2^{S - i - 1}}})^16$<br>
-   $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8(z^{Q^{2^{S - i - 1}}})^16$<br>
-   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$
+   $c = b^2 = (z^{Q^{2^{S - i - 1}}})^{16}$<br>
+   $t = tb^2 = n^{Q^{8}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8(z^{Q^{2^{S - i - 1}}})^{16}$<br>
+   $R = Rb = (n^{\frac{Q + 1}{2}})^{8}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$
 
-
-
-   where the last one is because
-
-   $R = (n^{\frac{Q + 1}{2}}c^{2^{S - i - 1}})^2$<br>
-   $->$<br>
-   $R = (n)(n^{Q})(c^{2^{S - i - 1}})^2$<br>
-   $->$<br>
-   $R = nt$
-   
    We must repeat these assignments $i$ times, therefore obtaining
    
-   $c = b^2 = (c^{2^{S - i - 1}})^2$
+   - $c = b^2 = c^{2^{S - i - 1}2^{i}}$
+   - - $c^{2^{S - i - 1 + i}}$
+     - $c^{2^{S - 1}}$
+     - $z^{Q2^{S - 1}} \equiv - 1 \mod p$
+   - $t = tb^2 = n^{Q^{i}}(z^{Q^{2^{S - i - 1}}})^{2^{i}}$
+   - - $(- 1)(- 1) = 1 \mod p$
+    
+   Now we can make a simple artifice and consider the result for $Rb$ in the last step as elevated as the same exponent as the previous ones ($t$ and $c$), while reminding that it will exactly be the square root of it, that is
+  
+   - $R = Rb = n^{{Q + 1}^{2^{i - 2}}}c^{2^{S - i - 1}2^{i - 1}}$
+   - $->$
+   - $artifice$
+   - $->$
+   - $n^{{Q + 1}^{2^{i - 1}}}c^{2^{S - i - 1}2^{i}}$
+   - - $n^{{Q + 1}^{2^{i - 1}}}(- 1) \mod p$
+     - $(n)(- 1)(- 1) \mod p$
+     - $n \mod p$
+    
+   where
 
-   $i$ times 
+   $n^{{Q + 1}^{2^{i - 1}}} \equiv (n)(- 1) \mod p$
 
-   $->$<br>
-   $c^{2^{S - i - 1}2^{i}} = c^{2^{S - i - 1 + i}} = c^{2^{S - 1}} = z^{Q2^{S - 1}} \equiv - 1 \mod p$
+   because we know that
 
-   and
+   $n^{Q^{2^{i - 1}}} \equiv - 1 \mod p$
+
+   since
+
+   $n^{Q^{2^{i}}} \equiv 1 \mod p$
+
+   
 
    $t = tb^2 = n^{Q}(c^{2^{S - i - 1}})^{2}$<br>
    
@@ -834,7 +851,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    and
 
-   $R = Rb = n^{\frac{Q + 1}{2}}c^{2^{S - i - 1}}$<br>
+   
 
    $i$ times
 
