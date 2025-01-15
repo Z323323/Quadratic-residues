@@ -369,7 +369,6 @@
 
   $\displaystyle \lfloor \frac{au}{p} \rfloor \equiv r(u) \mod 2$
 
-  This is a more elegant way to prove this fact compared to Gauss' Theorem.<br>
   Now to finally complete the lemma, since they are congruent $\mod 2$ we can use $\displaystyle \lfloor \frac{au}{p} \rfloor$ instead of $r(u)$ as exponent into the previous result and see that
 
   $a^{(p - 1)/2} \equiv (- 1)^{\sum_{u}\lfloor au/p \rfloor} (\mod p)$
@@ -693,13 +692,15 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    Now we can observe that either
 
-   $p - 1 | 4$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.4]$<br>
+   $4 | p - 1$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.4]$<br>
    $->$<br>
    $p \equiv 1 \mod 4$
 
    or
 
-   $p - 1 | 2$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.5]$<br>
+   $2 | p - 1$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.5]$<br>
+   $but$<br>
+   $4 \nmid p - 1$<br>
    $->$<br>
    $p - 1 \equiv 2 \mod 4$<br>
    $->$<br>
@@ -737,27 +738,72 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    If $[1.4]$ then
 
-   $p - 1 | 4$<br>
+   $4 | p - 1$<br>
+   $and$<br>
+   $2 | p + 1$<br>
    $->$<br>
-   $p + 1 | 2$<br>
-   $->$<br>
-   $p + 1 \nmid 4$
+   $2 | p - 1$<br>
+   $but$<br>
+   $4 \nmid p + 1$
 
    This means that we can't use $[1.6]$. Otherwise if $[1.5]$ then accidentally
 
-   $p - 1 | 2$<br>
-   $->$<br>
-   $p + 1 | 4$<br>
+   $2 | p - 1$<br>
+   $and$<br>
+   $4 | p + 1$
    
-   This means that we will need to find another way under $[1.4]$.
-
-   Now I'll proceed with the algorithm which solves both cases by the way. This won't be easy you're advertised.<br>
+   This means that we will need to find another way under $[1.4]$.<br>
+   Now I'll proceed analyzing the algorithm which solves both cases by the way.
+   
    Let $z$ be a quadratic non-residue of $Z_{p}^{*}$, that is
 
    $z^{\frac{p - 1}{2}} \equiv - 1 \mod p$
 
-   then
+   Now, before going over, some clarifications are necessary in order clarify the bigger picture, which is not simple.
 
+   The most important and hard thing to realize is that not every quadratic non-residue will help us finding the right answer. We will need to find one which matches
+
+   $n^{Q} = z^{2Q}$<br>
+   $->$<br>
+   $\sqrt{n^{Q}} = z^{Q}$
+
+   that is, $z^{Q}$ is the square root of $n^{Q}$.<br>
+   Now, before going over, I'll give you a wider view of the problem (which is really tough). We know that 
+
+   $n^{Q2^{S - 1}} \equiv 1 \mod p$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $[1.7]$
+
+   but $n$ will produce a subgroup of $Z_{p}^{\ast}$, of order $o$ such that
+
+   $o_{n} | Q2^{S - 1}$
+
+   This means that we will necessarily find another $1$ before $[1.7]$ for every $n$ which doesn't belong to some subgroup $S$ of $Z_{p}^{\ast}$ of order $o_{S} = Q2^{S - 1}$. For such cases we will have 
+
+   - $n^{Q2^{i}} \equiv 1 \mod p$
+   - $i < S - 1$
+   - $i | S - 1$
+
+   (erasing the cases producing $n^{Q} \equiv 1 \mod p$ since it's trivial).<br>
+   Now the reasoning starts getting quite hard, and I believe there must be some rule which could rely on complex numbers. Since
+
+   $n^{Q2^{i}} \equiv 1 \mod p$
+
+   we will necessarily have
+
+   $n^{Q2^{i - 1}} \equiv - 1 \mod p$
+
+   but we can't know (for the moment) what $n^{Q}$ will be because the square of $- 1$ falls into complex numbers. Now, for the same reason we can't know what $z^{2Q}$ will be in general, and therefore we will need to check its adequacy. Even the reasoning about quadratic non-residues starts getting quite obscure if we dig enough. [To get what I mean, fire up Zn.py using $41$ and check $4$. We can easily state that its root is $2$, but it doesn't follow the non-residues reasoning]. Let's get over this for the moment because the reasoning is complex enough already. Recalling the initial statement, we will need to find a non-residue $z$ such that
+
+   $n^{Q} = z^{2Q}$<br>
+   $->$<br>
+   $\sqrt{n^{Q}} = z^{Q}$
+
+   so let's get why.<br>
+   The construction made by Wikipedia is not completely necessary to get the final result; we will only need to compute $b$, $R$ and $Rb$. The constructions regarding $c, t$ are only necessary to better show why the algorithm works from a formal point of view, hence I'm leaving them because they improve the proof, but they are not required if you want to implement Tonelli-Shanks.<br>
+
+   Now I'm going to breakdown the algorithm from a formal point of view which will be the proof itself.
+
+   Initially we set
+   
    $M = S$<br>
    $c = z^{Q}$<br>
    $t = n^{Q}$<br>
@@ -767,7 +813,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
 
    $t^{2^{i}} \equiv 1 \mod p$
 
-   then we proceed with the algorithm setting
+   then we proceed with the algorithm assigning
    
    $b = c^{2^{M - i - 1}} = z^{Q^{2^{M - i - 1}}} = z^{Q^{2^{S - i - 1}}}$<br>
    $M = i$<br>
@@ -782,93 +828,55 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
    $b = c^{2^{i - (i - 1) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^2$<br>
    $M = i - 1$<br>
    $c = b^2 = (z^{Q^{2^{S - i - 1}}})^4$<br>
-   $t = tb^2 = n^{Q^{2}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$<br>
-   $R = Rb = (n^{\frac{Q + 1}{2}})^{2}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2$
+   $t = tb^2 = n^{Q}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2$
 
    $3rd$ step:
 
    $b = c^{2^{i - 1 - (i - 2) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^4$<br>
    $M = i - 2$<br>
    $c = b^2 = (z^{Q^{2^{S - i - 1}}})^8$<br>
-   $t = tb^2 = n^{Q^{4}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$<br>
-   $R = Rb = (n^{\frac{Q + 1}{2}})^{4}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$
+   $t = tb^2 = n^{Q}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4$
 
    $4t\lambda$ step and so on:
 
    $b = c^{2^{i - 2 - (i - 3) - 1}} = c = (z^{Q^{2^{S - i - 1}}})^8$<br>
    $M = i - 3$<br>
    $c = b^2 = (z^{Q^{2^{S - i - 1}}})^{16}$<br>
-   $t = tb^2 = n^{Q^{8}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8(z^{Q^{2^{S - i - 1}}})^{16}$<br>
-   $R = Rb = (n^{\frac{Q + 1}{2}})^{8}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$
+   $t = tb^2 = n^{Q}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8(z^{Q^{2^{S - i - 1}}})^{16}$<br>
+   $R = Rb = n^{\frac{Q + 1}{2}}z^{Q^{2^{S - i - 1}}}(z^{Q^{2^{S - i - 1}}})^2(z^{Q^{2^{S - i - 1}}})^4(z^{Q^{2^{S - i - 1}}})^8$
 
    We must repeat these assignments $i$ times, therefore obtaining
    
-   - $c = b^2 = c^{2^{S - i - 1}2^{i}}$
+   - $c = (c^{2^{S - i - 1}})^{2^{i}}$
    - - $c^{2^{S - i - 1 + i}}$
      - $c^{2^{S - 1}}$
      - $z^{Q2^{S - 1}} \equiv - 1 \mod p$
-   - $t = tb^2 = n^{Q^{i}}(z^{Q^{2^{S - i - 1}}})^{2^{i}}$
-   - - $(- 1)(- 1) = 1 \mod p$
+   - $t = tb^2 = n^{Q}(z^{Q^{2^{S - i - 1}}})^{2^{i}}$
+   - - $z^{Q^{2}}z^{Q^{2^{S - 1}}} <-$ you can see here that everything works since $n^{Q} \equiv z^{2Q} \mod p$
+     - $Z = z^{Q^{2}}$
+     - $Z \cdot Z^{S - 1} = Z^{S}$
+     - $z^{Q2^{S}} \equiv 1 \mod p$
     
-   Now we can make a simple artifice and consider the result for $Rb$ in the last step as elevated as the same exponent as the previous ones ($t$ and $c$), while reminding that it will exactly be the square root of it, that is
+   Now we can make a simple artifice and consider the result for $Rb$ squared, while reminding that it will exactly be the square root of it. This is made to prove the algorithm, since the final result is proved by
+
+   $R^2 \equiv n \mod p$
+
+   This means that if we have the result of the algorithm which squared matches the previous result then the proof is complete and the algorithm works.
   
-   - $R = Rb = n^{{Q + 1}^{2^{i - 2}}}c^{2^{S - i - 1}2^{i - 1}}$
+   - $R = Rb = n^{\frac{Q + 1}{2}}(c^{2^{S - i - 1}})^{2^{i - 1}}$
    - $-artifice>$
-   - $n^{{Q + 1}^{2^{i - 1}}}c^{2^{S - i - 1}2^{i}}$
-   - - $n^{{Q + 1}^{2^{i - 1}}}(- 1) \mod p$
-     - $(n)(- 1)(- 1) \mod p$
-     - $n \mod p$
+   - $R^2 = R^{2}b^{2} = n^{Q + 1}(c^{2^{S - i - 1}})^{2^{i}}$
+   - - $(n)(n^{Q})(c^{2^{S - i - 1}})^{2^{i}}$
+   - - $(n)1 \mod p$
+     - $n \mod p$ _
     
-   where
+   There could be some other conclusions which could be made, since
 
-   $n^{{Q + 1}^{2^{i - 1}}} \equiv (n)(- 1) \mod p$
-   $->$
-   $n^{2^{i - 1}}n^{Q2^{i - 1}} \equiv (n)(- 1) \mod p$
+   $n^{Q} \equiv z^{2Q} \mod p$
 
-   because we know that
-
-   $n^{Q2^{i - 1}} \equiv - 1 \mod p$
-
-   since
-
-   $n^{Q2^{i}} \equiv 1 \mod p$
-
-   and
-
-   $n^{2^{i - 1}} \equiv n \mod p$
-
-   because
-
-   
-
-   $t = tb^2 = n^{Q}(c^{2^{S - i - 1}})^{2}$<br>
-   
-   $i$ times
-
-   $->$<br>
-   $t^{i}(- 1) \mod p$<br>
-
-   now we know that $t^{2^{i}} = n^{Q2^{i}} \equiv 1 \mod p$, and therefore we necessary have
-
-   $t^{i} = \sqrt{n^{Q2^{i}}} \equiv - 1 \mod p$
-   
-   $->$<br>
-   $(- 1)(- 1) = 1 \mod p$<br>
-
-   and
-
-   
-
-   $i$ times
-
-   $->$<br>
-   $R = (n^{\frac{Q + 1}{2}})^{i}(c^{2^{S - i - 1}})^{i}$<br>
-   $->$<br>
-   
-   $->$<br>
-   
-
-
+   doesn't necessarily mean that $z$ must be a quadratic non-residue.
    
  </p>
 
