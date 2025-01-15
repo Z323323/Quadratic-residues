@@ -641,7 +641,7 @@ _ 4th case, hybrid conditions multiplied to satisfy $\displaystyle (\frac{3}{p})
  ## Tonelli-Shanks root square algorithm
 
  <p>
-   This section refers to [https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm] entirely.
+   This section refers to [https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm] (not entirely, the proof is different).
    
    In the previous sections we faced the problem of knowing whether a number is a quadratic residue or not, and many conditions involved in the process of understanding it. Now we want to actually compute $R$ where
 
