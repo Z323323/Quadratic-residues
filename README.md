@@ -108,15 +108,11 @@
 
    $a^{s_{i}} \not\equiv 1 \mod n$
 
-   and
-
-   $a^{s_{i}} \not\equiv - 1 \mod n$
-
-   before obtaining $- 1$ then $n$ is composite; otherwise if we keep getting
+   before obtaining $- 1$ then $n$ is composite. If we keep getting
 
    $a^{s_{i}} \equiv 1 \mod n$
 
-   but not $- 1$ at $s_{r}$ then $n$ is composite.
+   but not $- 1$ at $s_{r}$ then $n$ is composite too.
    
    This test exploit the difference between primes subgroups structure and non-primes one, i.e. the structure of subgroups follow $\phi(n)$ but $\phi(n)$ is different between primes and non-primes, thus every time we iterate we are basically breaking the structure and finding random numbers. Also for every iteration the probability to find a number which fools the test decreases exponentially by a factor of $\displaystyle \frac{1}{4}$. I guess that this number derives directly from our reasoning about $p \equiv 1 \mod 4$ (not sure at all). Just note this:
 
