@@ -453,33 +453,48 @@
 
    This whole reasoning means that
 
-   $\lfloor pu/q \rfloor _{even} = (p - 1)(q - 1)/4$
+   $\sum_{u} \lfloor pu/q \rfloor _{even} = (p - 1)(q - 1)/4$
+   
+   $->$
+   
+   $\sum_{u} \lfloor pu/q \rfloor \equiv (p - 1)(q - 1)/4 \mod 2$
+
+   because
+
+   $\sum_{u} \lfloor pu/q \rfloor _{even} \equiv 0 \mod 2$<br>
+   $->$<br>
+   $(p - 1)(q - 1)/4 = \lfloor pu/q \rfloor _{even} \equiv 0 \mod 2$ 
 
    and
 
-   $\lfloor pu/q \rfloor _{odd} = \lfloor pu/q \rfloor _{even} \pm 1$<br>
+   $\sum_{u} \lfloor pu/q \rfloor _{odd} \equiv 1 \mod 2$<br>
    $->$<br>
-   $(p - 1)(q - 1)/4 = \lfloor pu/q \rfloor _{even} \pm 1$ if $\lfloor pu/q \rfloor$ is $odd$.<br>
-   $(p - 1)(q - 1)/4 = \lfloor pu/q \rfloor _{even}$ if $\lfloor pu/q \rfloor$ is $even$.
+   $(p - 1)(q - 1)/4 = \lfloor pu/q \rfloor _{even} + 1 \equiv \lfloor pu/q \rfloor _{odd} \equiv 1 \mod 2$ 
    
    Below you can clearly see that the simmetry is impossible under correct conditions (for this particular example) and it also better clarifies the formulas above. 
    
    ![XXXX](./XXXX.jpg)
 
-   An equivalent construction can be derived for $\lfloor qu/p \rfloor$, reversing $p$ and $q$. Considering our result, it follows that
+   An equivalent construction can be derived for $\lfloor qu/p \rfloor$, reversing $p$ and $q$, which produces
 
-   $\displaystyle \lfloor qu/p \rfloor = \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2}$<br>
-   $\displaystyle \lfloor pu/q \rfloor = \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2}$
+   $\sum_{u} \lfloor qu/p \rfloor \equiv (p - 1)(q - 1)/4 \mod 2$
+   
+   Considering our results, it follows that
 
-   and
+   $\displaystyle \sum_{u} \lfloor qu/p \rfloor \equiv \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2} \mod 2$<br>
+   $\displaystyle \sum_{u} \lfloor pu/q \rfloor \equiv \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2} \mod 2$
 
+   and we had
+
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor}(- 1)^{\sum_{u}\lfloor pu/q \rfloor}$<br>
+   $and$<br>
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
 
-   which means that if $\displaystyle \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2}$ is odd, then both $(q - 1)/2$ and $(p - 1)/2$ are odd and the result is $- 1$. If only one of them is $even$ then the result is $1$. This means that we can rewrite our result as
+   It follows that
    
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$ _
 
-   Now
+   which solves the theorem, because
    
    $\displaystyle (\frac{q}{p})(\frac{p}{q}) = - 1$
    
@@ -487,15 +502,23 @@
 
    $\displaystyle (\frac{q}{p}) = - (\frac{p}{q})$
 
-   Here should be noted that $- 1$ as result (and the last property which followed) is only possible if $q \equiv p \equiv - 1 \mod 4$ because
+   and $- 1$ as result is only possible if $q \equiv p \equiv - 1 \mod 4$ because if $q \equiv 1 \mod 4$ and/or $p \equiv 1 \mod 4$ it would mean that $4|q - 1$ and/or $4|p - 1$ which would make $\frac{(q - 1)(p - 1)}{4}$ even.
+   The final result of the theorem is a forced artifice (hence it's not) to consider $\frac{(q - 1)(p - 1)}{4}$ only one time, because this is the only way to preserve the logic of operations and the result of the QR theorem, because if we have both $q \equiv p \equiv - 1 \mod 4$ which we know is the only way to have $- 1$ as result, then we are forced to consider $\frac{(q - 1)(p - 1)}{4}$ only once, because following basic math properties we have
 
-   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\frac{(q - 1)(p - 1)}{4}}$
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor}(- 1)^{\sum_{u}\lfloor pu/q \rfloor}$<br>
+   $and$<br>
+   $\displaystyle (\frac{q}{p})(\frac{p}{q}) = (- 1)^{\sum_{u}\lfloor qu/p \rfloor + \sum_{u}\lfloor pu/q \rfloor}$
 
-   and if $q \equiv p \equiv 1 \mod 4$ (even only one of them) it would mean that $4|q - 1$ and/or $4|p - 1$ which would make the result even.
+   and the second one would invalidate the first if not considering $\frac{(q - 1)(p - 1)}{4}$ once, while if we have $q \equiv 1 \mod 4$ and/or $p \equiv 1 \mod 4$ then the result is always even and $\frac{(q - 1)(p - 1)}{4}$ doesn't alter this result. It's like if when reaching
+
+   $\displaystyle \sum_{u} \lfloor qu/p \rfloor \equiv \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2} \mod 2$<br>
+   $\displaystyle \sum_{u} \lfloor pu/q \rfloor \equiv \frac{(q - 1)(p - 1)}{4} = \frac{q - 1}{2}\frac{p - 1}{2} \mod 2$
+
+   god is basically telling us 'hey you should consider $\frac{(q - 1)(p - 1)}{4}$ only once'.
 
    Ex:
    
-   $\displaystyle (\frac{11}{7})(\frac{7}{11}) = (11^3 \mod 7) \cdot (7^5 \mod 11) = (1 \mod 7) \cdot (- 1 \mod 11) = - 1$
+   $\displaystyle (\frac{11}{7})(\frac{7}{11}) = (11^3 \mod 7)(7^5 \mod 11) = (1 \mod 7)(- 1 \mod 11) = - 1$
 
    Indeed both $(p - 1)/2$ and $(q - 1)/2$ are odd preserving our QR, but at the same time one of them equals $1$ not $- 1$.
    
