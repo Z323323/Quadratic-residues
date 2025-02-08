@@ -520,7 +520,7 @@
    
    $\displaystyle (\frac{11}{7})(\frac{7}{11}) = (11^3 \mod 7)(7^5 \mod 11) = (1 \mod 7)(- 1 \mod 11) = - 1$
 
-   Indeed both $(p - 1)/2$ and $(q - 1)/2$ are odd preserving our QR, but at the same time one of them equals $1$ not $- 1$.
+   Indeed both $(p - 1)/2$ and $(q - 1)/2$ are odd preserving our reasoning, but at the same time one of them equals $1$ not $- 1$.
    
    There are different proof of QR which could be more consistent. I believe that Rousseau one deserves a try (not easy at all, but little background is involved). You can find it here [https://stacky.net/files/115/RousseauQR.pdf].
 
