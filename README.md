@@ -3,6 +3,7 @@
 ## Euler's Criterion and Legendre symbol
 
 <p>
+  
   Refer to [https://crypto.stanford.edu/pbc/notes/numbertheory/qr.html], I couldn't explain them better.
   The only thing which is not clear here is why we have $- 1$ as a quadratic residue if and only if
 
@@ -29,24 +30,24 @@
   which means that we chosed $a \in Z_{q}^{*}$ where $Z_{q}^{\ast}$ is a subgroup of $Z_{p}^{\ast}$ of order $4$. By Lagrange's Theorem it must be that $4|p - 1$, and therefore
 
   $p \equiv 1 \mod 4$
+  
 </p>
 
  ### Extension to $Z_{\phi(p^k)}^{\ast}$
 
  <p>
-   We want to prove that the former section's result holds for powers of odd primes.
    
-   $\phi(p^2) = p(p - 1)$
-
-   If
+   We want to prove that the former section's result holds for powers of odd primes. If
 
    $a^2 \equiv - 1 \mod p^2$
 
    then
 
-   $a^4 \equiv 1 \mod p^2$
+   $\phi(p^{2}) \equiv 0 \mod 4$<br>
+   $and$<br>
+   $\phi(p^2) = p(p - 1)$
 
-   therefore by Lagrange $4 | p(p - 1)$, and since $p$ is not divisible by $4$ it must be that $4 | p - 1$, thus
+   therefore by Lagrange's Theorem $4 | p(p - 1)$, and since $p$ is not divisible by $4$ it must be that $4 | p - 1$, thus
 
    $p \equiv 1 \mod 4$
 
@@ -56,37 +57,39 @@
    $\phi(p^4) = p(p(p(p - 1)))$
 
    and so on.
+   
  </p>
 
  ### Extension to $Z_{\phi(n)}^{\ast}$
 
  <p>
 
-   $x^2 \equiv - 1 \mod 2^k$
+ This one is harder. The theorem at [https://github.com/Z323323/Group-theory-elements/blob/main/README.md#theorem] proves that if we have $Z_{\phi(n)}^{\ast}$ such that $phi(n) = 2^{k}XYZ\dots, k \geq 2$ then $Z_{\phi(n)}^{\ast}$ can't have generators because there exists an optimized version of the Euler's Theorem (I call it optimized because the Euler's Theorem holds nonetheless) for $Z_{\phi(2^{k})}^{\ast}$ such that
 
-   is impossible because
+ $a^{2^{k - 2}} \equiv 1 \mod 2^{k}$
 
-   $2 \equiv 2 \mod 4$
+ for any $a$ which is coprime with $2^{k}$. This basically means that using the **CRT** with
+ 
+ $Z_{\phi(2^{k + 1})}^{\ast}, Z_{\phi(\Theta)}^{\ast}, Z_{\phi(\Psi)}^{\ast}, Z_{\phi(\Omega)}^{\ast} \dots$
 
-   and for $2^k, k > 1$
-   
-   $2^k \equiv 0 \mod 4$
+ such that
   
-   Now we can finally generalize and say that if
+ $\phi(2^{k + 1}) = 2^{k}$<br>
+ $\phi(\Theta) = X$<br>
+ $\phi(\Psi) = Y$<br>
+ $\phi(\Omega) = Z$<br>
+ $\dots$
+ 
+ you can imagine (not the easiest thing actually) that
 
-   $n = 2^{k}p_{i}^{k_{i}}$
+ $a^{\phi(n)/2} \not\equiv - 1 \mod n$
 
-   for odd distinct primes $p_{i}$, by the CRT, $- 1$ is a quadratic residue iff $k \leq 1$ and each $p_{i} \equiv 1 \mod 4$. The condition $k \leq 1$ is because
+ for any $a$ which is coprime with $n$. Which means that $Z_{\phi(n)}^{\ast}$ can have $- 1$ as quadratic residue iff
 
-   $\phi(2p_{i}^k) = \phi(2)\phi(p_{i}^k) = 1(p(p \dots (p - 1) \dots )) = \phi(p_{i}^k)$
+ $\phi(n) \equiv 0 \mod 4$
 
-   therefore $2$ is irrelevant and can coexist, while if it was at least $2^2$ we would have
-
-   $x^2 \equiv - 1 \mod 2^2$
-
-   using the CRT; and since it doesn't have solutions we can state that $n$ can't have $- 1$ as quadratic residue (works for any $k$).
-
-   To conclude we can see a similar behaviour between the existence of generators, and the existence of $- 1$ as quadratic residue $(\mod n)$, i.e. if we consider $Z_{\phi(n)}^{\ast}, n = 2^k*\dots, k > 1$ we can't have generators nor $- 1$ as quadratic residue. 
+ and $\phi(n) \neq 2^{k}XYZ\dots, k \geq 2$.
+   
  </p>
 
  ## Miller-Rabin primality test
