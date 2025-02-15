@@ -64,7 +64,7 @@
 
  <p>
 
- This one is harder. The theorem at [https://github.com/Z323323/Group-theory-elements/blob/main/README.md#theorem] proves that if we have $Z_{\phi(n)}^{\ast}$ such that $phi(n) = 2^{k}XYZ\dots, k \geq 2$ then $Z_{\phi(n)}^{\ast}$ can't have generators because there exists an optimized version of the Euler's Theorem (I call it optimized because the Euler's Theorem holds nonetheless) for $Z_{\phi(2^{k})}^{\ast}$ such that
+ This one is harder. The theorem at [https://github.com/Z323323/Group-theory-elements/blob/main/README.md#theorem] proves that if we have $Z_{\phi(n)}^{\ast}$ such that $\phi(n) = 2^{k}XYZ\dots, k \geq 2$ then $Z_{\phi(n)}^{\ast}$ can't have generators because there exists an optimized version of the Euler's Theorem (I call it optimized because the Euler's Theorem holds nonetheless) for $Z_{\phi(2^{k})}^{\ast}$ such that
 
  $a^{2^{k - 2}} \equiv 1 \mod 2^{k}$
 
