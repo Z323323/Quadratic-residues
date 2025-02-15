@@ -89,12 +89,23 @@
  $\phi(n) \equiv 0 \mod 4$
 
  and $\phi(n) \neq 2^{k}XYZ\dots, k \geq 2$.
+
+ It is worth noting that Micali-Goldwasser cryptosystem exploits the problem of knowing whether a number is a quadratic residue or not, because, by Euler's Criterion if
+
+ $a^{\phi(n)/2} \equiv 1 \mod n$
+
+ then $a$ is a quadratic residue; otherwise if
+
+ $a^{\phi(n)/2} \equiv - 1 \mod n$
+
+ then $a$ is not. You can easily notice that in order to proceed to this calculation we must know $\phi(n)$, that is, we need to factorize $n$, which is the same computational problem exploited by RSA.
    
  </p>
 
  ## Miller-Rabin primality test
 
  <p>
+   
    This is probably one of the best tests, if not the best to find out if a number is a prime quickly. We take $n$ and a random $a$ in $[2 \dots p - 2]$, if
 
    $a^{n - 1} \not\equiv 1 \mod n$
@@ -122,6 +133,7 @@
    $a^{(n - 1) / 2} \not\equiv a^{\phi(n) / 2}$ for non-primes
 
    also $- 1$ does not appear around in every multiplicative subgroup, thus it's almost impossible to fool the test. Things should be analyzed better but I don't have the time to do it so for the moment I'm not delving this method further.
+   
  </p>
 
 ## Gauss' Lemma
