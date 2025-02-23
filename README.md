@@ -88,7 +88,7 @@
 
  $\phi(n) \equiv 0 \mod 4$
 
- and $\phi(n) \neq 2^{k}XYZ\dots, k \geq 2$.
+ and $\phi(n) \neq 2^{k}XYZ\dots, k > 2$.
 
  It is worth noting that Micali-Goldwasser cryptosystem exploits the problem of knowing whether a number is a quadratic residue or not, because, by Euler's Criterion if
 
