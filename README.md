@@ -64,9 +64,9 @@
 
  <p>
 
- This one is harder. The theorem at [https://github.com/Z323323/Group-theory-elements/blob/main/README.md#theorem] proves that if we have $Z_{\phi(n)}^{\ast}$ such that $\phi(n) = 2^{k}XYZ\dots, k > 2$ then $Z_{\phi(n)}^{\ast}$ can't have generators because there exists an optimized version of the Euler's Theorem (I call it optimized because the Euler's Theorem holds nonetheless) for $Z_{\phi(2^{k})}^{\ast}$ such that
+ This one is harder. The theorem at [https://github.com/Z323323/Group-theory-elements/blob/main/README.md#theorem] proves that if we have $Z_{\phi(n)}^{\ast}$ such that $\phi(n) = 2^{k}X, k > 2$ then $Z_{\phi(n)}^{\ast}$ can't have generators because there exists an optimized version of the Euler's Theorem (I call it optimized because the Euler's Theorem holds nonetheless) for $Z_{\phi(2^{k})}^{\ast}$ such that
 
- $a^{2^{k - 2}} \equiv 1 \mod 2^{k}$
+ $a^{2^{k - 2}} \equiv 1 \mod 2^{k}, k > 2$
 
  for any $a$ which is coprime with $2^{k}$. This basically means that using the **CRT** with
  
@@ -88,7 +88,7 @@
 
  $\phi(n) \equiv 0 \mod 4$
 
- and $\phi(n) \neq 2^{k}XYZ\dots, k > 2$.
+ and $\phi(n) \neq 2^{k}X, k > 2$.
 
  It is worth noting that Micali-Goldwasser cryptosystem exploits the problem of knowing whether a number is a quadratic residue or not, because, by Euler's Criterion if
 
