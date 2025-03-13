@@ -70,15 +70,12 @@
 
  for any $a$ which is coprime with $2^{k}$. This basically means that using the **CRT** with
  
- $Z_{\phi(2^{k + 1})}^{\ast}, Z_{\phi(\Theta)}^{\ast}, Z_{\phi(\Psi)}^{\ast}, Z_{\phi(\Omega)}^{\ast} \dots$
+ $Z_{\phi(2^{k + 1})}^{\ast}, Z_{\phi(\Theta)}^{\ast}$
 
  such that
   
  $\phi(2^{k + 1}) = 2^{k}$<br>
  $\phi(\Theta) = X$<br>
- $\phi(\Psi) = Y$<br>
- $\phi(\Omega) = Z$<br>
- $\dots$
  
  you can imagine (not the easiest thing actually) that
 
